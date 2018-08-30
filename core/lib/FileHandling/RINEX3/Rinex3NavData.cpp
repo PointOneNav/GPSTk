@@ -953,7 +953,15 @@ namespace gpstk
       if(satSys == "R" || satSys == "S") {
          line += doubleToScientific(TauN,19,12,2);
          line += doubleToScientific(GammaN,19,12,2);
-         line += doubleToScientific((double)MFtime,19,12,2);
+
+         if(satSys == "R" && strm.header.version < 3) {
+            long fixedMFtime = MFtime;
+
+            fixedMFtime -= int(Toc/86400) * 86400;
+            line += doubleToScientific((double)fixedMFtime,19,12,2);
+         } else {
+            line += doubleToScientific((double)MFtime,19,12,2);
+         }
       }
       else if(satSys == "G" || satSys == "E" || satSys == "J" || satSys == "C") {
          line += doubleToScientific(af0,19,12,2);
