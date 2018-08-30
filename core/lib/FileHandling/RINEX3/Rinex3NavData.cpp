@@ -15,7 +15,7 @@
 //  You should have received a copy of the GNU Lesser General Public
 //  License along with GPSTk; if not, write to the Free Software Foundation,
 //  Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110, USA
-//  
+//
 //  Copyright 2004, The University of Texas at Austin
 //
 //============================================================================
@@ -23,13 +23,13 @@
 //============================================================================
 //
 //This software developed by Applied Research Laboratories at the University of
-//Texas at Austin, under contract to an agency or agencies within the U.S. 
+//Texas at Austin, under contract to an agency or agencies within the U.S.
 //Department of Defense. The U.S. Government retains all rights to use,
-//duplicate, distribute, disclose, or release this software. 
+//duplicate, distribute, disclose, or release this software.
 //
-//Pursuant to DoD Directive 523024 
+//Pursuant to DoD Directive 523024
 //
-// DISTRIBUTION STATEMENT A: This software has been approved for public 
+// DISTRIBUTION STATEMENT A: This software has been approved for public
 //                           release, distribution is unlimited.
 //
 //=============================================================================
@@ -143,7 +143,7 @@ namespace gpstk
       xmitTime = static_cast<GPSWeekSecond>(gpseph.transmitTime).getSOW();
       weeknum = static_cast<GPSWeekSecond>(gpseph.transmitTime).getWeek();
 
-      accuracy = gpseph.accuracyFlag;
+      accuracy = gpseph.accuracy;
       health = gpseph.health;
 
       codeflgs = gpseph.codeflags;
@@ -484,7 +484,7 @@ namespace gpstk
       // the accuracy flag.  We'll give it zero and pass the accuracy
       // separately via the setAccuracy() method.
 
-      ee.tlm_message[0] = 0;           
+      ee.tlm_message[0] = 0;
       ee.tlm_message[1] = 0;
       ee.tlm_message[2] = 0;
       ee.HOWtime[0] = xmitTime + 6;       // GPS standard specifies
@@ -496,7 +496,7 @@ namespace gpstk
 
       ee.weeknum    = weeknum;
       ee.codeflags  = codeflgs;
-      ee.health     = health;  
+      ee.health     = health;
       ee.IODC       = short(IODC);
       ee.L2Pdata    = L2Pdata;
       ee.Tgd        = Tgd;
@@ -523,10 +523,10 @@ namespace gpstk
       ee.bcClock.loadData( satSys, obsID, PRNID, tocCT,
                         accFlag, healthy, af0, af1, af2);
 
-      ee.IODE    = short(IODE);      
+      ee.IODE    = short(IODE);
       ee.fitint  = (fitint > 4) ? 1 : 0;
       //double toe = Toe; //?????
-      
+
       //Needed for modernized nav quatities
       double A = Ahalf * Ahalf;
       double dndot = 0.0;
@@ -554,8 +554,8 @@ namespace gpstk
       CommonTime toeCT = GPSWeekSecond(epochWeek, Toe, TimeSystem::GPS);
 
       ee.orbit.loadData( satSys, obsID, PRNID, beginFit, endFit, toeCT,
-                      accFlag, healthy, Cuc, Cus, Crc, Crs, Cic, Cis, 
-                      M0, dn, dndot, ecc, A, Ahalf, Adot, OMEGA0, i0, 
+                      accFlag, healthy, Cuc, Cus, Crc, Crs, Cic, Cis,
+                      M0, dn, dndot, ecc, A, Ahalf, Adot, OMEGA0, i0,
                       w, OMEGAdot, idot);
 
       ee.haveSubframe[0] = true;    // need to be true to perform certain EngEphemeris functions
@@ -589,7 +589,7 @@ namespace gpstk
          oeptr->af0 = af0;
          oeptr->af1 = af1;
          oeptr->af2 = af2;
-   
+
          // Major orbit parameters
          oeptr->M0 = M0;
          oeptr->dn = dn;
@@ -603,7 +603,7 @@ namespace gpstk
          // modern nav msg
          oeptr->dndot = 0.;
          oeptr->Adot = 0.;
-   
+
          // Harmonic perturbations
          oeptr->Cuc = Cuc;
          oeptr->Cus = Cus;
@@ -611,7 +611,7 @@ namespace gpstk
          oeptr->Crs = Crs;
          oeptr->Cic = Cic;
          oeptr->Cis = Cis;
-   
+
          oeptr->dataLoadedFlag = true;
       }
       catch(Exception& e) { GPSTK_RETHROW(e); }
@@ -637,7 +637,7 @@ namespace gpstk
       gpse.IODC = IODC;
       gpse.IODE = IODE;
       gpse.health = health;
-      gpse.accuracyFlag = accuracy;
+      gpse.accuracy = accuracy;
       gpse.Tgd = Tgd;
       gpse.codeflags = codeflgs;
       gpse.L2Pdata = L2Pdata;
@@ -1350,7 +1350,7 @@ namespace gpstk
                xmitTime += (long)FULLWEEK;
                weeknum--;
             }
-   
+
             // In RINEX *files*, weeknum is the week of TOE.
             // Internally (Rinex3NavData), weeknum is week of transmission
             if(xmitTime - Toe > HALFWEEK)
