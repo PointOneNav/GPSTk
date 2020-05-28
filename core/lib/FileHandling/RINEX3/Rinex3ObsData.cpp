@@ -190,7 +190,7 @@ namespace gpstk
                   // write the line
                if (ind == -1)
                {
-                  RinexDatum empty;
+                  static const RinexDatum empty(std::string(16, ' '));
                   line += empty.asString();
                }
                else
