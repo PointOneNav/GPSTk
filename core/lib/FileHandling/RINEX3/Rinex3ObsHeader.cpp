@@ -527,8 +527,8 @@ namespace gpstk
       {
          if(R2ObsTypes.empty())
          {
-            InvalidRequest er("Header contains no R2ObsTypes. "
-                                 "You must run prepareVer2Write before outputting an R2 file");
+            FFStreamError er("Header contains no R2ObsTypes. "
+                             "You must run prepareVer2Write before outputting an R2 file");
             GPSTK_THROW(er);
          }
             // write out RinexObsTypes
