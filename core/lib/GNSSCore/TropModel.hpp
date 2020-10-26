@@ -100,6 +100,8 @@ namespace gpstk
    public:
       static const double CELSIUS_TO_KELVIN;
 
+      TropModel() : valid(false), temp(NAN), press(NAN), humid(NAN) {}
+
          /// Destructor
       virtual ~TropModel() {}
 
