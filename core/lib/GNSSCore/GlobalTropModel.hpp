@@ -265,6 +265,12 @@ namespace gpstk
       /// Convenient method to set all non-weather model parameters in one call
       /// @param time  CommonTime of interest
       /// @param rxPos Receiver position object.
+      virtual void setParameters(const double& ht, const double& lat, const double& lon,
+                                 const double& mjd);
+
+      /// Convenient method to set all non-weather model parameters in one call
+      /// @param time  CommonTime of interest
+      /// @param rxPos Receiver position object.
       virtual void setParameters(const CommonTime& time, const Position& rxPos);
 
    private:

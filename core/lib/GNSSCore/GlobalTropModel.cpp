@@ -617,6 +617,21 @@ namespace gpstk
    // Convenient method to set all non-weather model parameters in one call
    // @param time  CommonTime of interest
    // @param rxPos Receiver position object.
+   void GlobalTropModel::setParameters(const double& ht, const double& lat, const double& lon,
+                                       const double& mjd)
+   {
+      validDay = validHeight = validLat = validLon = validCoeff = false;
+      setReceiverHeight(ht);
+      setReceiverLatitude(lat);
+      setReceiverLongitude(lon);
+      setTime(mjd);
+
+      setValid();          // calls updateGTMCoeff()
+   }
+
+   // Convenient method to set all non-weather model parameters in one call
+   // @param time  CommonTime of interest
+   // @param rxPos Receiver position object.
    void GlobalTropModel::setParameters(const CommonTime& time, const Position& rxPos)
    {
       validDay = validHeight = validLat = validLon = validCoeff = false;
