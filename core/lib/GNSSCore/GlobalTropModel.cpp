@@ -324,9 +324,9 @@ namespace gpstk
    {
       try {
          double p;
-         p = RX.getAltitude();         if(p != height) setReceiverHeight(p);
-         p = RX.getGeodeticLatitude(); if(p != latitude) setReceiverLatitude(p);
-         p = RX.getLongitude();        if(p != longitude) setReceiverLongitude(p);
+         p = RX.getAltitude();         setReceiverHeight(p);
+         p = RX.getGeodeticLatitude(); setReceiverLatitude(p);
+         p = RX.getLongitude();        setReceiverLongitude(p);
       }
       catch(GeometryException& e) {
          validHeight = validLat = valid = false;
@@ -548,8 +548,8 @@ namespace gpstk
    // @param ht   Height of the receiver above mean sea level, in meters.
    void GlobalTropModel::setReceiverHeight(const double& ht)
    {
-      if(height != ht) {
-         height = ht; 
+      if(!validHeight || height != ht) {
+         height = ht;
          validHeight = true;
          validCoeff = false;
          setValid();          // calls updateGTMCoeff()
@@ -561,7 +561,7 @@ namespace gpstk
    // @param lat  Latitude of receiver, in degrees.
    void GlobalTropModel::setReceiverLatitude(const double& lat)
    {
-      if(latitude != lat) {
+      if(!validLat || latitude != lat) {
          latitude = lat;
          validLat = true;
          validCoeff = false;
@@ -574,7 +574,7 @@ namespace gpstk
    // @param lat  Longitude of receiver, in degrees East.
    void GlobalTropModel::setReceiverLongitude(const double& lon)
    {
-      if(longitude != lon) {
+      if(!validLon || longitude != lon) {
          longitude = lon;
          validLon = true;
          validCoeff = false;
@@ -588,7 +588,7 @@ namespace gpstk
    void GlobalTropModel::setTime(const double& mjd)
    {
       double df(TWO_PI*(mjd - 44266.0)/365.25);       // -44239 + 1 - 28
-      if(df != dayfactor) {
+      if(!validDay || df != dayfactor) {
          dayfactor = df;
          validDay = true;
          validCoeff = false;
