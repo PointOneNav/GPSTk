@@ -96,11 +96,10 @@ namespace gpstk
    {
    public:
       /// Default constructor
-      GlobalTropModel(void) : validCoeff(false), validHeight(false), validLat(false),
-                              validLon(false), validDay(false)
+      GlobalTropModel(void) :
+         validCoeff(false), validHeight(false), validLat(false), validLon(false), validDay(false)
       {
          TropModel::humid = 50.0;
-         valid = false;
       }
 
       /// Constructor to create a Global trop model providing the height of
@@ -112,9 +111,9 @@ namespace gpstk
       /// @param lon  Longitude of receiver, in degrees.
       /// @param mjd  MJD (double)
       GlobalTropModel(const double& ht, const double& lat, const double& lon,
-                      const double& mjd)
+                      const double& mjd) :
+         validCoeff(false), validHeight(false), validLat(false), validLon(false), validDay(false)
       {
-         validCoeff = validHeight = validLat = validLon = validDay = valid = false;
          setReceiverHeight(ht);
          setReceiverLatitude(lat);
          setReceiverLongitude(lon);
@@ -125,9 +124,9 @@ namespace gpstk
       /// of the receiver and current time.
       /// @param RX   Receiver position.
       /// @param time Time.
-      GlobalTropModel(const Position& RX, const CommonTime& time)
+      GlobalTropModel(const Position& RX, const CommonTime& time) :
+         validCoeff(false), validHeight(false), validLat(false), validLon(false), validDay(false)
       {
-         validCoeff = validHeight = validLat = validLon = validDay = valid = false;
          setReceiverHeight(RX.getAltitude());
          setReceiverLatitude(RX.getGeodeticLatitude());
          setReceiverLongitude(RX.getLongitude());
@@ -261,6 +260,12 @@ namespace gpstk
       /// correction() or any of the zenith_delay routines.
       /// @param doy Day of year (year does not matter)
       virtual void setDayOfYear(const int& doy);
+
+      /// Convenient method to set all non-weather model parameters in one call
+      /// @param time  CommonTime of interest
+      /// @param rxPos Receiver position object.
+      virtual void setParameters(const double& ht, const double& lat, const double& lon,
+                                 const double& mjd);
 
       /// Convenient method to set all non-weather model parameters in one call
       /// @param time  CommonTime of interest
