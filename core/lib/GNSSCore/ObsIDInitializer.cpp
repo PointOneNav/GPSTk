@@ -141,6 +141,12 @@ namespace gpstk {
       ObsID::tcDesc[ObsID::tcCI6]       = "BDSIB3";        //Rinex I    // BeiDou B3 I code
       ObsID::tcDesc[ObsID::tcCQ6]       = "BDSQB3";        //Rinex Q    // BeiDou B3 Q code
       ObsID::tcDesc[ObsID::tcCIQ6]      = "BDSI+QB3";      //Rinex X    // BeiDou B3 I+Q code
+      ObsID::tcDesc[ObsID::tcCD5]       = "BDSB2a-D";      //Rinex D    // BeiDou B2a D code
+      ObsID::tcDesc[ObsID::tcCP5]       = "BDSB2a-P";      //Rinex P    // BeiDou B2a P code
+      ObsID::tcDesc[ObsID::tcCDP5]      = "BDSB2a-DP";     //Rinex X    // BeiDou B2a D+P combined tracking
+      ObsID::tcDesc[ObsID::tcCD7]       = "BDSB2b-D";      //Rinex D    // BeiDou B2b D code
+      ObsID::tcDesc[ObsID::tcCP7]       = "BDSB2b-P";      //Rinex P    // BeiDou B2b P code
+      ObsID::tcDesc[ObsID::tcCDP7]      = "BDSB2b-DP";     //Rinex Z    // BeiDou B2b D+P combined tracking
 
       ObsID::tcDesc[ObsID::tcIA5]       = "IRNSSL5A";      //Rinex A    // IRNSS L5 SPS
       ObsID::tcDesc[ObsID::tcIB5]       = "IRNSSL5B";      //Rinex B    // IRNSS L5 RS(D)
@@ -256,6 +262,12 @@ namespace gpstk {
       ObsID::tc2char[ObsID::tcCI6]  = 'I';
       ObsID::tc2char[ObsID::tcCQ6]  = 'Q';
       ObsID::tc2char[ObsID::tcCIQ6] = 'X';
+      ObsID::tc2char[ObsID::tcCD5]  = 'D';
+      ObsID::tc2char[ObsID::tcCP5]  = 'P';
+      ObsID::tc2char[ObsID::tcCDP5] = 'X';
+      ObsID::tc2char[ObsID::tcCD7]  = 'D';
+      ObsID::tc2char[ObsID::tcCP7]  = 'P';
+      ObsID::tc2char[ObsID::tcCDP7] = 'Z';
       ObsID::tc2char[ObsID::tcJCA]  = 'C';
       ObsID::tc2char[ObsID::tcJD1]  = 'S';
       ObsID::tc2char[ObsID::tcJP1]  = 'L';
@@ -321,8 +333,9 @@ namespace gpstk {
       //NB 24Jun2013 MGEX data uses 2!  RINEX 3.03: 1 for 3.02, 2 for 3.0[013]
       ObsID::validRinexTrackingCodes['C']['1'] = "IQX* ";
       ObsID::validRinexTrackingCodes['C']['2'] = "IQX* ";
+      ObsID::validRinexTrackingCodes['C']['5'] = "DPX* ";
       ObsID::validRinexTrackingCodes['C']['6'] = "IQX* ";
-      ObsID::validRinexTrackingCodes['C']['7'] = "IQX* ";
+      ObsID::validRinexTrackingCodes['C']['7'] = "IQXDPZ* ";
 
       ObsID::validRinexTrackingCodes['J']['1'] = "CSLXZ* ";
       ObsID::validRinexTrackingCodes['J']['2'] = "SLX* ";

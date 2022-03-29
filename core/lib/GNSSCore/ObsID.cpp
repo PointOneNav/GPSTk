@@ -192,20 +192,31 @@ namespace gpstk
                default: break;
             }
          }
-         if(band == cbB3) switch (code)
-         {
-            case tcI5: code = tcCI7; break;     // 'I'
-            case tcQ5: code = tcCQ7; break;     // 'Q'
-            case tcC2LM: code = tcCIQ7; break;  // 'X'
-            default: break;
-         }
-         if(band == cbE5b) {
+         if(band == cbB3) {
             switch (code)
             {
-               case tcI5: code = tcCI6; break;     // 'I'
-               case tcQ5: code = tcCQ6; break;     // 'Q'
-               case tcC2LM: code = tcCIQ6; break;  // 'X'
-            default: break;
+               case tcI5: code = tcCI7; break;     // 'I'
+               case tcQ5: code = tcCQ7; break;     // 'Q'
+               case tcC2LM: code = tcCIQ7; break;  // 'X'
+               default: break;
+            }
+         }
+         if(band == cbL5) { // B2a
+            switch (code)
+            {
+               case tcD: code = tcCD5; break;     // 'D'
+               case tcP: code = tcCP5; break;     // 'P'
+               case tcABC: code = tcCDP5; break;  // 'X'
+               default: break;
+            }
+         }
+         if(band == cbE5b) { // B2b
+            switch (code)
+            {
+               case tcD: code = tcCD7; break;     // 'D'
+               case tcP: code = tcCP7; break;     // 'P'
+               case tcABC: code = tcCDP7; break;  // 'Z'
+               default: break;
             }
          }
       }
