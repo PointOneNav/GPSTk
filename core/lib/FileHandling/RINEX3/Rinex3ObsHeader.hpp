@@ -241,7 +241,8 @@ namespace gpstk
             // marker type is only required if the type is not GEODETIC or NON_GEODETIC
          allValid301            = 0x0412058B, ///< RINEX 3.01
          allValid302            = 0x0412058B, ///< RINEX 3.02
-         allValid303            = 0x0412058B  ///< RINEX 3.03
+         allValid303            = 0x0412058B, ///< RINEX 3.03
+         allValid304            = 0x0412058B, ///< RINEX 3.04
       };
    
 #ifndef SWIG // nested structs/classes not supported by SWIG
@@ -450,9 +451,10 @@ namespace gpstk
          unsigned long allValid;
          if(     version < 3.00) allValid = allValid2;
          else if(version < 3.01) allValid = allValid30;
-         else if(version < 3.02) allValid = allValid301;  
-         else if(version < 3.03) allValid = allValid302;  
-         else                    allValid = allValid303;
+         else if(version < 3.02) allValid = allValid301;
+         else if(version < 3.03) allValid = allValid302;
+         else if(version < 3.04) allValid = allValid303;
+         else                    allValid = allValid304;
          return ((valid & allValid) == allValid);
       }
 

@@ -180,6 +180,7 @@ namespace gpstk
       else if(version == 3.01)  allValid = allValid301;
       else if(version == 3.02)  allValid = allValid302;
       else if(version == 3.03)  allValid = allValid303;
+      else if(version == 3.04)  allValid = allValid304;
       else if(version <  3)     allValid = allValid2;
       else
       {
@@ -193,7 +194,9 @@ namespace gpstk
          ostringstream msg;
          msg << endl;
          msg << "Version = " << version << hex << endl;
-         if(version == 3.03)
+         if(version == 3.04)
+            msg << "allValid304 = 0x" << setw(8) << nouppercase << allValid304 << endl;
+         else if(version == 3.03)
             msg << "allValid303 = 0x" << setw(8) << nouppercase << allValid303 << endl;
          else if(version == 3.02)
             msg << "allValid302 = 0x" << setw(8) << nouppercase << allValid302 << endl;
@@ -1665,6 +1668,7 @@ namespace gpstk
       else if(version == 3.01) allValid = allValid301;
       else if(version == 3.02) allValid = allValid302;
       else if(version == 3.03) allValid = allValid303;
+      else if(version == 3.04) allValid = allValid304;
       else
       {
          FFStreamError e("Unknown or unsupported RINEX version " + 
@@ -2206,6 +2210,7 @@ namespace gpstk
       else if(version == 3.01)  allValid = allValid301;
       else if(version == 3.02)  allValid = allValid302;
       else if(version == 3.03)  allValid = allValid303;
+      else if(version == 3.04)  allValid = allValid304;
 
       s << "(This header is ";
       if((valid & allValid) == allValid)
