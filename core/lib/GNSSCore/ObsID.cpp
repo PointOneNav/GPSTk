@@ -179,8 +179,8 @@ namespace gpstk
       }
       else if (sys == 'C') // BeiDou
       {
-         if(band == cbL1) band = cbB1;          // RINEX 3.02
-         if(band == cbL2) band = cbB1;          // RINEX 3.0[013]
+         if(band == cbL1) band = cbB1;          // RINEX 3.04 B1C, or 3.02 B1I
+         if(band == cbL2) band = cbB1;          // RINEX 3.0[0134] B1I
          if(band == cbE6) band = cbB3;
 
          if(band == cbB1) {
@@ -188,24 +188,47 @@ namespace gpstk
             {
                case tcI5: code = tcCI1; break;     // 'I'
                case tcQ5: code = tcCQ1; break;     // 'Q'
-               case tcC2LM: code = tcCIQ1; break;  // 'X'
+               // Note: In RINEX 3.02 they briefly switched to using 1 for the
+               // B1I carrier designator instead of 2 (C1X vs C2X). This
+               // conflicts with RINEX 3.04 C1X used for BDS-3 B1C. We don't
+               // know the version here, so we'll report B1I for backwards
+               // compatibility and correct it elsewhere.
+               case tcC2LM: code = tcCIQ1; break; // 'X'
+               case tcD: code = tcCD1C; break;     // 'D'
+               case tcP: code = tcCP1C; break;     // 'P'
                default: break;
             }
          }
-         if(band == cbB3) switch (code)
-         {
-            case tcI5: code = tcCI7; break;     // 'I'
-            case tcQ5: code = tcCQ7; break;     // 'Q'
-            case tcC2LM: code = tcCIQ7; break;  // 'X'
-            default: break;
-         }
-         if(band == cbE5b) {
+         if(band == cbB3) {
             switch (code)
             {
                case tcI5: code = tcCI6; break;     // 'I'
                case tcQ5: code = tcCQ6; break;     // 'Q'
                case tcC2LM: code = tcCIQ6; break;  // 'X'
-            default: break;
+               default: break;
+            }
+         }
+         if(band == cbL5) { // B2a
+            switch (code)
+            {
+               case tcD: code = tcCD5; break;     // 'D'
+               case tcP: code = tcCP5; break;     // 'P'
+               case tcABC: code = tcCDP5; break;  // 'X'
+               default: break;
+            }
+         }
+         if(band == cbE5b) { // B2I and B2b
+            switch (code)
+            {
+               // B2I (BDS-2), listed as "B2b (BDS-2 Signals) in RINEX 3.04.
+               case tcI5: code = tcCI7; break;     // 'I'
+               case tcQ5: code = tcCQ7; break;     // 'Q'
+               case tcC2LM: code = tcCIQ7; break;  // 'X'
+               // B2b (BDS-3)
+               case tcD: code = tcCD7; break;     // 'D'
+               case tcP: code = tcCP7; break;     // 'P'
+               case tcABC: code = tcCDP7; break;  // 'Z'
+               default: break;
             }
          }
       }

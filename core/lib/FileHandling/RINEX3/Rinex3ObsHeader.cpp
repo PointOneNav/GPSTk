@@ -180,6 +180,7 @@ namespace gpstk
       else if(version == 3.01)  allValid = allValid301;
       else if(version == 3.02)  allValid = allValid302;
       else if(version == 3.03)  allValid = allValid303;
+      else if(version == 3.04)  allValid = allValid304;
       else if(version <  3)     allValid = allValid2;
       else
       {
@@ -193,7 +194,9 @@ namespace gpstk
          ostringstream msg;
          msg << endl;
          msg << "Version = " << version << hex << endl;
-         if(version == 3.03)
+         if(version == 3.04)
+            msg << "allValid304 = 0x" << setw(8) << nouppercase << allValid304 << endl;
+         else if(version == 3.03)
             msg << "allValid303 = 0x" << setw(8) << nouppercase << allValid303 << endl;
          else if(version == 3.02)
             msg << "allValid302 = 0x" << setw(8) << nouppercase << allValid302 << endl;
@@ -1170,8 +1173,23 @@ namespace gpstk
          try
          {
             const int maxObsPerLine = 13;
-            for (int i=0; i < maxObsPerLine && mapObsTypes[satSys].size() < numObs; i++)
-               mapObsTypes[satSys].push_back(RinexObsID(satSys+line.substr(4 * i + 7, 3)));
+            for (int i=0; i < maxObsPerLine && mapObsTypes[satSys].size() < numObs; i++) {
+               std::string type_str = line.substr(4 * i + 7, 3);
+               RinexObsID obs_id(satSys+type_str);
+
+               // The ObsID class doesn't know the RINEX version, and has no way
+               // to distinguish between C1X used briefly for B1I in RINEX 3.02
+               // and C1X used for B1C in RINEX 3.04 (C2X is used for B1I in all
+               // other RINEX 3.x versions). If this is 3.04, we'll assume C1X
+               // was actually a B1C signal.
+               if (obs_id.code == ObsID::tcCIQ1 && type_str[1] == '1' &&
+                   version == 3.04)
+               {
+                   obs_id.code = ObsID::tcCDP1C;
+               }
+
+               mapObsTypes[satSys].push_back(obs_id);
+            }
          }
          catch(InvalidParameter& ip)
          {
@@ -1665,6 +1683,7 @@ namespace gpstk
       else if(version == 3.01) allValid = allValid301;
       else if(version == 3.02) allValid = allValid302;
       else if(version == 3.03) allValid = allValid303;
+      else if(version == 3.04) allValid = allValid304;
       else
       {
          FFStreamError e("Unknown or unsupported RINEX version " + 
@@ -2206,6 +2225,7 @@ namespace gpstk
       else if(version == 3.01)  allValid = allValid301;
       else if(version == 3.02)  allValid = allValid302;
       else if(version == 3.03)  allValid = allValid303;
+      else if(version == 3.04)  allValid = allValid304;
 
       s << "(This header is ";
       if((valid & allValid) == allValid)

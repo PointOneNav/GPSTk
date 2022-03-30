@@ -103,11 +103,11 @@ namespace gpstk
          cbZero, ///< Used with the channel observation type (see RINEx3 section 5.13)
          cbL1,   ///< GPS L1, Galileo E2-L1-E1, SBAS L1, QZSS L1
          cbL2,   ///< GPS L2, QZSS L2
-         cbL5,   ///< GPS L5, Galileo E5a, SBAS L5, QZSS L5, INRSS L5
+         cbL5,   ///< GPS L5, Galileo E5a, SBAS L5, QZSS L5, INRSS L5, BeiDou L5 (B2a)
          cbG1,   ///< Glonass G1
          cbG2,   ///< Glonass G2
          cbG3,   ///< Glonass G3
-         cbE5b,  ///< Galileo E5b, BeiDou L7
+         cbE5b,  ///< Galileo E5b, BeiDou L7 (B2b)
          cbE5ab, ///< Galileo E5a+b
          cbE6,   ///< Galileo E6, QZSS LEX
          cbB1,   ///< BeiDou L1
@@ -192,6 +192,20 @@ namespace gpstk
          tcCI6,     ///< BeiDou B3 I code
          tcCQ6,     ///< BeiDou B3 Q code
          tcCIQ6,    ///< BeiDou B3 I+Q code
+         // Note: The BDS-2 B1I signal enum values above are named tcCx1 even
+         // though their corresponding RINEX value is actually 2 (e.g., L2Q).
+         // The BDS-3 B1C signals' RINEX value is 1 (e.g., L1P). Leaving the B1I
+         // values as tcCx1 for backwards compatibility and using Cx1C here to
+         // disambiguate.
+         tcCD1C,     ///< BeiDou B1C D code
+         tcCP1C,     ///< BeiDou B1C P code
+         tcCDP1C,    ///< BeiDou B1C D+P combined tracking
+         tcCD5,     ///< BeiDou B2a D code
+         tcCP5,     ///< BeiDou B2a P code
+         tcCDP5,    ///< BeiDou B2a D+P combined tracking
+         tcCD7,     ///< BeiDou B2b D code
+         tcCP7,     ///< BeiDou B2b P code
+         tcCDP7,    ///< BeiDou B2b D+P combined tracking
 
                     ///  Nomenclature follows RiNEX 3.03 Table 10
          tcIA5,     ///< IRNSS L5 SPS
