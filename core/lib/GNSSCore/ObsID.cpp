@@ -202,9 +202,9 @@ namespace gpstk
          if(band == cbB3) {
             switch (code)
             {
-               case tcI5: code = tcCI7; break;     // 'I'
-               case tcQ5: code = tcCQ7; break;     // 'Q'
-               case tcC2LM: code = tcCIQ7; break;  // 'X'
+               case tcI5: code = tcCI6; break;     // 'I'
+               case tcQ5: code = tcCQ6; break;     // 'Q'
+               case tcC2LM: code = tcCIQ6; break;  // 'X'
                default: break;
             }
          }
@@ -217,9 +217,14 @@ namespace gpstk
                default: break;
             }
          }
-         if(band == cbE5b) { // B2b
+         if(band == cbE5b) { // B2I and B2b
             switch (code)
             {
+               // B2I (BDS-2), listed as "B2b (BDS-2 Signals) in RINEX 3.04.
+               case tcI5: code = tcCI7; break;     // 'I'
+               case tcQ5: code = tcCQ7; break;     // 'Q'
+               case tcC2LM: code = tcCIQ7; break;  // 'X'
+               // B2b (BDS-3)
                case tcD: code = tcCD7; break;     // 'D'
                case tcP: code = tcCP7; break;     // 'P'
                case tcABC: code = tcCDP7; break;  // 'Z'
