@@ -192,6 +192,14 @@ namespace gpstk
          tcCI6,     ///< BeiDou B3 I code
          tcCQ6,     ///< BeiDou B3 Q code
          tcCIQ6,    ///< BeiDou B3 I+Q code
+         // Note: The BDS-2 B1I signal enum values above are named tcCx1 even
+         // though their corresponding RINEX value is actually 2 (e.g., L2Q).
+         // The BDS-3 B1C signals' RINEX value is 1 (e.g., L1P). Leaving the B1I
+         // values as tcCx1 for backwards compatibility and using Cx1C here to
+         // disambiguate.
+         tcCD1C,     ///< BeiDou B1C D code
+         tcCP1C,     ///< BeiDou B1C P code
+         tcCDP1C,    ///< BeiDou B1C D+P combined tracking
          tcCD5,     ///< BeiDou B2a D code
          tcCP5,     ///< BeiDou B2a P code
          tcCDP5,    ///< BeiDou B2a D+P combined tracking

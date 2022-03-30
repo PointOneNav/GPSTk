@@ -141,6 +141,9 @@ namespace gpstk {
       ObsID::tcDesc[ObsID::tcCI6]       = "BDSIB3";        //Rinex I    // BeiDou B3 I code
       ObsID::tcDesc[ObsID::tcCQ6]       = "BDSQB3";        //Rinex Q    // BeiDou B3 Q code
       ObsID::tcDesc[ObsID::tcCIQ6]      = "BDSI+QB3";      //Rinex X    // BeiDou B3 I+Q code
+      ObsID::tcDesc[ObsID::tcCD1C]      = "BDSB1C-D";      //Rinex D    // BeiDou B2a D code
+      ObsID::tcDesc[ObsID::tcCP1C]      = "BDSB1C-P";      //Rinex P    // BeiDou B2a P code
+      ObsID::tcDesc[ObsID::tcCDP1C]     = "BDSB1C-DP";     //Rinex X    // BeiDou B2a D+P combined tracking
       ObsID::tcDesc[ObsID::tcCD5]       = "BDSB2a-D";      //Rinex D    // BeiDou B2a D code
       ObsID::tcDesc[ObsID::tcCP5]       = "BDSB2a-P";      //Rinex P    // BeiDou B2a P code
       ObsID::tcDesc[ObsID::tcCDP5]      = "BDSB2a-DP";     //Rinex X    // BeiDou B2a D+P combined tracking
@@ -262,6 +265,9 @@ namespace gpstk {
       ObsID::tc2char[ObsID::tcCI6]  = 'I';
       ObsID::tc2char[ObsID::tcCQ6]  = 'Q';
       ObsID::tc2char[ObsID::tcCIQ6] = 'X';
+      ObsID::tc2char[ObsID::tcCD1C]  = 'D';
+      ObsID::tc2char[ObsID::tcCP1C]  = 'P';
+      ObsID::tc2char[ObsID::tcCDP1C] = 'X';
       ObsID::tc2char[ObsID::tcCD5]  = 'D';
       ObsID::tc2char[ObsID::tcCP5]  = 'P';
       ObsID::tc2char[ObsID::tcCDP5] = 'X';
@@ -331,7 +337,7 @@ namespace gpstk {
       ObsID::validRinexTrackingCodes['S']['5'] = "IQX* ";
 
       //NB 24Jun2013 MGEX data uses 2!  RINEX 3.03: 1 for 3.02, 2 for 3.0[013]
-      ObsID::validRinexTrackingCodes['C']['1'] = "IQX* ";
+      ObsID::validRinexTrackingCodes['C']['1'] = "IQXDP* ";
       ObsID::validRinexTrackingCodes['C']['2'] = "IQX* ";
       ObsID::validRinexTrackingCodes['C']['5'] = "DPX* ";
       ObsID::validRinexTrackingCodes['C']['6'] = "IQX* ";

@@ -1173,8 +1173,23 @@ namespace gpstk
          try
          {
             const int maxObsPerLine = 13;
-            for (int i=0; i < maxObsPerLine && mapObsTypes[satSys].size() < numObs; i++)
-               mapObsTypes[satSys].push_back(RinexObsID(satSys+line.substr(4 * i + 7, 3)));
+            for (int i=0; i < maxObsPerLine && mapObsTypes[satSys].size() < numObs; i++) {
+               std::string type_str = line.substr(4 * i + 7, 3);
+               RinexObsID obs_id(satSys+type_str);
+
+               // The ObsID class doesn't know the RINEX version, and has no way
+               // to distinguish between C1X used briefly for B1I in RINEX 3.02
+               // and C1X used for B1C in RINEX 3.04 (C2X is used for B1I in all
+               // other RINEX 3.x versions). If this is 3.04, we'll assume C1X
+               // was actually a B1C signal.
+               if (obs_id.code == ObsID::tcCIQ1 && type_str[1] == '1' &&
+                   version == 3.04)
+               {
+                   obs_id.code = ObsID::tcCDP1C;
+               }
+
+               mapObsTypes[satSys].push_back(obs_id);
+            }
          }
          catch(InvalidParameter& ip)
          {
