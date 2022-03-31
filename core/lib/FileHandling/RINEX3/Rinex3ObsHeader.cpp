@@ -1185,6 +1185,7 @@ namespace gpstk
                if (obs_id.code == ObsID::tcCIQ1 && type_str[1] == '1' &&
                    version == 3.04)
                {
+                   obs_id.band = ObsID::cbB1C;
                    obs_id.code = ObsID::tcCDP1C;
                }
 

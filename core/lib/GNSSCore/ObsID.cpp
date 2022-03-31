@@ -193,9 +193,15 @@ namespace gpstk
                // conflicts with RINEX 3.04 C1X used for BDS-3 B1C. We don't
                // know the version here, so we'll report B1I for backwards
                // compatibility and correct it elsewhere.
-               case tcC2LM: code = tcCIQ1; break; // 'X'
-               case tcD: code = tcCD1C; break;     // 'D'
-               case tcP: code = tcCP1C; break;     // 'P'
+               case tcC2LM: code = tcCIQ1; break;  // 'X'
+               case tcD:                           // 'D'
+                   code = tcCD1C;
+                   band = cbB1C;
+                   break;
+               case tcP:                           // 'P'
+                   code = tcCP1C;
+                   band = cbB1C;
+                   break;
                default: break;
             }
          }
