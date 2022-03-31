@@ -237,6 +237,7 @@ namespace gpstk {
       // And add the couple 'special' cases
       ObsID::cb2char[ObsID::cbG1] = '1';
       ObsID::cb2char[ObsID::cbG2] = '2';
+      ObsID::cb2char[ObsID::cbB1C] = '1';
       ObsID::cb2char[ObsID::cbB1] = '2';
       ObsID::cb2char[ObsID::cbB2] = '7';
       ObsID::cb2char[ObsID::cbB3] = '6';
