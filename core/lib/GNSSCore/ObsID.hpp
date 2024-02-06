@@ -111,7 +111,7 @@ namespace gpstk
          cbE5ab, ///< Galileo E5a+b
          cbE6,   ///< Galileo E6, QZSS LEX
          cbB1,   ///< BeiDou L1 (B1I)
-         cbB1C,   ///< BeiDou L1 (B1C)
+         cbB1C,  ///< BeiDou L1 (B1C)
          cbB2,   ///< BeiDou L7
          cbB3,   ///< BeiDou L6
          cbI9,   ///< IRNSS S-band (RINEX '9')
