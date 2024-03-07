@@ -124,7 +124,7 @@ namespace gpstk
           * decodeData and encodeData behave with respect to byte
           * ordering. This defines the byte ordering of the file
           * format. */
-      virtual bool isStreamLittleEndian() const throw() = 0;
+      virtual bool isStreamLittleEndian() const noexcept = 0;
 
    };
       //@}

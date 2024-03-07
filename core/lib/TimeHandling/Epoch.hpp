@@ -171,12 +171,12 @@ namespace gpstk
          //@{
          /// Changes the EPOCH_TOLERANCE for all Epoch objects
       static double setEpochTolerance(double tol)
-         throw()
+         noexcept
       { return EPOCH_TOLERANCE = tol; }
 
          /// Returns the current EPOCH_TOLERANCE.
       static double getEpochTolerance()
-         throw()
+         noexcept
       { return EPOCH_TOLERANCE; }
    
          /**
@@ -187,13 +187,13 @@ namespace gpstk
           * @sa Epoch-Specific Definitions
           */
       Epoch& setTolerance(double tol)
-         throw();
+         noexcept;
 
          /** 
           * Return the tolerance value currently in use by this object.
           * @return the current tolerance value (in seconds, of course)
           */
-      double getTolerance() const throw()
+      double getTolerance() const noexcept
       { return tolerance; }
          //@}
 
@@ -218,7 +218,7 @@ namespace gpstk
           * Set the time using the given CommonTime object.
           */
       Epoch(const CommonTime& ct)
-         throw();
+         noexcept;
 
          /** 
           * TimeTag + Year Constructor.
@@ -237,7 +237,7 @@ namespace gpstk
           * Set the current time using the given GPSZcount.
           */
       Epoch(const GPSZcount& gzc)
-         throw();
+         noexcept;
       
          // Other Constructors:
          // gps 29-bit zcount w/ epoch determined by current system time
@@ -245,7 +245,7 @@ namespace gpstk
 
          /// Destructor.
       ~Epoch()
-         throw()
+         noexcept
       {}
          //@}
 
@@ -253,11 +253,11 @@ namespace gpstk
          //@{
          /// Copy constructor.
       Epoch(const Epoch &right)
-         throw();
+         noexcept;
 
          /// Assignment operator.
       Epoch& operator=(const Epoch& right)
-         throw();
+         noexcept;
          //@}
       
          /// @name Arithmetic
@@ -268,7 +268,7 @@ namespace gpstk
           * @return difference in seconds.
           */
       double operator-(const Epoch& right) const
-         throw();
+         noexcept;
 
          /**
           * Add seconds to this time.
@@ -338,17 +338,17 @@ namespace gpstk
          /// @name Comparisons
          //@{
       bool operator==(const Epoch &right) const
-         throw();
+         noexcept;
       bool operator!=(const Epoch &right) const
-         throw();
+         noexcept;
       bool operator<(const Epoch &right) const
-         throw();
+         noexcept;
       bool operator>(const Epoch &right) const
-         throw();
+         noexcept;
       bool operator<=(const Epoch &right) const
-         throw();
+         noexcept;
       bool operator>=(const Epoch &right) const
-         throw();
+         noexcept;
          //@}
 
          /// @name Accessor Methods (get and set)
@@ -496,7 +496,7 @@ namespace gpstk
 
          /// Convert this object to a CommonTime object.
       operator CommonTime() const
-         throw();
+         noexcept;
 
          /// @todo Could we get away with just CommonTime sets? The TimeTags
          /// can convert themselves to CommonTime objects.  That's what we
@@ -525,7 +525,7 @@ namespace gpstk
           * @return a reference to this object.
           */
       Epoch& set(const CommonTime& c)
-         throw();
+         noexcept;
 
          /**
           * Set the object using a GPSZcount object.

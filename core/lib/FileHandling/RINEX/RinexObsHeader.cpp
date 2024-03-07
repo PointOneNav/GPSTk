@@ -182,7 +182,7 @@ namespace gpstk
 
 
       // this function computes the number of valid header records which WriteHeaderRecords will write
-   int RinexObsHeader::NumberHeaderRecordsToBeWritten(void) const throw()
+   int RinexObsHeader::NumberHeaderRecordsToBeWritten(void) const noexcept
    {
       int n=0;
       if(valid & RinexObsHeader::versionValid) n++;

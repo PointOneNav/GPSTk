@@ -91,10 +91,10 @@ namespace gpstk
          // An unchecked accessor for programs that don't need the generic
          // interface
       double getOffset() const
-         throw() {return clkc;};
+         noexcept {return clkc;};
 
       bool isOffsetValid() const 
-         throw() {return valid;};
+         noexcept {return valid;};
 
       virtual void addEpoch(const ORDEpoch& oe) throw(gpstk::InvalidValue)
       {

@@ -69,7 +69,7 @@ namespace gpstk
 
       /// Output stream operator is used by dump() in TabularSatStore
    std::ostream& operator<<(std::ostream& os, const PositionRecord& cdr)
-   throw();
+   noexcept;
 
       // This is a helper for SWIG processing - it needs a template
       // instation of the base type of PositionSatStore before it is
@@ -121,7 +121,7 @@ namespace gpstk
    public:
 
          /// Default constructor
-      PositionSatStore() throw()
+      PositionSatStore() noexcept
       : haveAcceleration(false), rejectBadPosFlag(true), Nhalf(5)
       {
          interpOrder = 2*Nhalf;
@@ -135,7 +135,7 @@ namespace gpstk
       ~PositionSatStore() {};
 
          /// Tabular does not have this...
-      bool hasAccleration() const throw() { return haveAcceleration; }
+      bool hasAccleration() const noexcept { return haveAcceleration; }
 
          /** Return value for the given satellite at the given time
           * (usually via interpolation of the data table). This
@@ -205,7 +205,7 @@ namespace gpstk
           *           gap and interval flags and values, and file information
           *    1: number of data/sat
           *    2: above plus all the data tables */
-      virtual void dump(std::ostream& os = std::cout, int detail = 0) const throw()
+      virtual void dump(std::ostream& os = std::cout, int detail = 0) const noexcept
       {
          os << "Dump of PositionSatStore(" << detail << "):\n";
          os << " This store " << (haveAcceleration ? "contains":"does not contain")
@@ -244,12 +244,12 @@ namespace gpstk
          throw(InvalidRequest);
 
          /// Get current interpolation order.
-      unsigned int getInterpolationOrder(void) throw()
+      unsigned int getInterpolationOrder(void) noexcept
       { return interpOrder; }
 
          /** Set the interpolation order; this routine forces the
           * order to be even. */
-      void setInterpolationOrder(unsigned int order) throw()
+      void setInterpolationOrder(unsigned int order) noexcept
       { Nhalf = (order+1)/2; interpOrder = 2*Nhalf; }
 
          /** Set the flag; if true then bad position values are

@@ -488,7 +488,7 @@ namespace gpstk
           */
       BinexData(RecordID recordID,
                 SyncByte recordFlags = DEFAULT_RECORD_FLAGS)
-         throw();
+         noexcept;
 
          /**
           * Copies another BinexData object.

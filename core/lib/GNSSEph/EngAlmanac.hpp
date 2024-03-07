@@ -74,7 +74,7 @@ namespace gpstk
       typedef std::map<short, unsigned char, std::less<short> > SVBitsMap;
 
          /// Default constructor, blank almanac.
-      EngAlmanac() throw();
+      EngAlmanac() noexcept;
 
          /// Destructor
       virtual ~EngAlmanac() {}
@@ -104,7 +104,7 @@ namespace gpstk
          /** This function returns true if data is available for a given
           * PRN.  This data is accessed by the below accesser methods
           */
-      bool isData(SatID sat) const throw();
+      bool isData(SatID sat) const noexcept;
 
          /** This function returns the value of the eccentricity for
           * the given PRN.
@@ -207,7 +207,7 @@ namespace gpstk
           * @throw SVNotPresentException if almanac page for the given
           * PRN isn't present.
           */
-      double getToa() const throw();
+      double getToa() const noexcept;
 
          /** This function returns the value of the time of the almanac
           * in GPS seconds of week for the given PRN.
@@ -253,7 +253,7 @@ namespace gpstk
           * data to the almanac.  This is a full GPS week number (ie >
           * 10 bits)
           */
-      short getAlmWeek() const throw();
+      short getAlmWeek() const noexcept;
 
          /** This function returns an object containing all of the
           * almanac orbit elements for the given PRN.

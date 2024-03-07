@@ -98,7 +98,7 @@ namespace gpstk
          /**
           * Converts this RinexNavData to an EngEphemeris object.
           */
-      operator EngEphemeris() const throw();
+      operator EngEphemeris() const noexcept;
 
          /** Convert this RinexNavData to a GPSEphemeris object.  For
           * backward compatibility only - use Rinex3NavData. */
@@ -114,7 +114,7 @@ namespace gpstk
           * defined to be the epoch time of the record (RINEX 2.11
           * Table A4).
           */
-      CommonTime getTocTime() const throw()
+      CommonTime getTocTime() const noexcept
       { return time; }
 
          /**

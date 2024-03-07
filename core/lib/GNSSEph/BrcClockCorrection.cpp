@@ -50,7 +50,7 @@ namespace gpstk
    using namespace gpstk;
 
    BrcClockCorrection::BrcClockCorrection()
-      throw()
+      noexcept
    {
       dataLoaded = false;
 
@@ -93,7 +93,7 @@ namespace gpstk
 
 
    bool BrcClockCorrection::operator==(const BrcClockCorrection& right) const
-      throw()
+      noexcept
    {
          // EngNav has no data
       return ((dataLoaded == right.dataLoaded) &&

@@ -102,7 +102,7 @@ namespace gpstk {
 
    // Dump the object to a multi-line string including reference frames, the
    // 7 parameters and description.
-   string HelmertTransform::asString() const throw()
+   string HelmertTransform::asString() const noexcept
    {
       ostringstream oss;
       oss << "Helmert Transformation"

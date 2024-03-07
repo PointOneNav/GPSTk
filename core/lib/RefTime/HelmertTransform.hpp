@@ -60,7 +60,7 @@ namespace gpstk
    public:
 
       /// Default constructor
-      HelmertTransform() throw() : fromFrame(ReferenceFrame::Unknown),
+      HelmertTransform() noexcept : fromFrame(ReferenceFrame::Unknown),
                                    toFrame(ReferenceFrame::Unknown),
                                    description("Undefined")
          {};
@@ -89,7 +89,7 @@ namespace gpstk
 
       /// Dump the object to a multi-line string including reference frames, the
       /// 7 parameters and description.
-      std::string asString() const throw();
+      std::string asString() const noexcept;
 
       /// Transform Position to another frame using this transform or its inverse.
       /// @param Position& pos position to be transformed; unchanged on output.
@@ -182,13 +182,13 @@ namespace gpstk
       }
 
       // accessors
-      ReferenceFrame getFromFrame(void) const throw()
+      ReferenceFrame getFromFrame(void) const noexcept
       { return fromFrame; }
 
-      ReferenceFrame getToFrame(void) const throw()
+      ReferenceFrame getToFrame(void) const noexcept
       { return toFrame; }
 
-      CommonTime getEpoch(void) const throw()
+      CommonTime getEpoch(void) const noexcept
       { return Epoch; }
 
       /// Epoch at which GLONASS transitions from PZ90 to PZ90.02

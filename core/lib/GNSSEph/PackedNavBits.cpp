@@ -787,7 +787,7 @@ namespace gpstk
    }
  
    void PackedNavBits::dump(ostream& s) const
-      throw()
+      noexcept
    {
       ios::fmtflags oldFlags = s.flags();
    

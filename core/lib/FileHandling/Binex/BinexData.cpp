@@ -930,7 +930,7 @@ namespace gpstk
    // -------------------------------------------------------------------------
    BinexData::BinexData(RecordID recordID,
                         SyncByte recordFlags)
-      throw()
+      noexcept
    {
       setRecordFlags(recordFlags);
       setRecordID(recordID);

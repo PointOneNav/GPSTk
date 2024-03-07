@@ -137,7 +137,7 @@ namespace gpstk
 // listing behavior.
 
    void OrbElemStore::dump(std::ostream& s, short detail) const
-      throw()
+      noexcept
    {
       UBEMap::const_iterator it;
       static const string fmt("%04Y/%02m/%02d %02H:%02M:%02S %P");
@@ -334,7 +334,7 @@ namespace gpstk
 //-----------------------------------------------------------------------------
 
    void OrbElemStore::edit(const CommonTime& tmin, const CommonTime& tmax)
-      throw()
+      noexcept
    {
       for(UBEMap::iterator i = ube.begin(); i != ube.end(); i++)
       {
@@ -364,7 +364,7 @@ namespace gpstk
 //-----------------------------------------------------------------------------
 
    unsigned OrbElemStore::size() const
-      throw()
+      noexcept
    {
       unsigned counter = 0;
       for(UBEMap::const_iterator i = ube.begin(); i != ube.end(); i++)
@@ -375,7 +375,7 @@ namespace gpstk
 
 //-----------------------------------------------------------------------------
    bool OrbElemStore::isPresent(const SatID& id) const 
-      throw()
+      noexcept
    {
       UBEMap::const_iterator ci = ube.find(id);
       if (ci==ube.end()) return false;
@@ -601,7 +601,7 @@ namespace gpstk
 //-----------------------------------------------------------------------------
 
    int OrbElemStore::addToList(std::list<OrbElemBase*>& v) const
-      throw()
+      noexcept
    {
       int n = 0;
       UBEMap::const_iterator prn_i;
@@ -622,7 +622,7 @@ namespace gpstk
 
    /// Remove all data from this collection.
    void OrbElemStore::clear()
-         throw()
+         noexcept
    {
       for( UBEMap::iterator ui = ube.begin(); ui != ube.end(); ui++)
       {

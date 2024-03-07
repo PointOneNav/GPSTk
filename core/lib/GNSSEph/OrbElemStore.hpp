@@ -71,7 +71,7 @@ namespace gpstk
    public:
       
       OrbElemStore()
-         throw()
+         noexcept
         :initialTime(CommonTime::END_OF_TIME), 
          finalTime(CommonTime::BEGINNING_OF_TIME),
          timeSysForStore(TimeSystem::Any)
@@ -124,7 +124,7 @@ namespace gpstk
       /// @param[in] s the stream to receive the output; defaults to cout
       /// @param[in] detail the level of detail to provide
       virtual void dump(std::ostream& s = std::cout, short detail = 0)
-         const throw();
+         const noexcept;
 
       ///
       ///   
@@ -139,17 +139,17 @@ namespace gpstk
       /// @param[in] tmax defines the end of the time interval
       virtual void edit(const CommonTime& tmin, 
                         const CommonTime& tmax = CommonTime::END_OF_TIME)
-         throw(); 
+         noexcept; 
 
       /// Clear the dataset, meaning remove all data
-      virtual void clear(void) throw();
+      virtual void clear(void) noexcept;
 
       /// Determine the earliest time for which this object can successfully 
       /// determine the Xvt for any object.
       /// @return The initial time
       /// @throw InvalidRequest This is thrown if the object has no data.
       virtual CommonTime getInitialTime() const
-         throw()
+         noexcept
          { return initialTime; }
 
 
@@ -158,23 +158,23 @@ namespace gpstk
       /// @return The final time
       /// @throw InvalidRequest This is thrown if the object has no data.
       virtual CommonTime getFinalTime() const
-         throw()
+         noexcept
          { return finalTime; }
 
       /// Return the number of orbit/clock elements stored in this store. 
       virtual unsigned size() const
-         throw(); 
+         noexcept; 
 
       virtual bool velocityIsPresent()
-         const throw()
+         const noexcept
          { return true; }
 
       /// Return true if velocity data is present in the store
-      virtual bool hasVelocity() const throw()
+      virtual bool hasVelocity() const noexcept
          { return true; }
 
       /// Return true if the given SatID is present in the store
-      virtual bool isPresent(const SatID& id) const throw();
+      virtual bool isPresent(const SatID& id) const noexcept;
 
       /// Classes to set/access the store TimeSystem information.
       TimeSystem getTimeSystem() const { return timeSysForStore; }
@@ -231,7 +231,7 @@ namespace gpstk
       /// Add all ephemerides to an existing list<OrbElemBase>.
       /// @return the number of ephemerides added.
       int addToList( std::list<OrbElemBase*>& v ) const
-         throw();
+         noexcept;
 
       /// This is intended to store sets of unique orbital elements for a single SV.
       /// The key is the beginning of the period of validity for each set of elements. 

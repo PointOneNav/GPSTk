@@ -70,11 +70,11 @@ namespace gpstk
 
 
          /// constructor
-      IonoModelStore() throw() {}
+      IonoModelStore() noexcept {}
 
 
          /// destructor
-      virtual ~IonoModelStore() throw() {}
+      virtual ~IonoModelStore() noexcept {}
 
 
          /** Get the ionospheric correction value.
@@ -102,7 +102,7 @@ namespace gpstk
           */
       bool addIonoModel( const CommonTime& mt,
                          const IonoModel& im )
-         throw();
+         noexcept;
 
          /** Edit the dataset, removing data outside the indicated time interval
           *

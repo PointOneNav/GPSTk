@@ -95,7 +95,7 @@ namespace gpstk
       virtual bool isData() const {return true;}
 
          /// Debug output function.
-      virtual void dump(std::ostream& s=std::cout) const throw();
+      virtual void dump(std::ostream& s=std::cout) const noexcept;
 
       std::string datatype;   ///< Data type : AR, AS, etc
       RinexSatID sat;         ///< Satellite ID        (if AS)
@@ -110,7 +110,7 @@ namespace gpstk
       
    protected:
 
-      void clear(void) throw()
+      void clear(void) noexcept
       {
          datatype = std::string();
          sat = RinexSatID(-1,RinexSatID::systemGPS);

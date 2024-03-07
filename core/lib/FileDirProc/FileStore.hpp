@@ -67,7 +67,7 @@ namespace gpstk
    public:
 
          /// Constructor.
-      FileStore() throw() {};
+      FileStore() noexcept {};
 
          /// destructor
       ~FileStore() {};
@@ -112,7 +112,7 @@ namespace gpstk
 
          /// dump a list of file names
       void dump(std::ostream& os = std::cout, short detail = 0)
-         const throw()
+         const noexcept
       {
          int n(0);
          os << "Dump of FileStore\n";
@@ -130,16 +130,16 @@ namespace gpstk
 
          /// Clear the contents of the (filename, header) map 
       void clear()
-         throw()
+         noexcept
       {
          headerMap.clear();
       }
 
 
          /// Return the size of the (filename,header) map
-      unsigned size() const throw() { return headerMap.size(); }
+      unsigned size() const noexcept { return headerMap.size(); }
 
-      unsigned nfiles() const throw() { return size(); }
+      unsigned nfiles() const noexcept { return size(); }
 
    }; // end class FileStore
 

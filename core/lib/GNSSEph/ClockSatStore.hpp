@@ -68,7 +68,7 @@ namespace gpstk
    } ClockRecord;
 
       /// Output stream operator is used by dump() in TabularSatStore
-   std::ostream& operator<<(std::ostream& os, const ClockRecord& rec) throw();
+   std::ostream& operator<<(std::ostream& os, const ClockRecord& rec) noexcept;
 
       // This is a helper for SWIG processing - it needs a template
       // instation of the base type of ClockSatStore before it is
@@ -123,7 +123,7 @@ namespace gpstk
    public:
 
          /// Default constructor
-      ClockSatStore() throw() : haveClockAccel(false),
+      ClockSatStore() noexcept : haveClockAccel(false),
          interpType(2), Nhalf(5),
          rejectBadClockFlag(true)
       {
@@ -136,7 +136,7 @@ namespace gpstk
          /// Destructor
       virtual ~ClockSatStore() {};
 
-      bool hasClockAccel() const throw() { return haveClockAccel; }
+      bool hasClockAccel() const noexcept { return haveClockAccel; }
 
          /** Return value for the given satellite at the given time
           * (usually via interpolation of the data table). This
@@ -191,7 +191,7 @@ namespace gpstk
           *           gap and interval flags and values, and file information
           *    1: number of data/sat
           *    2: above plus all the data tables */
-      virtual void dump(std::ostream& os = std::cout, int detail = 0) const throw()
+      virtual void dump(std::ostream& os = std::cout, int detail = 0) const noexcept
       {
          os << "Dump of ClockSatStore(" << detail << "):\n";
          os << " This store "
@@ -235,12 +235,12 @@ namespace gpstk
          throw(InvalidRequest);
 
          /// Get current interpolation order.
-      unsigned int getInterpolationOrder(void) throw()
+      unsigned int getInterpolationOrder(void) noexcept
       { return interpOrder; }
 
          /** Set the interpolation order; this routine forces the
           * order to be even. */
-      void setInterpolationOrder(unsigned int order) throw()
+      void setInterpolationOrder(unsigned int order) noexcept
       {
          if(interpType == 2) Nhalf = (order+1)/2;
          else                Nhalf = 1;
@@ -253,11 +253,11 @@ namespace gpstk
       { rejectBadClockFlag = flag; }
 
          /// Set the type of interpolation to Lagrange (default)
-      void setLagrangeInterp(void) throw()
+      void setLagrangeInterp(void) noexcept
       { interpType = 2; setInterpolationOrder(10); }
 
          /// Set the type of interpolation to linear. Note that
-      void setLinearInterp(void) throw()
+      void setLinearInterp(void) noexcept
       { interpType = 1; setInterpolationOrder(2); }
 
    }; // end class ClockSatStore
