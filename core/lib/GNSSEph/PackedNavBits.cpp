@@ -217,7 +217,7 @@ namespace gpstk
          /***    UNPACKING FUNCTIONS *********************************/
    uint64_t PackedNavBits::asUint64_t(const int startBit, 
                                       const int numBits ) const
-      throw(InvalidParameter)                                    
+                                    
    {
       uint64_t temp = 0L;       // Set up a temporary variable with a known size
                                 // It needs to be AT LEAST 33 bits.
@@ -459,7 +459,7 @@ namespace gpstk
    void PackedNavBits::addUnsignedLong( const unsigned long value, 
                                         const int numBits,
                                         const int scale ) 
-      throw(InvalidParameter)
+
    {
       uint64_t out = (uint64_t) value;
       out /= scale;
@@ -474,7 +474,7 @@ namespace gpstk
    }  
 
    void PackedNavBits::addLong( const long value, const int numBits, const int scale ) 
-      throw(InvalidParameter)
+
    {
       union
       {
@@ -495,7 +495,7 @@ namespace gpstk
 
    void PackedNavBits::addUnsignedDouble( const double value, const int numBits,
                                           const int power2 ) 
-      throw(InvalidParameter)
+
    {
       uint64_t out = (uint64_t) ScaleValue(value, power2);
       uint64_t test = pow(static_cast<double>(2),numBits) - 1;
@@ -510,7 +510,7 @@ namespace gpstk
 
    void PackedNavBits::addSignedDouble( const double value, const int numBits,
                                         const int power2 ) 
-      throw(InvalidParameter)
+
    {
       union
       {
@@ -529,7 +529,7 @@ namespace gpstk
 
    void PackedNavBits::addDoubleSemiCircles( const double Radians, const int numBits, 
                                              const int power2)
-      throw(InvalidParameter)
+
    {
       union
       {
@@ -548,7 +548,7 @@ namespace gpstk
    }
 
    void PackedNavBits::addString( const string String, const int numChars ) 
-      throw(InvalidParameter)
+
    {
       int numPadBlanks = 0;
       int numToCopy = 0;
@@ -589,7 +589,7 @@ namespace gpstk
    }  
 
    void PackedNavBits::addPackedNavBits(const PackedNavBits& right)
-      throw(InvalidParameter)
+
    {
       int old_bits_used = bits_used;
       bits_used += right.bits_used;
@@ -685,7 +685,7 @@ namespace gpstk
    void PackedNavBits::copyBits(const PackedNavBits& from, 
                                 const short startBit, 
                                 const short endBit)
-                                throw(InvalidParameter)
+
    {
       if (bits_used != from.bits_used)
       {
@@ -712,7 +712,7 @@ namespace gpstk
                            const int startBit,
                            const int numBits,
                            const int scale)
-                           throw(InvalidParameter)
+
    {
       if ((startBit+numBits)>bits_used)
       {
@@ -963,7 +963,7 @@ namespace gpstk
    }
       
    void PackedNavBits::rawBitInput(const std::string inString )
-      throw(InvalidParameter)
+
    {
          // Debug
          //  Find first non-white space string.   

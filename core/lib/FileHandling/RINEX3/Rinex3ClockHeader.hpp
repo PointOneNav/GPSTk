@@ -15,7 +15,7 @@
 //  You should have received a copy of the GNU Lesser General Public
 //  License along with GPSTk; if not, write to the Free Software Foundation,
 //  Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110, USA
-//  
+//
 //  Copyright 2004, The University of Texas at Austin
 //
 //============================================================================
@@ -23,13 +23,13 @@
 //============================================================================
 //
 //This software developed by Applied Research Laboratories at the University of
-//Texas at Austin, under contract to an agency or agencies within the U.S. 
+//Texas at Austin, under contract to an agency or agencies within the U.S.
 //Department of Defense. The U.S. Government retains all rights to use,
-//duplicate, distribute, disclose, or release this software. 
+//duplicate, distribute, disclose, or release this software.
 //
-//Pursuant to DoD Directive 523024 
+//Pursuant to DoD Directive 523024
 //
-// DISTRIBUTION STATEMENT A: This software has been approved for public 
+// DISTRIBUTION STATEMENT A: This software has been approved for public
 //                           release, distribution is unlimited.
 //
 //=============================================================================
@@ -129,7 +129,7 @@ namespace gpstk
          // The next four lines is our common interface
          /// Rinex3ClockHeader is a "header" so this function always returns true.
       virtual bool isHeader() const { return true; }
-     
+
          /** Dump information about the header to an ostream.
           * @param[in] os ostream to receive the output; defaults to std::cout
           * @param[in] detail integer level of detail to provide;
@@ -203,9 +203,7 @@ namespace gpstk
 
          /// Writes the record formatted to the FFStream \a s.
          /// @throws StringException when a StringUtils function fails
-      virtual void reallyPutRecord(FFStream& s) const 
-         throw(std::exception, FFStreamError,
-               StringUtils::StringException);
+      virtual void reallyPutRecord(FFStream& s) const;
 
          /** This function retrieves the Rinex3Clock header from the
           * given FFStream.  If an error is encountered in the
@@ -215,9 +213,7 @@ namespace gpstk
           * @throws FFStreamError when exceptions(failbit) is set and
           *  a read or formatting error occurs.  This also resets the
           *  stream to its pre-read position. */
-      virtual void reallyGetRecord(FFStream& s) 
-         throw(std::exception, FFStreamError,
-               StringUtils::StringException);
+      virtual void reallyGetRecord(FFStream& s);
 
    }; // end class Rinex3ClockHeader
 

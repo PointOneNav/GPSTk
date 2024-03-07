@@ -165,7 +165,7 @@ namespace gpstk
       WxObservation getWxObservation(const CommonTime& t,
                                      unsigned iv = 3600,
                                      bool interpolate = true) const
-         throw(ObjectNotFound);
+;
    };
 } // namespace
 #endif 

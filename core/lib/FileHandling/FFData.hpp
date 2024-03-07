@@ -15,7 +15,7 @@
 //  You should have received a copy of the GNU Lesser General Public
 //  License along with GPSTk; if not, write to the Free Software Foundation,
 //  Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110, USA
-//  
+//
 //  Copyright 2004, The University of Texas at Austin
 //
 //============================================================================
@@ -23,13 +23,13 @@
 //============================================================================
 //
 //This software developed by Applied Research Laboratories at the University of
-//Texas at Austin, under contract to an agency or agencies within the U.S. 
+//Texas at Austin, under contract to an agency or agencies within the U.S.
 //Department of Defense. The U.S. Government retains all rights to use,
-//duplicate, distribute, disclose, or release this software. 
+//duplicate, distribute, disclose, or release this software.
 //
-//Pursuant to DoD Directive 523024 
+//Pursuant to DoD Directive 523024
 //
-// DISTRIBUTION STATEMENT A: This software has been approved for public 
+// DISTRIBUTION STATEMENT A: This software has been approved for public
 //                           release, distribution is unlimited.
 //
 //=============================================================================
@@ -60,15 +60,15 @@ namespace gpstk
        * This is the base class for all Formatted File Data (FFData).
        * The data in FFStream objects are read/written into classes derived
        * from FFData.  There are two interfaces for this - one with the
-       * operator<<() and operator>>() and the equivalent with getRecord() and 
+       * operator<<() and operator>>() and the equivalent with getRecord() and
        * putRecord().
-       * 
+       *
        * Classes that derive from this should override the reallyGetRecord()
        * and reallyPutRecord() functions where the actual reading and
        * writing of the data should go as well as the isHeader() or isData()
-       * functions as appropriate for the data type.  
+       * functions as appropriate for the data type.
        * Overriding dump() for debugging purposes is highly suggested.
-       * 
+       *
        * All FFData derived classes should have all of their members defined
        * public.  These are meant to be simple container classes for reading,
        * writing, and manipulating file data. Any conversion of data types
@@ -92,8 +92,8 @@ namespace gpstk
           * Send a "record" to the given stream.
           * @param s a FFStream-based stream
           */
-      void putRecord(FFStream& s) const 
-         throw(FFStreamError, gpstk::StringUtils::StringException);
+      void putRecord(FFStream& s) const
+;
 
          /**
           * Retrieve a "record" from the given stream.
@@ -108,8 +108,8 @@ namespace gpstk
           *  a read or formatting error occurs.  This also resets the
           *  stream to its pre-read position.
           */
-      void getRecord(FFStream& s) 
-         throw(FFStreamError, gpstk::StringUtils::StringException);
+      void getRecord(FFStream& s)
+;
 
          /**
           * Send debug output to the given stream.
@@ -122,7 +122,7 @@ namespace gpstk
           * Have your overriding function return the correct value.
           */
       virtual bool isHeader() const {return false;}
-         /** 
+         /**
           * Returns whether or not this class is data.
           * Have your overriding function return the correct value.
           */
@@ -137,7 +137,7 @@ namespace gpstk
           * @return a reference to \c o
           */
       friend std::ostream& operator<<(FFStream& o, const FFData& f)
-         throw(FFStreamError, gpstk::StringUtils::StringException);
+;
 
          /**
           * Generic formatted input operator.
@@ -157,20 +157,16 @@ namespace gpstk
           * class.
           */
       friend std::istream& operator>>(FFStream& i, FFData& f)
-         throw(FFStreamError, gpstk::StringUtils::StringException);
+;
 
       friend class FFStream;
 
    protected:
          /// Does the actual reading from the stream into this FFData object.
-      virtual void reallyGetRecord(FFStream& s)
-         throw(std::exception, gpstk::StringUtils::StringException, 
-               gpstk::FFStreamError) = 0;
+      virtual void reallyGetRecord(FFStream& s) = 0;
 
          /// Does the actual writing from the stream into this FFData object.
-      virtual void reallyPutRecord(FFStream& s) const
-         throw(std::exception, gpstk::StringUtils::StringException, 
-               gpstk::FFStreamError) = 0;
+      virtual void reallyPutRecord(FFStream& s) const = 0;
    }; // class
 
       //@}

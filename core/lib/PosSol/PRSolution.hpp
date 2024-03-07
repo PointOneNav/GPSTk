@@ -106,7 +106,7 @@ namespace gpstk
 
       // add to statistics, and to weighted average solution and covariance
       void add(const Vector<double>& Sol, const Matrix<double>& Cov)
-         throw(Exception)
+
       {
          try {
             // add to the statistics
@@ -133,7 +133,7 @@ namespace gpstk
       }
 
       // dump statistics and weighted average
-      void dump(std::ostream& os, std::string msg="") const throw(Exception)
+      void dump(std::ostream& os, std::string msg="") const
       {
          try {
             os << "Simple statistics on " << msg << std::endl
@@ -275,7 +275,7 @@ namespace gpstk
       void add(const Vector<double>& Sol, const Matrix<double>& Cov,
                const Vector<double>& PreFitResid, const Matrix<double>& Partials,
                const Matrix<double>& invMeasCov)
-         throw(Exception)
+
       {
          was.add(Sol, Cov);
 
@@ -304,7 +304,7 @@ namespace gpstk
       }
 
       // dump statistics and weighted average
-      void dump(std::ostream& os, std::string msg="PRS") throw(Exception)
+      void dump(std::ostream& os, std::string msg="PRS")
       {
          try {
             was.setMessage(msg);
@@ -570,7 +570,7 @@ namespace gpstk
                            const double& convLimit,
                            const std::vector<SatID::SatelliteSystem>& Syss,
                            Vector<double>& Resids,
-                           Vector<double>& Slopes) throw(Exception);
+                           Vector<double>& Slopes);
 
       /// Compute a position/time solution, given satellite PRNs and pseudoranges
       /// using a RAIM algorithm. This is the main computation done by this class.
@@ -605,12 +605,12 @@ namespace gpstk
                       const Matrix<double>& invMC,
                       const XvtStore<SatID> *pEph,
                       TropModel *pTropModel)
-         throw(Exception);
+;
 
       /// Compute DOPs using the partials matrix from the last successful solution.
       /// RAIMCompute(), if successful, calls this before returning.
       /// Results stored in PRSolution::TDOP,PDOP,GDOP.
-      int DOPCompute(void) throw(Exception);
+      int DOPCompute(void);
 
       /// conveniences for printing the results of the pseudorange solution algorithm
       /// return string of position, error code and V/NV

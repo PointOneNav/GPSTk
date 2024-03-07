@@ -187,7 +187,7 @@ namespace gpstk
                                     const vector<SatID::SatelliteSystem>& Syss,
                                     Vector<double>& Resids,
                                     Vector<double>& Slopes)
-      throw(Exception)
+
    {
       if(!pTropModel) {
          Exception e("Undefined tropospheric model");
@@ -498,7 +498,7 @@ namespace gpstk
                                const Matrix<double>& invMC,
                                const XvtStore<SatID> *pEph,
                                TropModel *pTropModel)
-      throw(Exception)
+
    {
       try {
          LOG(DEBUG) << "RAIMCompute at time " << printTime(Tr,gpsfmt);
@@ -786,7 +786,7 @@ namespace gpstk
 
 
    // -------------------------------------------------------------------------
-   int PRSolution::DOPCompute(void) throw(Exception)
+   int PRSolution::DOPCompute(void)
    {
       try {
          Matrix<double> PTP(transpose(Partials)*Partials);

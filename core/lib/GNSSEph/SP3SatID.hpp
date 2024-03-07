@@ -84,7 +84,7 @@ namespace gpstk
       }
 
          /// constructor from string
-      SP3SatID(const std::string& str) throw(Exception)
+      SP3SatID(const std::string& str)
       {
          try { fromString(str); }
          catch(Exception& e) { GPSTK_RETHROW(e); }
@@ -177,7 +177,7 @@ namespace gpstk
 
          /// read from string
          /// @note GPS is default system (no or unknown system char)
-      void fromString(const std::string s) throw(Exception)
+      void fromString(const std::string s)
       {
          char c;
          std::istringstream iss(s);

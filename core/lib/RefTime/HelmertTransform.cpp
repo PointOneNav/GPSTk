@@ -55,7 +55,7 @@ namespace gpstk {
                     const double& Rx, const double& Ry, const double& Rz,
                     const double& Tx, const double& Ty, const double& Tz,
                     const double& Sc, const string& Desc, CommonTime epoch)
-      throw(InvalidRequest)
+
    {
       // copy input
       // NB input is in degrees, members in radians
@@ -137,7 +137,7 @@ namespace gpstk {
    // @param Position& result position after transformation.
    // @throw if transformation, or inverse, cannot act on ReferenceFrame of input.
    void HelmertTransform::transform(const Position& pos, Position& result)
-      throw(InvalidRequest)
+
    {
       if(pos.getReferenceFrame() == fromFrame) {           // transform
          result = pos;

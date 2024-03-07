@@ -56,30 +56,28 @@ namespace gpstk
 
    void RinexClockData::dump(ostream& s) const
    {
-      s << "Type: " << type.type << " " 
+      s << "Type: " << type.type << " "
         << "Name: " << name << " "
         << "Epoch Time: " << writeTime(epochTime) << " "
         << "#of Data Values: " << dvCount;
-      
+
       for (int i = 0; i < dvCount; i++)
       {
          if (i%4 == 0)
          {
-            s << endl 
+            s << endl
               << "   ";
          }
-         
+
          s << asString(clockData[i], 12)
            << "  ";
       }
-      
+
    }  // dump
 
-   
+
    void RinexClockData::reallyPutRecord(FFStream& s) const
-      throw(std::exception, FFStreamError,
-            StringUtils::StringException)
-   {      
+   {
       if ( type != AR &&
            type != AS &&
            type != CR &&
@@ -100,11 +98,11 @@ namespace gpstk
 
       s << leftJustify(type.type, 2) << string(1, ' ')
         << leftJustify(name, 4) << string(1, ' ')
-        << writeTime(epochTime) 
+        << writeTime(epochTime)
         << rightJustify(asString(dvCount), 3) << string(3, ' ')
-        << rightJustify(doub2for(clockData[0], 18, 2, false), 19) 
+        << rightJustify(doub2for(clockData[0], 18, 2, false), 19)
         << string(1, ' ');
-      
+
       if (dvCount >= 2)
       {
          s << rightJustify(doub2for(clockData[1], 18, 2, false), 19)
@@ -114,7 +112,7 @@ namespace gpstk
       {
          s << endl;
       }
-      
+
       if (dvCount > 2)
       {
          for (int i = 2; i < dvCount; i++)
@@ -128,13 +126,11 @@ namespace gpstk
          }
          s << endl;
       }
-      
+
    }  // reallyPutRecord
 
 
    void RinexClockData::reallyGetRecord(FFStream& ffs)
-      throw(std::exception, FFStreamError,
-            StringUtils::StringException)
    {
       RinexClockStream& strm = dynamic_cast<RinexClockStream&>(ffs);
 
@@ -143,17 +139,17 @@ namespace gpstk
       {
          strm >> strm.header;
       }
-    
+
          // Clear out this object
       RinexClockHeader& hdr = strm.header;
-      
+
       RinexClockData rcd;
       *this=rcd;
-      
+
       string line;
-      
+
       strm.formattedGetLine(line, true);
-      
+
       if (line.size() < 59 || line.size() > 80 )
       {
             // invalid record size - throw
@@ -195,25 +191,25 @@ namespace gpstk
       }
 
       clockData[0] = asDouble(line.substr(40,19));
-      
+
       if (dvCount >= 2)
       {
          clockData[1] = asDouble(line.substr(60,19));
       }
 
       if (dvCount > 2)
-      { 
+      {
             // get continuation line
          strm.formattedGetLine(line, true);
 
          if (line.size() < 19 || line.size() > 80)
          {
                // invalid continuation line size - throw
-            FFStreamError e("Invalid continuation line length: " + 
+            FFStreamError e("Invalid continuation line length: " +
                             asString(line.size()));
             GPSTK_THROW(e);
          }
-         
+
          for (int i = 2; i < dvCount; i++)
          {
             clockData[i] = asDouble(line.substr( (i-2)*20, 19 ));

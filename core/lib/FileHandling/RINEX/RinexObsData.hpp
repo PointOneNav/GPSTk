@@ -15,7 +15,7 @@
 //  You should have received a copy of the GNU Lesser General Public
 //  License along with GPSTk; if not, write to the Free Software Foundation,
 //  Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110, USA
-//  
+//
 //  Copyright 2004, The University of Texas at Austin
 //
 //============================================================================
@@ -23,13 +23,13 @@
 //============================================================================
 //
 //This software developed by Applied Research Laboratories at the University of
-//Texas at Austin, under contract to an agency or agencies within the U.S. 
+//Texas at Austin, under contract to an agency or agencies within the U.S.
 //Department of Defense. The U.S. Government retains all rights to use,
-//duplicate, distribute, disclose, or release this software. 
+//duplicate, distribute, disclose, or release this software.
 //
-//Pursuant to DoD Directive 523024 
+//Pursuant to DoD Directive 523024
 //
-// DISTRIBUTION STATEMENT A: This software has been approved for public 
+// DISTRIBUTION STATEMENT A: This software has been approved for public
 //                           release, distribution is unlimited.
 //
 //=============================================================================
@@ -119,9 +119,7 @@ namespace gpstk
           * Also make sure to correctly set the epochFlag to the correct
           * number for the type of header data you want to write.
           */
-      virtual void reallyPutRecord(FFStream& s) const
-         throw(std::exception, FFStreamError,
-               gpstk::StringUtils::StringException);
+      virtual void reallyPutRecord(FFStream& s) const;
 
          /**
           * This functions obtains a RINEX Observation record from the given
@@ -136,9 +134,7 @@ namespace gpstk
           *  a read or formatting error occurs.  This also resets the
           *  stream to its pre-read position.
           */
-      virtual void reallyGetRecord(FFStream& s)
-         throw(std::exception, FFStreamError,
-               gpstk::StringUtils::StringException);
+      virtual void reallyGetRecord(FFStream& s);
 
    private:
          ///<Time corresponding to previous set of oberservations
@@ -148,7 +144,7 @@ namespace gpstk
          /// Writes the CommonTime object into RINEX format. If it's a bad time,
          /// it will return blanks.
       std::string writeTime(const CommonTime& dt) const
-         throw(gpstk::StringUtils::StringException);
+;
 
          /**
           * This function constructs a CommonTime object from the given parameters.
@@ -156,7 +152,7 @@ namespace gpstk
           * @param hdr the RINEX Observation Header object for the current RINEX file.
           */
       CommonTime parseTime(const std::string& line, const RinexObsHeader& hdr) const
-         throw(FFStreamError);
+;
    }; // class RinexObsData
 
       //@}

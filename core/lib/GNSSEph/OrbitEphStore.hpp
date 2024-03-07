@@ -365,7 +365,7 @@ namespace gpstk
       bool strictMethod;
 
          /** flag indicating unhealthy ephemerides should be excluded
-          * from getXvt, otherwise it will throw (default false) */
+          * from getXvt, otherwise it will */
       bool onlyHealthy;
 
          /// Convenience routines

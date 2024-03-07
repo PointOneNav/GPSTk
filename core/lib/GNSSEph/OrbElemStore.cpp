@@ -63,7 +63,7 @@ namespace gpstk
 //--------------------------------------------------------------------------
 
    Xvt OrbElemStore::getXvt(const SatID& sat, const CommonTime& t) const
-      throw( InvalidRequest )
+
    {
       try
       {
@@ -90,7 +90,7 @@ namespace gpstk
 //------------------------------------------------------------------------------
 
    void OrbElemStore::validSatSystem(const SatID& sat) const 
-      throw( InvalidRequest )
+
    {
       if (!isSatSysPresent(sat.system))
       {
@@ -115,7 +115,7 @@ namespace gpstk
 //--------------------------------------------------------------------------
 
    bool OrbElemStore::isHealthy(const SatID& sat, const CommonTime& t) const
-      throw( InvalidRequest )
+
    {
       try
       {
@@ -185,7 +185,7 @@ namespace gpstk
 // It should keep the one with the earliest transmit time.
 //------------------------------------------------------------------------------------ 
    bool OrbElemStore::addOrbElem(const OrbElemBase* eph)
-      throw(InvalidParameter,Exception)
+
    {
      bool dbg = false;
      //if (eph->satID.id==2 ||
@@ -394,7 +394,7 @@ namespace gpstk
 
    const OrbElemBase*
    OrbElemStore::findOrbElem(const SatID& sat, const CommonTime& t) const
-      throw( InvalidRequest )
+
    {
           // Check to see that there exists a map of orbital elements
 	  // relevant to this SV.
@@ -484,7 +484,7 @@ namespace gpstk
  
      const OrbElemBase*
    OrbElemStore::findNearOrbElem(const SatID& sat, const CommonTime& t) const
-      throw(InvalidRequest)
+
    {
         // Check for any OrbElem for this SV            
       UBEMap::const_iterator prn_i = ube.find(sat);
@@ -549,7 +549,7 @@ namespace gpstk
 //-----------------------------------------------------------------------------
    const OrbElemBase* OrbElemStore::
    findToe(const SatID& sat, const CommonTime& t)
-      const throw(InvalidRequest)
+      const
    {
          // If the TimeSystem of the requested t doesn't match
          // the TimeSystem stored in this store, throw an error.
@@ -643,7 +643,7 @@ namespace gpstk
 
    const OrbElemStore::OrbElemMap&
    OrbElemStore::getOrbElemMap( const SatID& sat ) const
-      throw( InvalidRequest )
+
    {
       validSatSystem(sat);
 

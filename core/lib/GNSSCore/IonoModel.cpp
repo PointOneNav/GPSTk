@@ -83,7 +83,7 @@ namespace gpstk
                                    double svel,
                                    double svaz,
                                    Frequency freq) const
-      throw(IonoModel::InvalidIonoModel)
+
    {
 
       if (!valid)

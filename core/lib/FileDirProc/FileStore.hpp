@@ -84,7 +84,7 @@ namespace gpstk
       
          /// Add a filename, with its header, to the store
       void addFile(const std::string& fn, HeaderType& header)
-         throw(InvalidRequest)
+
       {
          if(headerMap.find(fn) != headerMap.end()) {
             dump(std::cout, 1);
@@ -96,7 +96,7 @@ namespace gpstk
 
          /// Access the header for a given filename
       const HeaderType& getHeader(const std::string& fn) const
-         throw(InvalidRequest)
+
       {
          typename std::map<std::string, HeaderType>::const_iterator iter_fn = headerMap.find(fn);
          if( iter_fn == headerMap.end())

@@ -15,7 +15,7 @@
 //  You should have received a copy of the GNU Lesser General Public
 //  License along with GPSTk; if not, write to the Free Software Foundation,
 //  Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110, USA
-//  
+//
 //  Copyright 2004, The University of Texas at Austin
 //
 //============================================================================
@@ -23,13 +23,13 @@
 //============================================================================
 //
 //This software developed by Applied Research Laboratories at the University of
-//Texas at Austin, under contract to an agency or agencies within the U.S. 
+//Texas at Austin, under contract to an agency or agencies within the U.S.
 //Department of Defense. The U.S. Government retains all rights to use,
-//duplicate, distribute, disclose, or release this software. 
+//duplicate, distribute, disclose, or release this software.
 //
-//Pursuant to DoD Directive 523024 
+//Pursuant to DoD Directive 523024
 //
-// DISTRIBUTION STATEMENT A: This software has been approved for public 
+// DISTRIBUTION STATEMENT A: This software has been approved for public
 //                           release, distribution is unlimited.
 //
 //=============================================================================
@@ -113,7 +113,7 @@ namespace gpstk
           *                using method 'Rinex3ObsHeader::getObsIndex()'.
           */
       virtual RinexDatum getObs( const RinexSatID& svID, size_t index ) const
-         throw(InvalidRequest);
+;
 
 
          /** This method returns the RinexDatum of a given observation
@@ -125,7 +125,7 @@ namespace gpstk
       virtual RinexDatum getObs( const RinexSatID& svID,
                                  const std::string& obsID,
                                  const Rinex3ObsHeader& hdr ) const
-         throw(InvalidRequest);
+;
 
          /** This method returns the RinexDatum of a given observation
           *
@@ -136,7 +136,7 @@ namespace gpstk
       virtual RinexDatum getObs( const RinexSatID& svID,
                                  const RinexObsID& obsID,
                                  const Rinex3ObsHeader& hdr ) const
-         throw(InvalidRequest);
+;
 
          /** This sets the RinexDatum for a given observation
           *
@@ -149,7 +149,7 @@ namespace gpstk
                            const RinexSatID& svID,
                            const RinexObsID& obsID,
                            const Rinex3ObsHeader& hdr )
-         throw(InvalidRequest);
+;
 
          /// A Debug output function.
          /// Dumps the time of observations and the IDs of the Sats
@@ -161,7 +161,7 @@ namespace gpstk
       void dump(std::ostream& s, Rinex3ObsHeader& head) const;
 
       std::string timeString() const
-         throw( gpstk::StringUtils::StringException );
+;
 
    protected:
 
@@ -173,9 +173,7 @@ namespace gpstk
          /// (<= 80 chrs).
          /// Also, make sure to correctly set the epochFlag to the correct
          /// number for the type of header data you want to write.
-      virtual void reallyPutRecord(FFStream& s) const
-         throw( std::exception, FFStreamError,
-                gpstk::StringUtils::StringException );
+      virtual void reallyPutRecord(FFStream& s) const;
 
 
          /** This functions obtains a RINEX 3 Observation record from the given
@@ -191,9 +189,7 @@ namespace gpstk
           *          or formatting error occurs.  Also resets the stream to its
           *          pre-read position.
           */
-      virtual void reallyGetRecord(FFStream& s)
-         throw( std::exception, FFStreamError,
-                gpstk::StringUtils::StringException );
+      virtual void reallyGetRecord(FFStream& s);
 
 
    private:
@@ -202,7 +198,7 @@ namespace gpstk
          /// Writes the CommonTime into RINEX 3 format.
          /// If it's a bad time, it will return blanks.
       std::string writeTime(const CommonTime& dt) const
-         throw( gpstk::StringUtils::StringException );
+;
 
 
          /** This function constructs a CommonTime object from the given
@@ -215,7 +211,7 @@ namespace gpstk
       CommonTime parseTime( const std::string& line,
                             const Rinex3ObsHeader& hdr,
                             const TimeSystem& ts) const
-         throw( FFStreamError );
+;
 
 
    }; // End of class 'Rinex3ObsData'

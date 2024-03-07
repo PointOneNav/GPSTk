@@ -324,7 +324,7 @@ namespace gpstk
        *          to its pre-read position.
        */
    void Rinex3NavData::reallyGetRecord(FFStream& ffs)
-      throw(std::exception, FFStreamError, StringException)
+
    {
 
       try {
@@ -367,7 +367,7 @@ namespace gpstk
 
       // Outputs the record to the FFStream \a s.
    void Rinex3NavData::reallyPutRecord(FFStream& ffs) const
-      throw(std::exception, FFStreamError, StringException)
+
    {
 
       try {
@@ -645,17 +645,17 @@ namespace gpstk
       // NB IODC must be set first
       gpse.fitint = fitint;
       if (fitint==0) gpse.fitint = 4;
-      if (fitint==1) gpse.fitint = 6; 
-      gpse.setFitIntervalFlag(int(fitint)); 
+      if (fitint==1) gpse.fitint = 6;
+      gpse.setFitIntervalFlag(int(fitint));
 
-         // Rinex transmit times are frequently flawed.  For GPS, except for 
+         // Rinex transmit times are frequently flawed.  For GPS, except for
          // the first data set in an upload the beginning of transmission is
-         // deterministic based on the Toe/Toc.   Therefore, 
+         // deterministic based on the Toe/Toc.   Therefore,
          //  a.) For each item with an EVEN Toe/Toc, set
          // the transmission time to be equivalent to the nominal beginning
          // of transmission based on the statements in IS-GPS-200
          // Section 20.3.4.5 and Table 20-XIII.
-         //  b.) If this is the SECOND data set of an upload, 
+         //  b.) If this is the SECOND data set of an upload,
          // set the transmission time to be equivalent to the nominal beginning
          // of transmission based on the statements in IS-GPS-200
          // Section 20.3.4.5 and Table 20-XIII.
@@ -663,7 +663,7 @@ namespace gpstk
          // If Toc/Toe is an even-hour interval the initial time of transmission
          // will be Toc/Toe minus 1/2 of the fit interval.
       long adjXmitTime = xmitTime;
-      short adjWeeknum = weeknum;  
+      short adjWeeknum = weeknum;
       long sowToc = static_cast<GPSWeekSecond>(time).sow;
       if (sowToc%3600==0)
       {
@@ -671,9 +671,9 @@ namespace gpstk
          if (adjXmitTime<0)
          {
             adjXmitTime += FULLWEEK;
-            adjWeeknum--; 
-         } 
-      }    
+            adjWeeknum--;
+         }
+      }
 
       // Get week for clock, to build Toc
       gpse.ctToc = time;
@@ -914,7 +914,7 @@ namespace gpstk
        *  @param strm RINEX Nav stream
        */
    void Rinex3NavData::putPRNEpoch(Rinex3NavStream& strm) const
-      throw(StringException)
+
    {
       string line;
       CivilTime civtime(time);
@@ -980,7 +980,7 @@ namespace gpstk
       //                               after the epoch line.
       //  @param Rinex3NavStream strm  Stream to read from.
    void Rinex3NavData::putRecord(const int& nline, Rinex3NavStream& strm) const
-      throw(StringException, FFStreamError)
+
    {
 
       if(nline < 1 || nline > 7) {
@@ -1128,7 +1128,7 @@ namespace gpstk
 
 
    void Rinex3NavData::getPRNEpoch(Rinex3NavStream& strm)
-      throw(StringException, FFStreamError)
+
    {
       try {
          int i;
@@ -1238,7 +1238,7 @@ namespace gpstk
 
 
    void Rinex3NavData::getRecord(const int& nline, Rinex3NavStream& strm)
-      throw(StringException, FFStreamError)
+
    {
       if(nline < 1 || nline > 7) {
          FFStreamError fse(string("Invalid line number ") + asString(nline));
@@ -1358,7 +1358,7 @@ namespace gpstk
             else {
                fitint  =        StringUtils::for2doub(line.substr(n,19)); n+=19;
             }
-   
+
             // Some RINEX files have xmitTime < 0.
             while(xmitTime < 0) {
                xmitTime += (long)FULLWEEK;

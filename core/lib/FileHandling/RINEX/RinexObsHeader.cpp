@@ -15,7 +15,7 @@
 //  You should have received a copy of the GNU Lesser General Public
 //  License along with GPSTk; if not, write to the Free Software Foundation,
 //  Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110, USA
-//  
+//
 //  Copyright 2004, The University of Texas at Austin
 //
 //============================================================================
@@ -23,13 +23,13 @@
 //============================================================================
 //
 //This software developed by Applied Research Laboratories at the University of
-//Texas at Austin, under contract to an agency or agencies within the U.S. 
+//Texas at Austin, under contract to an agency or agencies within the U.S.
 //Department of Defense. The U.S. Government retains all rights to use,
-//duplicate, distribute, disclose, or release this software. 
+//duplicate, distribute, disclose, or release this software.
 //
-//Pursuant to DoD Directive 523024 
+//Pursuant to DoD Directive 523024
 //
-// DISTRIBUTION STATEMENT A: This software has been approved for public 
+// DISTRIBUTION STATEMENT A: This software has been approved for public
 //                           release, distribution is unlimited.
 //
 //=============================================================================
@@ -141,7 +141,7 @@ namespace gpstk
       = RinexObsHeader::StandardRinexObsTypes;
 
    void RinexObsHeader::reallyPutRecord(FFStream& ffs) const
-      throw(std::exception, FFStreamError, StringException)
+
    {
       RinexObsStream& strm = dynamic_cast<RinexObsStream&>(ffs);
 
@@ -214,7 +214,7 @@ namespace gpstk
 
       // this function writes all valid header records
    void RinexObsHeader::WriteHeaderRecords(FFStream& ffs) const
-      throw(FFStreamError, StringException)
+
    {
       RinexObsStream& strm = dynamic_cast<RinexObsStream&>(ffs);
       string line;
@@ -516,7 +516,7 @@ namespace gpstk
 
       // this function parses a single header record
    void RinexObsHeader::ParseHeaderRecord(string& line)
-      throw(FFStreamError)
+
    {
       string label(line, 60, 20);
 
@@ -752,8 +752,6 @@ namespace gpstk
 
       // This function parses the entire header from the given stream
    void RinexObsHeader::reallyGetRecord(FFStream& ffs)
-      throw(std::exception, FFStreamError,
-            gpstk::StringUtils::StringException)
    {
       RinexObsStream& strm = dynamic_cast<RinexObsStream&>(ffs);
 
@@ -831,7 +829,7 @@ namespace gpstk
 
    RinexObsType
    RinexObsHeader::convertObsType(const string& oneObs)
-      throw(FFStreamError)
+
    {
       RinexObsType ot(RegisteredRinexObsTypes[0]);   // Unknown type
       for(size_t i=0; i<RegisteredRinexObsTypes.size(); i++) {
@@ -846,7 +844,7 @@ namespace gpstk
    }
    string
    RinexObsHeader::convertObsType(const RinexObsType& oneObs)
-      throw(FFStreamError)
+
    {
       return oneObs.type;
    }

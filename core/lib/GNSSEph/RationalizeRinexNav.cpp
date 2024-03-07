@@ -131,7 +131,7 @@ namespace gpstk
 
    //----------------------------------------------------------------
    void RationalizeRinexNav::rationalize()
-      throw(InvalidRequest)
+
    {
          // These items store the status of the most recently observed
          // upload cutover

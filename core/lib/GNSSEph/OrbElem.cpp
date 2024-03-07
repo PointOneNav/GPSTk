@@ -64,7 +64,7 @@ namespace gpstk
    } 
 
     bool OrbElem::isValid(const CommonTime& ct) const
-      throw(InvalidRequest)
+
    {
       if (!dataLoaded())
       {
@@ -136,7 +136,7 @@ namespace gpstk
    }
 
    bool OrbElem::isHealthy() const
-      throw(InvalidRequest)
+
    {
       if (!dataLoaded())
       {
@@ -147,7 +147,7 @@ namespace gpstk
    }
 
    double OrbElem::svClockBias(const CommonTime& t) const
-      throw(gpstk::InvalidRequest)
+
    {
       if (!dataLoaded())
       {
@@ -161,7 +161,7 @@ namespace gpstk
    }
 
     double OrbElem::svClockBiasM(const CommonTime& t) const
-      throw(gpstk::InvalidRequest)
+
    {
       if (!dataLoaded())
       {
@@ -174,7 +174,7 @@ namespace gpstk
    }
 
    double OrbElem::svClockDrift(const CommonTime& t) const
-      throw(gpstk::InvalidRequest)
+
    {
       if (!dataLoaded())
       {
@@ -198,7 +198,7 @@ namespace gpstk
       // Adot and dndot variables are appropriately set to 0.0 by the 
       // LNAV loaders. 
    Xvt OrbElem::svXvt(const CommonTime& t) const
-      throw(InvalidRequest)
+
    {
       if (!dataLoaded())
       {
@@ -359,7 +359,7 @@ namespace gpstk
    }
 
      double OrbElem::svRelativity(const CommonTime& t) const
-      throw( InvalidRequest )
+
    {
       if (!dataLoaded())
       {
@@ -466,7 +466,7 @@ namespace gpstk
    }
 
    void OrbElem::dumpBody(ostream& s) const
-      throw( InvalidRequest )
+
    {
       if (!dataLoaded())
       {
@@ -542,7 +542,7 @@ namespace gpstk
    } // end of dumpBody()
 
    void OrbElem::dumpHeader(ostream& s) const
-      throw( InvalidRequest )
+
    {
       s << "****************************************************************"
         << "************" << endl
@@ -569,11 +569,11 @@ namespace gpstk
    }
 
    void OrbElem::dumpFooter(ostream& s) const
-      throw( InvalidRequest )
+
    {}
 
    void OrbElem::dump(ostream& s) const
-      throw( InvalidRequest )
+
    {
       dumpHeader(s);
       dumpBody(s);

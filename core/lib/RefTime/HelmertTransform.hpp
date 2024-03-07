@@ -85,7 +85,7 @@ namespace gpstk
                        const double& Tx, const double& Ty, const double& Tz,
                        const double& Scale, const std::string& Desc,
                        CommonTime epoch)
-         throw(InvalidRequest);
+;
 
       /// Dump the object to a multi-line string including reference frames, the
       /// 7 parameters and description.
@@ -95,7 +95,7 @@ namespace gpstk
       /// @param Position& pos position to be transformed; unchanged on output.
       /// @param Position& result position after transformation.
       /// @throw if transformation, or inverse, cannot act on ReferenceFrame of input.
-      void transform(const Position& pos, Position& result) throw(InvalidRequest);
+      void transform(const Position& pos, Position& result);
 
       /// Transform a 3-vector, in the given frame, using this Helmert transformation.
       /// @param Vector<double>& vec 3-vector of position coordinates in "from" frame.
@@ -104,7 +104,7 @@ namespace gpstk
       /// @throw if transformation, or inverse, cannot act on ReferenceFrame of input.
       void transform(const Vector<double>& vec, const ReferenceFrame& frame,
                      Vector<double>& result)
-         throw(InvalidRequest)
+
       {
          if(vec.size() > 3) {
             InvalidRequest e("Input Vector is not of length 3");
@@ -128,7 +128,7 @@ namespace gpstk
       /// @param Triple& result with position in new frame
       /// @throw if transformation, or inverse, cannot act on ReferenceFrame of input.
       void transform(const Triple& vec, const ReferenceFrame& frame, Triple& result)
-         throw(InvalidRequest)
+
       {
          try {
             Position pos(vec, Position::Cartesian), res;
@@ -146,7 +146,7 @@ namespace gpstk
       /// @param Xvt& result with position in new frame
       /// @throw if transformation, or inverse, cannot act on ReferenceFrame of input.
       void transform(const Xvt& xvt, Xvt& result)
-         throw(InvalidRequest)
+
       {
          try {
             Position pos(xvt.x, Position::Cartesian), res;
@@ -168,7 +168,7 @@ namespace gpstk
       void transform(const double& x, const double& y, const double& z,
                      const ReferenceFrame& frame,
                      double& rx, double& ry, double& rz)
-         throw(InvalidRequest)
+
       {
          try {
             Position pos(x,y,z,Position::Cartesian), res;

@@ -332,12 +332,12 @@ namespace gpstk
                                   CommonTime &tnmct,
                                   CommonTime &toe,
                                   CommonTime &tot)
-         throw(InvalidParameter);
+;
 
       static bool getNMCTValidity(const uint32_t sf2[10],
                                   unsigned   howWeek,
                                   NMCTMeta   &meta)
-         throw(InvalidParameter)
+
       {
          return getNMCTValidity(sf2, howWeek, meta.aodo, meta.tnmct, meta.toe,
                                 meta.tot);

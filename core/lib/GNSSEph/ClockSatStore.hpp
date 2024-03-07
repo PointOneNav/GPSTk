@@ -152,7 +152,7 @@ namespace gpstk
           *  c) checkInterval is true and the interval is larger than
           *     maxInterval */
       virtual ClockRecord getValue(const SatID& sat, const CommonTime& ttag)
-         const throw(InvalidRequest);
+         const;
 
          /** Return the clock bias for the given satellite at the given time
           * @param[in] sat the SatID of the satellite of interest
@@ -166,7 +166,7 @@ namespace gpstk
           *  c) checkInterval is true and the interval is larger than
           *     maxInterval */
       double getClockBias(const SatID& sat, const CommonTime& ttag)
-         const throw(InvalidRequest);
+         const;
 
          /** Return the clock drift for the given satellite at the given time
           * @param[in] sat the SatID of the satellite of interest
@@ -181,7 +181,7 @@ namespace gpstk
           *     maxInterval
           *  d) there is no drift data in the store */
       double getClockDrift(const SatID& sat, const CommonTime& ttag)
-         const throw(InvalidRequest);
+         const;
 
          /** Dump information about the object to an ostream.
           * @param[in] os ostream to receive the output; defaults to std::cout
@@ -217,22 +217,22 @@ namespace gpstk
           *   different). */
       void addClockRecord(const SatID& sat, const CommonTime& ttag,
                           const ClockRecord& rec)
-         throw(InvalidRequest);
+;
 
          /// Add clock bias data (only) to the store
       void addClockBias(const SatID& sat, const CommonTime& ttag,
                         const double& bias, const double& sig=0.0)
-         throw(InvalidRequest);
+;
 
          /// Add clock drift data (only) to the store
       void addClockDrift(const SatID& sat, const CommonTime& ttag,
                          const double& drift, const double& sig=0.0)
-         throw(InvalidRequest);
+;
 
          /// Add clock acceleration data (only) to the store
       void addClockAcceleration(const SatID& sat, const CommonTime& ttag,
                                 const double& accel, const double& sig=0.0)
-         throw(InvalidRequest);
+;
 
          /// Get current interpolation order.
       unsigned int getInterpolationOrder(void) noexcept

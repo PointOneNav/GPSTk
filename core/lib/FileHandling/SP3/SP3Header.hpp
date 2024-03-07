@@ -193,9 +193,7 @@ namespace gpstk
    protected:
          /// Writes the record formatted to the FFStream \a s.
          /// @throws StringException when a StringUtils function fails
-      virtual void reallyPutRecord(FFStream& s) const
-         throw(std::exception, FFStreamError,
-               StringUtils::StringException);
+      virtual void reallyPutRecord(FFStream& s) const;
 
          /// This function retrieves the SP3 header from the given FFStream.
          /// If an error is encountered in the retrieval of the header, the
@@ -204,9 +202,7 @@ namespace gpstk
          /// @throws FFStreamError when exceptions(failbit) is set and
          ///  a read or formatting error occurs.  This also resets the
          ///  stream to its pre-read position.
-      virtual void reallyGetRecord(FFStream& s)
-         throw(std::exception, FFStreamError,
-               StringUtils::StringException);
+      virtual void reallyGetRecord(FFStream& s);
 
    }; // end class SP3Header
 

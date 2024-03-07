@@ -54,7 +54,7 @@ namespace gpstk
 
 
    ObsClockModel::SvStatus ObsClockModel::getSvStatus(const SatID& svid) const
-      throw(gpstk::ObjectNotFound)
+
    {
       SvStatusMap::const_iterator i = status.find(svid);
       if(i == status.end())
@@ -83,7 +83,7 @@ namespace gpstk
 
 
    ObsClockModel::SvMode ObsClockModel::getSvMode(const SatID& svid) const
-      throw(gpstk::ObjectNotFound)
+
    {
       SvModeMap::const_iterator i = modes.find(svid);
       if(i == modes.end())
@@ -99,7 +99,7 @@ namespace gpstk
 
 
    gpstk::Stats<double> ObsClockModel::simpleOrdClock(const ORDEpoch& oe)
-      throw(gpstk::InvalidValue)
+
    {
       gpstk::Stats<double> stat;
       

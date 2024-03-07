@@ -94,7 +94,7 @@ namespace gpstk
          setSvMode(mode);
       }
 
-      virtual void addEpoch(const ORDEpoch& re) throw(gpstk::InvalidValue) = 0;
+      virtual void addEpoch(const ORDEpoch& re) = 0;
 
          // set accessor methods ----------------------------------------------   
 
@@ -167,7 +167,7 @@ namespace gpstk
           * @return #SvStatus
           * @exception ObjectNotFound an ORD for that SV is not in the map
           */
-      SvStatus getSvStatus(const SatID& svid) const throw(ObjectNotFound);
+      SvStatus getSvStatus(const SatID& svid) const;
 
          /**
           * get the map indicating how to use each ORD in the bias computation.
@@ -181,7 +181,7 @@ namespace gpstk
           * @return #SvMode
           * @exception ObjectNotFound a mode for that SV is not in the map
           */
-      SvMode getSvMode(const SatID& svid) const throw(ObjectNotFound);
+      SvMode getSvMode(const SatID& svid) const;
 
          /**
           * returns the sigma multiple value used for ORD stripping.
@@ -208,7 +208,7 @@ namespace gpstk
           * statistics. This is effectivly a simple single epoch clock
           * model. */
       Stats<double> simpleOrdClock(const ORDEpoch& oe)
-         throw(InvalidValue);
+;
 
       virtual void dump(std::ostream& s, short detail=1) const noexcept;
 

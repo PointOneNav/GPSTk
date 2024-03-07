@@ -285,37 +285,37 @@ public:
    ///          1 help was requested
    int ProcessCommandLine(int argc, char** argv, std::string PrgmDesc,
              std::string& Usage, std::string& Errors, std::vector<std::string>& Unrec)
-      throw(gpstk::Exception);
+;
 
    /// Dump the configuration. Output is of the form
    ///   longOpt Descript : values
    /// if tag is not empty (the default), begin each line with it.
    void DumpConfiguration(std::ostream& os, std::string tag=std::string())
-      throw(gpstk::Exception);
+;
 
 private:
    /// determine if the command line, as declared, is valid
-   bool ValidateCommandLine(std::string& msg) throw(gpstk::Exception);
+   bool ValidateCommandLine(std::string& msg);
 
    /// Build the syntax page
-   void BuildSyntaxPage(void) throw(gpstk::Exception);
+   void BuildSyntaxPage(void);
 
    /// Preprocess the arguments by pulling out debug, etc, replace deprecated options,
    /// drop ignored options, open --file files, open list files (@file) and parse
    /// comma-separated values
    void PreProcessArgs(const char *arg, std::vector<std::string>& Args,
-      std::string& Errors) throw(gpstk::Exception);
+      std::string& Errors);
 
    /// Parse the (preprocessed) list of args
    void Parse(std::vector<std::string>& Args, std::string& Errors,
-               std::vector<std::string>& Unrecog) throw(gpstk::Exception);
+               std::vector<std::string>& Unrecog);
 
    /// Generate the usage string (syntax page)
-   std::string SyntaxPage(void) throw(gpstk::Exception);
+   std::string SyntaxPage(void);
 
    /// Post process - convert value strings to real values
    void Postprocess(std::string& Errors, std::vector<std::string>& Unrecog)
-      throw(gpstk::Exception);
+;
 
 }; // end class CommandLine
 

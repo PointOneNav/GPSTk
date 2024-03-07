@@ -91,7 +91,7 @@ namespace gpstk
                            double svel,
                            double svaz,
                            IonoModel::Frequency freq = IonoModel::L1) const
-         throw(NoIonoModelFound);
+;
 
 
          /** Add an IonoModel to this collection

@@ -15,7 +15,7 @@
 //  You should have received a copy of the GNU Lesser General Public
 //  License along with GPSTk; if not, write to the Free Software Foundation,
 //  Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110, USA
-//  
+//
 //  Copyright 2004, The University of Texas at Austin
 //
 //============================================================================
@@ -23,13 +23,13 @@
 //============================================================================
 //
 //This software developed by Applied Research Laboratories at the University of
-//Texas at Austin, under contract to an agency or agencies within the U.S. 
+//Texas at Austin, under contract to an agency or agencies within the U.S.
 //Department of Defense. The U.S. Government retains all rights to use,
-//duplicate, distribute, disclose, or release this software. 
+//duplicate, distribute, disclose, or release this software.
 //
-//Pursuant to DoD Directive 523024 
+//Pursuant to DoD Directive 523024
 //
-// DISTRIBUTION STATEMENT A: This software has been approved for public 
+// DISTRIBUTION STATEMENT A: This software has been approved for public
 //                           release, distribution is unlimited.
 //
 //=============================================================================
@@ -61,8 +61,8 @@ namespace gpstk
 
       // forward declarations
    class Position;
-   double range(const Position& A, const Position& B) throw(GeometryException);
-   
+   double range(const Position& A, const Position& B);
+
       /**
        * A position representation class for common 3D geographic
        * position formats, including geodetic (geodetic latitude,
@@ -163,7 +163,7 @@ namespace gpstk
       static const double ONE_CM_TOLERANCE;
          /// One micron tolerance.
       static const double ONE_UM_TOLERANCE;
-      
+
          /// Default tolerance for time equality in days.
       static double POSITION_TOLERANCE;
 
@@ -174,7 +174,7 @@ namespace gpstk
          /// Returns the current POSITION_TOLERANCE.
       static double getPositionTolerance()
       { return POSITION_TOLERANCE; }
-   
+
          /**
           * Sets the tolerance for output and comparisons, for this
           * object only.
@@ -213,7 +213,7 @@ namespace gpstk
                CoordinateSystem s = Cartesian,
                EllipsoidModel *ell = NULL,
                ReferenceFrame frame = ReferenceFrame::Unknown)
-         throw(GeometryException);
+;
 
          /**
           * Explicit constructor. Coordinate system may be specified
@@ -229,7 +229,7 @@ namespace gpstk
                CoordinateSystem s = Cartesian,
                EllipsoidModel *ell = NULL,
                ReferenceFrame frame = ReferenceFrame::Unknown)
-         throw(GeometryException);
+;
 
          /**
           * Explicit constructor. Coordinate system may be specified
@@ -245,7 +245,7 @@ namespace gpstk
                CoordinateSystem s = Cartesian,
                EllipsoidModel *ell = NULL,
                ReferenceFrame frame = ReferenceFrame::Unknown)
-         throw(GeometryException);
+;
 
          /**
           * Explicit constructor from Xvt. The coordinate system is Cartesian,
@@ -373,7 +373,7 @@ namespace gpstk
           */
       Position transformTo(CoordinateSystem sys)
          noexcept;
-  
+
          /// Convert to geodetic coordinates (does nothing if
          /// system == Geodetic already).
       Position asGeodetic()
@@ -384,7 +384,7 @@ namespace gpstk
          /// @return a reference to this.
          /// @throw GeometryException if input is NULL.
       Position asGeodetic(EllipsoidModel *ell)
-         throw(GeometryException)
+
       {
          try { setEllipsoidModel(ell); }
          catch(GeometryException& ge) { GPSTK_RETHROW(ge); }
@@ -400,7 +400,7 @@ namespace gpstk
 
 
          // ----------- Part  7: member functions: get ------------------------
-         // 
+         //
          // These routines retrieve coordinate values in all
          // coordinate systems.
          //
@@ -408,7 +408,7 @@ namespace gpstk
          /// return coordinate ReferenceFrame
       const ReferenceFrame& getReferenceFrame() const
          noexcept;
-      
+
          /// return X coordinate (meters)
       double X() const
          noexcept;
@@ -454,7 +454,7 @@ namespace gpstk
 
          /// return the coordinate system for this Position
       CoordinateSystem getCoordinateSystem() const
-         noexcept 
+         noexcept
       { return system; };
 
          /// return geodetic latitude (deg N)
@@ -528,7 +528,7 @@ namespace gpstk
           * @throw      GeometryException if input is NULL.
           */
       void setEllipsoidModel(const EllipsoidModel *ell)
-         throw(GeometryException);
+;
 
          /**
           * Set the Position given geodetic coordinates; system is set
@@ -543,7 +543,7 @@ namespace gpstk
                             const double lon,
                             const double ht,
                             const EllipsoidModel *ell = NULL)
-         throw(GeometryException);
+;
 
          /**
           * Set the Position given geocentric coordinates; system is
@@ -557,7 +557,7 @@ namespace gpstk
       Position& setGeocentric(const double lat,
                               const double lon,
                               const double rad)
-         throw(GeometryException);
+;
 
          /**
           * Set the Position given spherical coordinates; system is
@@ -571,7 +571,7 @@ namespace gpstk
       Position& setSpherical(const double theta,
                              const double phi,
                              const double rad)
-         throw(GeometryException);
+;
 
          /**
           * Set the Position given ECEF coordinates; system is set to
@@ -636,7 +636,7 @@ namespace gpstk
           * pos.setToString("123.4342,9328.1982,-128987.399", "%X,%Y,%Z");
           * @endcode
           *
-          * works but 
+          * works but
           *
           * @code
           * pos.setToString("123.4342,9328.1982", "%X,%Y");
@@ -658,9 +658,7 @@ namespace gpstk
           * @return a reference to this object.
           */
       Position& setToString(const std::string& str,
-                            const std::string& fmt)
-         throw(GeometryException,
-               StringUtils::StringException);
+                            const std::string& fmt);
 
 
          // if you can see this, ignore the \'s below, as they are for
@@ -698,20 +696,20 @@ namespace gpstk
           * representation specified by \c fmt.
           */
       std::string printf(const char *fmt) const
-         throw(StringUtils::StringException);
+;
 
          /// Format this time into a string.
          /// @see printf(const char*)
       std::string printf(const std::string& fmt) const
-         throw(StringUtils::StringException) 
+
       { return printf(fmt.c_str()); }
 
          /// Returns the string that operator<<() would print.
       std::string asString() const
-         throw(StringUtils::StringException);
+;
 
          // ----------- Part 10: functions: fundamental conversions -----------
-         // 
+         //
          /** Fundamental conversion from spherical to cartesian coordinates.
           * @param trp (input): theta, phi (degrees), radius
           * @param xyz (output): X,Y,Z in units of radius
@@ -798,7 +796,7 @@ namespace gpstk
                                               const double eccSq)
          noexcept;
 
-         /** Fundamental routine to convert geodetic to geocentric 
+         /** Fundamental routine to convert geodetic to geocentric
           * @param geodeticllh (input): geodetic latitude (deg N),
           *            longitude (deg E), and height above ellipsoid (meters)
           * @param llr (output): geocentric lat (deg N),lon (deg E),radius (meters)
@@ -832,7 +830,7 @@ namespace gpstk
           */
       friend double range(const Position& A,
                           const Position& B)
-         throw(GeometryException);
+;
 
          /**
           * Compute the radius of the ellipsoidal Earth, given the
@@ -866,7 +864,7 @@ namespace gpstk
           * @return the elevation in degrees
           */
       double elevation(const Position& Target) const
-         throw(GeometryException);
+;
 
          /**
           * A member function that computes the elevation of the input
@@ -877,7 +875,7 @@ namespace gpstk
           * @return the elevation in degrees
           */
       double elevationGeodetic(const Position& Target) const
-         throw(GeometryException);
+;
 
          /**
           * A member function that computes the azimuth of the input
@@ -887,7 +885,7 @@ namespace gpstk
           * @return the azimuth in degrees
           */
       double azimuth(const Position& Target) const
-         throw(GeometryException);
+;
 
          /**
           * A member function that computes the azimuth of the input
@@ -898,7 +896,7 @@ namespace gpstk
           * @return the azimuth in degrees
           */
       double azimuthGeodetic(const Position& Target) const
-         throw(GeometryException);
+;
 
          /**
           * A member function that computes the position at which a
@@ -922,7 +920,7 @@ namespace gpstk
          noexcept;
 
          /**
-          * A member function that computes the radius of curvature of the 
+          * A member function that computes the radius of curvature of the
           * meridian (Rm) corresponding to this Position.
           * @return radius of curvature of the meridian (in meters)
           */
@@ -930,7 +928,7 @@ namespace gpstk
          noexcept;
 
          /**
-          * A member function that computes the radius of curvature in the 
+          * A member function that computes the radius of curvature in the
           * prime vertical (Rn) corresponding to this Position.
           * @return radius of curvature in the prime vertical (in meters)
           */
@@ -955,7 +953,7 @@ namespace gpstk
                       CoordinateSystem s = Cartesian,
                       EllipsoidModel *ell = NULL,
                       ReferenceFrame frame = ReferenceFrame::Unknown)
-         throw(GeometryException);
+;
 
          /* Values of the coordinates, defined for each system as follows;
           *    Cartesian  : X,Y,Z in meters
@@ -981,7 +979,7 @@ namespace gpstk
 
          /// tolerance used in comparisons
       double tolerance;
-      
+
       ReferenceFrame refFrame;
 
    };   // end class Position

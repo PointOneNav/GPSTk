@@ -74,7 +74,7 @@ namespace gpstk
 
 
    void FFBinaryStream ::
-   getData(char* buff, size_t length) throw(EndOfFile, FFStreamError)
+   getData(char* buff, size_t length)
    {
       try
       {
@@ -104,7 +104,7 @@ namespace gpstk
 
    void FFBinaryStream ::
    writeData(const char* buff, size_t length)
-      throw(FFStreamError)
+
    {
       try
       {

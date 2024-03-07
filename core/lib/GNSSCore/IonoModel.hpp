@@ -131,7 +131,7 @@ namespace gpstk
                            double svel,
                            double svaz,
                            Frequency freq = L1) const
-         throw(InvalidIonoModel);
+;
 
          /// equality operator
       bool operator==(const IonoModel& right) const noexcept;

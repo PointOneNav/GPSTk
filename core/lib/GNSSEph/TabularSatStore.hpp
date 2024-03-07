@@ -156,21 +156,21 @@ namespace gpstk
           *
           * Derived objects can implement similar routines, for example:
           * Triple getPosition(const SatID& sat, const CommonTime& t)
-          *    throw(InvalidRequest);
+          *;
           * Triple getVelocity(const SatID& sat, const CommonTime& t)
-          *    throw(InvalidRequest);
+          *;
           * Triple getAccel(const SatID& sat, const CommonTime& t)
-          *    throw(InvalidRequest);
+          *;
           * double getClockBias(const SatID& s, const CommonTime& t)
-          *    throw(InvalidRequest);
+          *;
           * double[2] getClock(const SatID& sat, const CommonTime& t)
-          *    throw(InvalidRequest);
+          *;
           * @note Xvt getXvt(const SatID& sat, const CommonTime& t)
-          *    throw(InvalidRequest);
+          *;
           *   will be provided by another class which inherits this one.
           */
       virtual DataRecord getValue(const SatID& sat, const CommonTime& ttag)
-         const throw(InvalidRequest) = 0;
+         const = 0;
 
          /** Locate the given time in the DataTable for the given
           * satellite.  Return two const iterators it1 and it2
@@ -213,7 +213,7 @@ namespace gpstk
                                     typename DataTable::const_iterator& it1,
                                     typename DataTable::const_iterator& it2,
                                     bool exactReturn=true)
-         const throw(InvalidRequest)
+         const
       {
          try
          {
@@ -419,7 +419,7 @@ namespace gpstk
                                                typename DataTable::const_iterator& it1,
                                                typename DataTable::const_iterator& it2,
                                                bool exactReturn=true)
-         const throw(InvalidRequest)
+         const
       {
          try
          {
@@ -692,7 +692,7 @@ namespace gpstk
           * stored TimeSystem.
           * @param[in] ts TimeSystem to compare with stored TimeSystem
           * @throw InvalidRequest if time systems are inconsistent */
-      void checkTimeSystem(const TimeSystem& ts) const throw(InvalidRequest)
+      void checkTimeSystem(const TimeSystem& ts) const
       {
          if(ts != TimeSystem::Any && storeTimeSystem != TimeSystem::Any
             && ts != storeTimeSystem)

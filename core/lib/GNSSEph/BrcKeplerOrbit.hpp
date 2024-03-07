@@ -145,142 +145,142 @@ namespace gpstk
                      const long subframe1[10],
                      const long subframe2[10],
                      const long subframe3[10] )
-         throw( InvalidParameter );
+;
 
          /** 
           * Returns the epoch time (time of ephemeris) from this
           * ephemeris, correcting for half weeks and HOW time. */
-      CommonTime getOrbitEpoch() const throw(InvalidRequest);
+      CommonTime getOrbitEpoch() const;
 
          /** Returns the time at the beginning of the fit interval. */
-      CommonTime getBeginningOfFitInterval() const throw(InvalidRequest);
+      CommonTime getBeginningOfFitInterval() const;
 
          /** Returns the time at the end of the fit interval. */
-      CommonTime getEndOfFitInterval() const throw(InvalidRequest);
+      CommonTime getEndOfFitInterval() const;
 
          /** Return true if orbit data has been loaded */
       bool hasData( ) const;
 
          /** Return satellite system ID */
          //@note Determine if this function is needed, as it is never used
-         //std::string getSatSystem() const throw(gpstk::InvalidRequest);
+         //std::string getSatSystem() const;
 
          /** Return signal type associated with this orbit */
          //@note Determine if this function is needed, as it is never used
-         //std::string getSignal() const throw(gpstk::InvalidRequest);
+         //std::string getSignal() const;
 
          /** This function returns the PRN ID of the SV. */
-      short getPRNID() const throw(gpstk::InvalidRequest);
+      short getPRNID() const;
 
          /** This function returns the OBS ID of the orbit. */
-      ObsID getObsID() const throw(gpstk::InvalidRequest);
+      ObsID getObsID() const;
 
          /** This function returns the health status of the SV. */
-      bool isHealthy() const throw(gpstk::InvalidRequest);
+      bool isHealthy() const;
 
          /** Return true if fit interval is valid . */
       bool withinFitInterval(const CommonTime) const
-         throw(gpstk::InvalidRequest);
+;
 
          /** This function return the GPS week number for the
           * orbit.  this is the full GPS week (ie > 10 bits). */
-      short getFullWeek() const throw(gpstk::InvalidRequest);
+      short getFullWeek() const;
       
          /** This function returns the value of the SV accuracy (m)
           * computed from the accuracy information contained in the
           * nav message */
-      double getAccuracy() const throw(gpstk::InvalidRequest);
+      double getAccuracy() const;
 
-      void setAccuracy(const double& acc) throw(gpstk::InvalidRequest);
+      void setAccuracy(const double& acc);
    
-      short getURAoe() const throw(gpstk::InvalidRequest);
+      short getURAoe() const;
 
          /** This function returns the value of the sine latitude
           * harmonic perturbation in radians. */
-      double getCus() const throw(gpstk::InvalidRequest);
+      double getCus() const;
       
          /** This function returns the value of the sine radius
           * harmonic perturbation in meters. */
-      double getCrs() const throw(gpstk::InvalidRequest);
+      double getCrs() const;
       
          /** This function returns the value of the sine inclination
           * harmonic perturbation in radians. */
-      double getCis() const throw(gpstk::InvalidRequest);
+      double getCis() const;
       
          /** This function returns the value of the cosine radius
           * harmonic perturbation in meters. */
-      double getCrc() const throw(gpstk::InvalidRequest);
+      double getCrc() const;
       
          /** This function returns the value of the cosine latitude
           * harmonic perturbation in radians. */
-      double getCuc() const throw(gpstk::InvalidRequest);
+      double getCuc() const;
       
          /** This function returns the value of the cosine inclination
           * harmonic perturbation in radians. */
-      double getCic() const throw(gpstk::InvalidRequest);
+      double getCic() const;
       
          /** This function returns the value of the time of orbit
           * in GPS seconds of week. */
-      double getToe() const throw(gpstk::InvalidRequest);
+      double getToe() const;
       
          /** This function returns the value of the mean anomaly in
           * radians. */
-      double getM0() const throw(gpstk::InvalidRequest);
+      double getM0() const;
       
          /** This function returns the value of the correction to the
           * mean motion in radians/second. */
-      double getDn() const throw(gpstk::InvalidRequest);
+      double getDn() const;
 
          /** This function returns the value of the rate correction to the
           * mean motion in radians/second**2. */
-      double getDnDot() const throw(gpstk::InvalidRequest);
+      double getDnDot() const;
       
          /** This function returns the value of the eccentricity. */
-      double getEcc() const throw(gpstk::InvalidRequest);
+      double getEcc() const;
       
          /** This function returns the value of the 
           * semi-major axis in meters. */
-      double getA() const throw(gpstk::InvalidRequest);
+      double getA() const;
       
          /** This function returns the value of the 
           * square root of the semi-major axis in meters**.5. */
-      double getAhalf() const throw(gpstk::InvalidRequest);
+      double getAhalf() const;
 
          /** This function returns the value of the rate of the
           * semi-major axis in meters/sec. */
-      double getAdot() const throw(gpstk::InvalidRequest);
+      double getAdot() const;
    
          /** This function returns the value of the right ascension of
           * the ascending node in radians. */
-      double getOmega0() const throw(gpstk::InvalidRequest);
+      double getOmega0() const;
       
          /** This function returns the value of the inclination in
           * radians. */
-      double getI0() const throw(gpstk::InvalidRequest);
+      double getI0() const;
       
          /** This function returns the value of the argument of
           * perigee in radians. */
-      double getW() const throw(gpstk::InvalidRequest);
+      double getW() const;
       
          /** This function returns the value of the rate of the right
           * ascension of the ascending node in radians/second. */
-      double getOmegaDot() const throw(gpstk::InvalidRequest);
+      double getOmegaDot() const;
       
          /** This function returns the value of the rate of the
           * inclination in radians/second. */
-      double getIDot() const throw(gpstk::InvalidRequest);
+      double getIDot() const;
       
          /** Compute satellite position at the given time
           * using this orbit data.
           * @throw InvalidRequest if a required subframe has not been stored.
           */
-      Xvt svXvt(const CommonTime& t) const throw(gpstk::InvalidRequest);
+      Xvt svXvt(const CommonTime& t) const;
 
          /** Compute satellite relativity correction (sec) at the given time
           * @throw InvalidRequest if a required subframe has not been stored.
           */
       double svRelativity(const CommonTime& t) const
-         throw( gpstk::InvalidRequest );
+;
       
          /** Output the contents of this orbit data to the given stream. */
       void dump(std::ostream& s = std::cout) const noexcept;

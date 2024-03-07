@@ -89,7 +89,7 @@ namespace gpstk
    
       // Default constructor; initializes to current system time.
    Epoch::Epoch(const TimeTag& tt)
-      throw(Epoch::EpochException)
+
          : tolerance(EPOCH_TOLERANCE)
    {
       set(tt);
@@ -105,7 +105,7 @@ namespace gpstk
        */
    Epoch::Epoch(const WeekSecond& tt,
                 short year)
-      throw(Epoch::EpochException)
+
          : tolerance(EPOCH_TOLERANCE)
    {
       set(tt, year);
@@ -122,7 +122,7 @@ namespace gpstk
    }
 
    Epoch::operator GPSZcount() const
-      throw(Epoch::EpochException)
+
    {
       try
       {
@@ -167,7 +167,7 @@ namespace gpstk
       // @param seconds Number of seconds to increase this time by.
       // @return The new time incremented by \c seconds.
    Epoch Epoch::operator+(double seconds) const
-      throw(Epoch::EpochException)
+
    {
       return Epoch(*this).addSeconds(seconds);
    }
@@ -176,7 +176,7 @@ namespace gpstk
       // @param seconds Number of seconds to decrease this time by.
       // @return The new time decremented by \c seconds.
    Epoch Epoch::operator-(double seconds) const
-      throw(Epoch::EpochException)
+
    {
       return Epoch(*this).addSeconds(-seconds);
    }
@@ -184,7 +184,7 @@ namespace gpstk
       // Add seconds to this time.
       // @param seconds Number of seconds to increase this time by.
    Epoch& Epoch::operator+=(double seconds)
-      throw(Epoch::EpochException)
+
    {
       return addSeconds(seconds);
    }
@@ -192,7 +192,7 @@ namespace gpstk
       // Subtract seconds from this time.
       // @param sec Number of seconds to decrease this time by.
    Epoch& Epoch::operator-=(double seconds)
-      throw(Epoch::EpochException)
+
    {
       return addSeconds(-seconds);
    }
@@ -200,7 +200,7 @@ namespace gpstk
       // Add seconds to this object.
       // @param seconds Number of seconds to add
    Epoch& Epoch::addSeconds(double seconds)
-      throw(Epoch::EpochException)
+
    {
       try
       {
@@ -217,7 +217,7 @@ namespace gpstk
       // Add (integer) seconds to this object.
       // @param seconds Number of seconds to add.
    Epoch& Epoch::addSeconds(long seconds)
-      throw(Epoch::EpochException)
+
    {
       try
       {
@@ -234,7 +234,7 @@ namespace gpstk
       // Add (integer) milliseconds to this object.
       // @param msec Number of milliseconds to add.
    Epoch& Epoch::addMilliSeconds(long msec)
-      throw(Epoch::EpochException)
+
    {
       try
       {
@@ -251,7 +251,7 @@ namespace gpstk
       // Add (integer) microseconds to this object.
       // @param usec Number of microseconds to add.
    Epoch& Epoch::addMicroSeconds(long usec)
-      throw(Epoch::EpochException)
+
    {
       try
       {
@@ -322,7 +322,7 @@ namespace gpstk
    }
 
    Epoch& Epoch::set(const TimeTag& tt)
-      throw(Epoch::EpochException)
+
    {
       try
       {
@@ -337,7 +337,7 @@ namespace gpstk
    }
 
    Epoch& Epoch::set(const WeekSecond& tt, short year)
-      throw(Epoch::EpochException)
+
    {
       WeekSecond& ws = const_cast<WeekSecond&>(tt);
       ws.adjustToYear(year);
@@ -359,7 +359,7 @@ namespace gpstk
       // @param f Time frame (see #TimeFrame)
       // @return a reference to this object.
    Epoch& Epoch::set(const GPSZcount& z)
-      throw(Epoch::EpochException)
+
    {
       try
       {
@@ -377,7 +377,7 @@ namespace gpstk
    }
 
    Epoch& Epoch::setTime(const CommonTime& ct)
-      throw(Epoch::EpochException)
+
    {
       try
       {
@@ -396,7 +396,7 @@ namespace gpstk
    }
    
    Epoch& Epoch::setDate(const CommonTime& ct)
-      throw(Epoch::EpochException)
+
    {
       try
       {
@@ -416,7 +416,7 @@ namespace gpstk
    
       // set using local time
    Epoch& Epoch::setLocalTime()
-      throw(Epoch::EpochException)
+
    {
       time_t t;
       time(&t);
@@ -432,7 +432,7 @@ namespace gpstk
 
    Epoch& Epoch::scanf(const string& str,
                        const string& fmt)
-      throw(StringException, InvalidRequest)
+
    {
       try
       {
@@ -447,7 +447,7 @@ namespace gpstk
 
       // Format this time into a string.
    string Epoch::printf(const string& fmt) const
-      throw(StringException)
+
    {
       try
       {

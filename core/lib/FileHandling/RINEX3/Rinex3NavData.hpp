@@ -247,7 +247,7 @@ namespace gpstk
           *  @param strm RINEX Nav stream
           */
       void getPRNEpoch(Rinex3NavStream& strm)
-         throw(StringUtils::StringException, FFStreamError);
+;
 
 
          /**  Read and parse the nth record after the epoch record
@@ -256,13 +256,13 @@ namespace gpstk
           *   @param Rinex3NavStream strm stream to read from
           */
       void getRecord(const int& n, Rinex3NavStream& strm)
-         throw(StringUtils::StringException, FFStreamError);
+;
 
          /** Generates the PRN/epoch line and outputs it to strm
           *  @param strm RINEX Nav stream
           */
       void putPRNEpoch(Rinex3NavStream& strm) const
-         throw(StringUtils::StringException);
+;
 
 
          /** Construct and write the nth record after the epoch record
@@ -271,7 +271,7 @@ namespace gpstk
           *  @param Rinex3NavStream strm  Stream to read from.
           */
       void putRecord(const int& n, Rinex3NavStream& strm) const
-         throw(StringUtils::StringException, FFStreamError);
+;
 
          /** Helper routine for constructors of this from
           * OrbitEph-based Ephemerides */
@@ -292,12 +292,12 @@ namespace gpstk
           *          to its pre-read position.
           */
       virtual void reallyGetRecord(FFStream& s)
-         throw(std::exception, FFStreamError, StringUtils::StringException);
+;
 
 
          /// Outputs the record to the FFStream \a s.
       virtual void reallyPutRecord(FFStream& s) const 
-         throw(std::exception, FFStreamError, StringUtils::StringException);
+;
 
    }; // End of class 'Rinex3NavData'
 

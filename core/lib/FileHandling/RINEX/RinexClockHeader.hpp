@@ -218,7 +218,7 @@ namespace gpstk
    protected:
          /// outputs this record to the stream correctly formatted.
       virtual void reallyPutRecord(FFStream& s) const
-         throw(std::exception, FFStreamError, StringUtils::StringException);
+;
       
          /**
           * This function retrieves the RINEX Clock Header from the 
@@ -231,7 +231,7 @@ namespace gpstk
           * stream to its pre-read position.
           */
       virtual void reallyGetRecord(FFStream& s)
-         throw(std::exception, FFStreamError,StringUtils::StringException);
+;
 
          /// Clears all header values and lists.
       void clear();
@@ -243,7 +243,7 @@ namespace gpstk
           * Used by reallyGetRecord
           */
       void ParseHeaderRecord(const std::string& line)
-         throw(FFStreamError);
+;
     
    }; // RinexClockHeader
 

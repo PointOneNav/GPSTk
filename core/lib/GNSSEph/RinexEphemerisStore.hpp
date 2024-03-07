@@ -79,7 +79,7 @@ namespace gpstk
 
          /// load the given Rinex file
       void loadFile(const std::string& filename) 
-         throw(FileMissingException);
+;
    };
 
       //@}

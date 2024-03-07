@@ -87,7 +87,7 @@ namespace gpstk
           * @throw InvalidRequest if required data has not been stored.
           */
       Xvt svXvt(const CommonTime& epoch) const
-         throw( gpstk::InvalidRequest );
+;
 
          /** Compute satellite position & velocity at the given time
           *  using this ephemeris data.  HOWEVER, DO NOT check whether
@@ -103,12 +103,12 @@ namespace gpstk
 
          /// Get the epoch time for this ephemeris
       CommonTime getEphemerisEpoch() const
-         throw( gpstk::InvalidRequest );
+;
 
 
          /// Get the epoch time for this ephemeris
       CommonTime getEpochTime() const
-         throw( gpstk::InvalidRequest )
+
       { return getEphemerisEpoch(); };
 
 
@@ -120,7 +120,7 @@ namespace gpstk
 
          /// This function returns the PRN ID of the SV.
       short getPRNID() const
-         throw( gpstk::InvalidRequest );
+;
 
 
          /** Compute the satellite clock bias (sec) at the given time
@@ -130,7 +130,7 @@ namespace gpstk
           * @throw InvalidRequest if required data has not been stored.
           */
       double svClockBias(const CommonTime& epoch) const
-         throw( gpstk::InvalidRequest );
+;
 
 
          /** Compute the satellite clock drift (sec/sec) at the given time
@@ -140,7 +140,7 @@ namespace gpstk
           * @throw InvalidRequest if required data has not been stored.
           */
       double svClockDrift(const CommonTime& t) const
-         throw( gpstk::InvalidRequest );
+;
 
 
          /// Get integration step for Runge-Kutta algorithm.

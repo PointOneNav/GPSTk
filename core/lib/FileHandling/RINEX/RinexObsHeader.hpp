@@ -15,7 +15,7 @@
 //  You should have received a copy of the GNU Lesser General Public
 //  License along with GPSTk; if not, write to the Free Software Foundation,
 //  Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110, USA
-//  
+//
 //  Copyright 2004, The University of Texas at Austin
 //
 //============================================================================
@@ -23,13 +23,13 @@
 //============================================================================
 //
 //This software developed by Applied Research Laboratories at the University of
-//Texas at Austin, under contract to an agency or agencies within the U.S. 
+//Texas at Austin, under contract to an agency or agencies within the U.S.
 //Department of Defense. The U.S. Government retains all rights to use,
-//duplicate, distribute, disclose, or release this software. 
+//duplicate, distribute, disclose, or release this software.
 //
-//Pursuant to DoD Directive 523024 
+//Pursuant to DoD Directive 523024
 //
-// DISTRIBUTION STATEMENT A: This software has been approved for public 
+// DISTRIBUTION STATEMENT A: This software has been approved for public
 //                           release, distribution is unlimited.
 //
 //=============================================================================
@@ -272,20 +272,20 @@ namespace gpstk
           * This function converts the string in \a oneObs to a RinexObsType.
           */
       static RinexObsType convertObsType(const std::string& oneObs)
-         throw(FFStreamError);
+;
 
          /**
           * This function converts the RinexObsType in \a oneObs to a string.
           */
       static std::string convertObsType(const RinexObsType& oneObs)
-         throw(FFStreamError);
+;
 
          /**
           * Parse a single header record, and modify valid accordingly.
           * Used by reallyGetRecord for both RinexObsHeader and RinexObsData.
           */
       void ParseHeaderRecord(std::string& line)
-         throw(FFStreamError);
+;
 
          /// Compute the number of valid header records which WriteHeaderRecords() will write
       int NumberHeaderRecordsToBeWritten(void) const noexcept;
@@ -295,7 +295,7 @@ namespace gpstk
           * Used by reallyPutRecord for both RinexObsHeader and RinexObsData.
           */
       void WriteHeaderRecords(FFStream& s) const
-         throw(FFStreamError, gpstk::StringUtils::StringException);
+;
 
          /// Return boolean : is this a valid Rinex header?
       bool isValid() const { return ((valid & allValid20) == allValid20); }
@@ -304,9 +304,7 @@ namespace gpstk
          /**
           * outputs this record to the stream correctly formatted.
           */
-      virtual void reallyPutRecord(FFStream& s) const
-         throw(std::exception, FFStreamError,
-               gpstk::StringUtils::StringException);
+      virtual void reallyPutRecord(FFStream& s) const;
 
          /**
           * This function retrieves the RINEX Header from the given FFStream.
@@ -317,9 +315,7 @@ namespace gpstk
           *  a read or formatting error occurs.  This also resets the
           *  stream to its pre-read position.
           */
-      virtual void reallyGetRecord(FFStream& s)
-         throw(std::exception, FFStreamError,
-               gpstk::StringUtils::StringException);
+      virtual void reallyGetRecord(FFStream& s);
 
       friend class RinexObsData;
 

@@ -15,7 +15,7 @@
 //  You should have received a copy of the GNU Lesser General Public
 //  License along with GPSTk; if not, write to the Free Software Foundation,
 //  Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110, USA
-//  
+//
 //  Copyright 2004, The University of Texas at Austin
 //
 //============================================================================
@@ -23,13 +23,13 @@
 //============================================================================
 //
 //This software developed by Applied Research Laboratories at the University of
-//Texas at Austin, under contract to an agency or agencies within the U.S. 
+//Texas at Austin, under contract to an agency or agencies within the U.S.
 //Department of Defense. The U.S. Government retains all rights to use,
-//duplicate, distribute, disclose, or release this software. 
+//duplicate, distribute, disclose, or release this software.
 //
-//Pursuant to DoD Directive 523024 
+//Pursuant to DoD Directive 523024
 //
-// DISTRIBUTION STATEMENT A: This software has been approved for public 
+// DISTRIBUTION STATEMENT A: This software has been approved for public
 //                           release, distribution is unlimited.
 //
 //=============================================================================
@@ -104,7 +104,7 @@ namespace gpstk
    }
 
    void RinexNavData::reallyPutRecord(FFStream& ffs) const
-      throw(std::exception, FFStreamError, StringException)
+
    {
       RinexNavStream& strm = dynamic_cast<RinexNavStream&>(ffs);
 
@@ -127,7 +127,7 @@ namespace gpstk
    }
 
    void RinexNavData::reallyGetRecord(FFStream& ffs)
-      throw(std::exception, FFStreamError, StringException)
+
    {
       RinexNavStream& strm = dynamic_cast<RinexNavStream&>(ffs);
 
@@ -222,7 +222,7 @@ namespace gpstk
          gpse.af0 = af0;
          gpse.af1 = af1;
          gpse.af2 = af2;
-   
+
             // Major orbit parameters
          gpse.M0 = M0;
          gpse.dn = dn;
@@ -236,7 +236,7 @@ namespace gpstk
             // modern nav msg
          gpse.dndot = 0.;
          gpse.Adot = 0.;
-   
+
             // Harmonic perturbations
          gpse.Cuc = Cuc;
          gpse.Cus = Cus;
@@ -244,7 +244,7 @@ namespace gpstk
          gpse.Crs = Crs;
          gpse.Cic = Cic;
          gpse.Cis = Cis;
-   
+
          gpse.dataLoadedFlag = true;
 
          gpse.ctToc = time;
@@ -266,7 +266,7 @@ namespace gpstk
 
             /// @note IODC must be set first...
          gpse.fitint = fitint;
-         gpse.setFitIntervalFlag(int(fitint)); 
+         gpse.setFitIntervalFlag(int(fitint));
          gpse.adjustValidity();
       }
       catch(Exception& e)
@@ -317,7 +317,7 @@ namespace gpstk
    }
 
    string RinexNavData::putPRNEpoch(void) const
-      throw(StringException)
+
    {
       string line;
       line += rightJustify(asString(PRNID), 2);
@@ -332,13 +332,13 @@ namespace gpstk
    }
 
    string RinexNavData::writeTime(const CommonTime& dt) const
-      throw(StringException)
+
    {
       return printTime(dt, " %02y %2m %2d %2H %2M%5.1f");
    }
 
    string RinexNavData::putBroadcastOrbit1(void) const
-      throw(StringException)
+
    {
       string line;
       line += string(3, ' ');
@@ -354,7 +354,7 @@ namespace gpstk
    }
 
    string RinexNavData::putBroadcastOrbit2(void) const
-      throw(StringException)
+
    {
       string line;
       line += string(3, ' ');
@@ -370,7 +370,7 @@ namespace gpstk
    }
 
    string RinexNavData::putBroadcastOrbit3(void) const
-      throw(StringException)
+
    {
       string line;
       line += string(3, ' ');
@@ -386,7 +386,7 @@ namespace gpstk
    }
 
    string RinexNavData::putBroadcastOrbit4(void) const
-      throw(StringException)
+
    {
       string line;
       line += string(3, ' ');
@@ -402,7 +402,7 @@ namespace gpstk
    }
 
    string RinexNavData::putBroadcastOrbit5(void) const
-      throw(StringException)
+
    {
       string line;
       line += string(3, ' ');
@@ -418,7 +418,7 @@ namespace gpstk
    }
 
    string RinexNavData::putBroadcastOrbit6(void) const
-      throw(StringException)
+
    {
       string line;
       line += string(3, ' ');
@@ -434,7 +434,7 @@ namespace gpstk
    }
 
    string RinexNavData::putBroadcastOrbit7(const double ver) const
-      throw(StringException)
+
    {
       string line;
       line += string(3, ' ');
@@ -450,7 +450,7 @@ namespace gpstk
    }
 
    void RinexNavData::getPRNEpoch(const string& currentLine)
-      throw(StringException, FFStreamError)
+
    {
       try
       {
@@ -498,7 +498,7 @@ namespace gpstk
    }
 
    void RinexNavData::getBroadcastOrbit1(const string& currentLine)
-      throw(StringException, FFStreamError)
+
    {
       try
       {
@@ -516,7 +516,7 @@ namespace gpstk
    }
 
    void RinexNavData::getBroadcastOrbit2(const string& currentLine)
-      throw(StringException, FFStreamError)
+
    {
       try
       {
@@ -534,7 +534,7 @@ namespace gpstk
    }
 
    void RinexNavData::getBroadcastOrbit3(const string& currentLine)
-      throw(StringException, FFStreamError)
+
    {
       try
       {
@@ -552,7 +552,7 @@ namespace gpstk
    }
 
    void RinexNavData::getBroadcastOrbit4(const string& currentLine)
-      throw(StringException, FFStreamError)
+
    {
       try
       {
@@ -570,7 +570,7 @@ namespace gpstk
    }
 
    void RinexNavData::getBroadcastOrbit5(const string& currentLine)
-      throw(StringException, FFStreamError)
+
    {
       try
       {
@@ -594,7 +594,7 @@ namespace gpstk
    }
 
    void RinexNavData::getBroadcastOrbit6(const string& currentLine)
-      throw(StringException, FFStreamError)
+
    {
       try
       {
@@ -617,7 +617,7 @@ namespace gpstk
    }
 
    void RinexNavData::getBroadcastOrbit7(const string& currentLine)
-      throw(StringException, FFStreamError)
+
    {
       try
       {

@@ -15,7 +15,7 @@
 //  You should have received a copy of the GNU Lesser General Public
 //  License along with GPSTk; if not, write to the Free Software Foundation,
 //  Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110, USA
-//  
+//
 //  Copyright 2004, The University of Texas at Austin
 //
 //============================================================================
@@ -23,13 +23,13 @@
 //============================================================================
 //
 //This software developed by Applied Research Laboratories at the University of
-//Texas at Austin, under contract to an agency or agencies within the U.S. 
+//Texas at Austin, under contract to an agency or agencies within the U.S.
 //Department of Defense. The U.S. Government retains all rights to use,
-//duplicate, distribute, disclose, or release this software. 
+//duplicate, distribute, disclose, or release this software.
 //
-//Pursuant to DoD Directive 523024 
+//Pursuant to DoD Directive 523024
 //
-// DISTRIBUTION STATEMENT A: This software has been approved for public 
+// DISTRIBUTION STATEMENT A: This software has been approved for public
 //                           release, distribution is unlimited.
 //
 //=============================================================================
@@ -169,7 +169,7 @@ namespace gpstk
 
 
    void Rinex3ObsHeader::reallyPutRecord(FFStream& ffs) const
-      throw(std::exception, FFStreamError, StringException)
+
    {
       Rinex3ObsStream& strm = dynamic_cast<Rinex3ObsStream&>(ffs);
 
@@ -308,7 +308,7 @@ namespace gpstk
 
       // This function writes all valid header records.
    void Rinex3ObsHeader::writeHeaderRecords(FFStream& ffs) const
-      throw(FFStreamError, StringException)
+
    {
       Rinex3ObsStream& strm = dynamic_cast<Rinex3ObsStream&>(ffs);
       string line;
@@ -613,12 +613,12 @@ namespace gpstk
          line += hsWaveFact;
          strm << line << endl;
          strm.lineNumber++;
-         
+
             // handle continuation lines
          if(!extraWaveFactList.empty())
          {
             vector<ExtraWaveFact>::const_iterator itr = extraWaveFactList.begin();
-            
+
             while (itr != extraWaveFactList.end())
             {
                const int maxSatsPerLine = 7;
@@ -966,7 +966,7 @@ namespace gpstk
                   catch (Exception& e)
                   {
                      FFStreamError ffse(e);
-                     GPSTK_RETHROW(ffse); 
+                     GPSTK_RETHROW(ffse);
                   }
                }
                else if((numObsWritten % maxObsPerLine) == 0)
@@ -1003,11 +1003,11 @@ namespace gpstk
 
       // This function parses a single header record.
    void Rinex3ObsHeader::parseHeaderRecord(string& line)
-      throw(FFStreamError)
+
    {
       int i;
       string label(line, 60, 20);
-         
+
       if(label == hsVersion)
       {
          version  = asDouble(line.substr( 0,20));
@@ -1147,7 +1147,7 @@ namespace gpstk
             numObs = asInt(line.substr(0,6));
             valid |= validNumObs;
          }
-         
+
          const int maxObsPerLine = 9;
          for(i = 0; (R2ObsTypes.size() < numObs) && (i < maxObsPerLine); i++)
             R2ObsTypes.push_back(line.substr(i * 6 + 10, 2));
@@ -1169,7 +1169,7 @@ namespace gpstk
          }
          else
             satSys = satSysPrev;
-         
+
          try
          {
             const int maxObsPerLine = 13;
@@ -1216,19 +1216,19 @@ namespace gpstk
             ewf.wavelengthFactor[0] = asInt(line.substr(0,6));
             ewf.wavelengthFactor[1] = asInt(line.substr(6,6));
             Nsats = asInt(line.substr(12,6));
-               
+
             if(Nsats > maxSatsPerLine)   // > not >=
             {
                FFStreamError e("Invalid number of Sats for " + hsWaveFact);
                GPSTK_THROW(e);
             }
-               
+
             for(i = 0; i < Nsats; i++)
             {
                try
                {
                   RinexSatID prn(line.substr(21+i*6,3));
-                  ewf.satList.push_back(prn); 
+                  ewf.satList.push_back(prn);
                }
                catch (Exception& e)
                {
@@ -1236,7 +1236,7 @@ namespace gpstk
                   GPSTK_RETHROW(ffse);
                }
             }
-               
+
             extraWaveFactList.push_back(ewf);
          }
       }
@@ -1526,8 +1526,6 @@ namespace gpstk
 
       // This function parses the entire header from the given stream
    void Rinex3ObsHeader::reallyGetRecord(FFStream& ffs)
-      throw(std::exception, FFStreamError, 
-            gpstk::StringUtils::StringException)
    {
       Rinex3ObsStream& strm = dynamic_cast<Rinex3ObsStream&>(ffs);
 
@@ -1615,21 +1613,21 @@ namespace gpstk
          {
             const string s(syss[i]);
             vector<RinexObsID> obsids;
-            
-            try 
+
+            try
             {
                if      (s=="G")
-                  obsids = mapR2ObsToR3Obs_G(); 
-               else if (s=="R") 
+                  obsids = mapR2ObsToR3Obs_G();
+               else if (s=="R")
                   obsids = mapR2ObsToR3Obs_R();
-               else if (s=="E") 
+               else if (s=="E")
                   obsids = mapR2ObsToR3Obs_E();
-               else if (s=="S") 
+               else if (s=="S")
                   obsids = mapR2ObsToR3Obs_S();
             }
             catch(FFStreamError fse)
             {
-               GPSTK_RETHROW(fse); 
+               GPSTK_RETHROW(fse);
             }
 
                // TD if GPS and have wavelengthFactors, add more
@@ -1687,7 +1685,7 @@ namespace gpstk
       else if(version == 3.04) allValid = allValid304;
       else
       {
-         FFStreamError e("Unknown or unsupported RINEX version " + 
+         FFStreamError e("Unknown or unsupported RINEX version " +
                          asString(version,2));
          GPSTK_THROW(e);
       }
@@ -1757,12 +1755,12 @@ namespace gpstk
       // Since only GPS and only v2.11 are of interest, only L1/L2/L5
       // are considered.
    vector<RinexObsID> Rinex3ObsHeader::mapR2ObsToR3Obs_G()
-      throw(FFStreamError)
+
    {
       vector<RinexObsID> obsids;
-       
+
          // Assume D1, S1, and L1 come from C/A unless P is being treated as Y and P1 is present
-         // Furthermore, if P1 is present and P is NOT being treated as Y, assume that P1 
+         // Furthermore, if P1 is present and P is NOT being treated as Y, assume that P1
          // is some Z-mode or equivalent "smart" codeless process.
          //
          // Condition           Result
@@ -1770,25 +1768,25 @@ namespace gpstk
          //    N    Y     L1,D1,S1 considered C,  P1 becomes C1W
          //    N    N     L1,D1,S1 considered C
          //    Y    Y     L1,D1,S1 considered Y,  P1 becomes C1Y
-         //    Y    N     L1,D1,S1 considered C  
+         //    Y    N     L1,D1,S1 considered C
          //
       bool hasL1P = find(R2ObsTypes.begin(),R2ObsTypes.end(), string("P1")) != R2ObsTypes.end();
       string code1 = "C";
       string code1P = "W";
       if (PisY && hasL1P)
-      { 
+      {
          code1 = "Y";
          code1P = "Y";
       }
-            
+
          // Assume D2, S2, and L2 come from Y if P is being treated as Y and P2 is present
          // codeless unless L2C is tracked.
-         // If BOTH C2 and P2 are present, and P is NOT being treated as Y, assume C2 
+         // If BOTH C2 and P2 are present, and P is NOT being treated as Y, assume C2
          // is code tracking the open signal and that P2 is codelessly tracking an
          // authorized signal.
          //
          // Condition           Result
-         // PisY   C2?   P2? 
+         // PisY   C2?   P2?
          //    N    Y     N     L2,D2,S2 considered X,
          //    N    Y     Y     L2,D2,S2 considered W,  P2 becomes C2W**
          //    N    N     Y     L2,D2,S2 considered W,  P2 becomes C2W
@@ -1807,11 +1805,11 @@ namespace gpstk
          //     coerce this to X if there are actually data in the C2 field at
          //     the time the observations are read.  That would really do violence
          //     to the existing logic.  Better to hope for a transition to Rinex 3
-         //     before this becomes a real issue. 
-         // 
-         // N.B.:  This logic (both for P1 and P2) assumes P is NEVER P.  If we want to allow for 
+         //     before this becomes a real issue.
+         //
+         // N.B.:  This logic (both for P1 and P2) assumes P is NEVER P.  If we want to allow for
          // live sky (or simulator capture) P code, we'll have to add more logic
-         // to differentate between PisY, PisW, and PisP. That will have to be 
+         // to differentate between PisY, PisW, and PisP. That will have to be
          // "beyond RINEX v2.11" extra-special handling.
          //
       bool hasL2P = find(R2ObsTypes.begin(),R2ObsTypes.end(), string("P2")) != R2ObsTypes.end();
@@ -1843,13 +1841,13 @@ namespace gpstk
          else if (ot == "L1") obsid += "L1" + code1;
          else if (ot == "D1") obsid += "D1" + code1;
          else if (ot == "S1") obsid += "S1" + code1;
-               
+
          else if (ot == "C2") obsid += "C2X";
          else if (ot == "P2") obsid += "C2" + code2P;
          else if (ot == "L2") obsid += "L2" + code2;
          else if (ot == "D2") obsid += "D2" + code2;
          else if (ot == "S2") obsid += "S2" + code2;
-               
+
          else if (ot == "C5") obsid += "C5X";
          else if (ot == "L5") obsid += "L5X";
          else if (ot == "D5") obsid += "D5X";
@@ -1857,7 +1855,7 @@ namespace gpstk
 
             // If the obs type isn't valid for GPS, skip it.
          else continue;
-               
+
          try
          {
             RinexObsID OT(obsid);
@@ -1877,12 +1875,12 @@ namespace gpstk
       // Since only GLONASS and only v2.11 are of interest, only L1/L2
       // are considered.
    vector<RinexObsID> Rinex3ObsHeader::mapR2ObsToR3Obs_R( )
-      throw(FFStreamError)
+
    {
       vector<RinexObsID> obsids;
-      
+
          // Assume D1, S1, and L1 come from C/A
-         // This assumes that any files claiming to track GLONASS P1 is 
+         // This assumes that any files claiming to track GLONASS P1 is
          // actually doing so with a codeless technique.  There is no RINEX V3
          // "C1W" for GLONASS, so we'll leave P1 as C1P as the closest approximation.
       bool hasL1P = find(R2ObsTypes.begin(),R2ObsTypes.end(), string("P1")) != R2ObsTypes.end();
@@ -1892,18 +1890,18 @@ namespace gpstk
       bool hasL2P = find(R2ObsTypes.begin(),R2ObsTypes.end(), string("P2")) != R2ObsTypes.end();
       string code2 = "C";
 
-      string syss("R");     
+      string syss("R");
       for(size_t j=0; j<R2ObsTypes.size(); ++j)
       {
          string ot(R2ObsTypes[j]);
          string obsid(syss);
-         
+
          if      (ot == "C1") obsid += "C1C";
          else if (ot == "P1") obsid += "C1P";
          else if (ot == "L1") obsid += "L1" + code1;
          else if (ot == "D1") obsid += "D1" + code1;
          else if (ot == "S1") obsid += "S1" + code1;
-            
+
          else if (ot == "C2") obsid += "C2C";
          else if (ot == "P2") obsid += "C2P";
          else if (ot == "L2") obsid += "L2" + code2;
@@ -1912,7 +1910,7 @@ namespace gpstk
 
             // If the obs type isn't valid for GLONASS, skip it.
          else continue;
-         
+
          try
          {
             RinexObsID OT(obsid);
@@ -1933,11 +1931,11 @@ namespace gpstk
       // are considered.  Furthermore, Rinex v2.11 states that there is no
       // P for Galileo.  (Where that leaves the PRS is a good question.)
       //
-      // In RINEX v3, there are 3-5 tracking codes defined for each carrier. 
-      // Given the current lack of experience, the code makes some 
-      // guesses on what the v2.11 translations should mean.   
+      // In RINEX v3, there are 3-5 tracking codes defined for each carrier.
+      // Given the current lack of experience, the code makes some
+      // guesses on what the v2.11 translations should mean.
    vector<RinexObsID> Rinex3ObsHeader::mapR2ObsToR3Obs_E()
-      throw(FFStreamError)
+
    {
       vector<RinexObsID> obsids;
 
@@ -1947,7 +1945,7 @@ namespace gpstk
       string code8 = "X";  // Corresponds to I + Q tracking
       string code6 = "X";  // Corresponds to B + C tracking
 
-      string syss("E");     
+      string syss("E");
       for(size_t j=0; j<R2ObsTypes.size(); ++j)
       {
          string ot(R2ObsTypes[j]);
@@ -1956,7 +1954,7 @@ namespace gpstk
          else if (ot == "L1") obsid += "L1" + code1;
          else if (ot == "D1") obsid += "D1" + code1;
          else if (ot == "S1") obsid += "S1" + code1;
-               
+
          else if (ot == "C5") obsid += "C5" + code5;
          else if (ot == "L5") obsid += "L5" + code5;
          else if (ot == "D5") obsid += "D5" + code5;
@@ -1966,12 +1964,12 @@ namespace gpstk
          else if (ot == "L6") obsid += "L6" + code6;
          else if (ot == "D6") obsid += "D6" + code6;
          else if (ot == "S6") obsid += "S6" + code6;
-               
+
          else if (ot == "C7") obsid += "C7" + code7;
          else if (ot == "L7") obsid += "L7" + code7;
          else if (ot == "D7") obsid += "D7" + code7;
          else if (ot == "S7") obsid += "S7" + code7;
-               
+
          else if (ot == "C8") obsid += "C8" + code8;
          else if (ot == "L8") obsid += "L8" + code8;
          else if (ot == "D8") obsid += "D8" + code8;
@@ -1979,7 +1977,7 @@ namespace gpstk
 
             // If the obs type isn't valid for Galileo, skip it.
          else continue;
-         
+
          try
          {
             RinexObsID OT(obsid);
@@ -2000,14 +1998,14 @@ namespace gpstk
       // Since only SBAS and only v2.11 are of interest only L1/L5
       // are considered.
    vector<RinexObsID> Rinex3ObsHeader::mapR2ObsToR3Obs_S()
-      throw(FFStreamError)
+
    {
       vector<RinexObsID> obsids;
 
       string code1 = "C";  // Only option
       string code5 = "X";  // Corresponds to I + Q tracking
 
-      string syss("S");     
+      string syss("S");
       for(size_t j=0; j<R2ObsTypes.size(); ++j)
       {
          string ot(R2ObsTypes[j]);
@@ -2016,7 +2014,7 @@ namespace gpstk
          else if (ot == "L1") obsid += "L1" + code1;
          else if (ot == "D1") obsid += "D1" + code1;
          else if (ot == "S1") obsid += "S1" + code1;
-               
+
          else if (ot == "C5") obsid += "C5" + code5;
          else if (ot == "L5") obsid += "L5" + code5;
          else if (ot == "D5") obsid += "D5" + code5;
@@ -2024,7 +2022,7 @@ namespace gpstk
 
             // If the obs type isn't valid for SBAS, skip it.
          else continue;
-         
+
          try
          {
             RinexObsID OT(obsid);
@@ -2047,7 +2045,7 @@ namespace gpstk
       double sec;
       string tsys;
       TimeSystem ts;
-   
+
       year  = asInt(   line.substr(0,   6));
       month = asInt(   line.substr(6,   6));
       day   = asInt(   line.substr(12,  6));
@@ -2086,7 +2084,7 @@ namespace gpstk
       }
       valid |= Rinex3ObsHeader::validWaveFact;
          // TD unset R3-specific header members?
-      
+
          // make a list of R2 obstype strings, and a map R3ObsIDs <= R2 obstypes for each system
       R2ObsTypes.clear();
       map<string,vector<RinexObsID> >::const_iterator mit;
@@ -2200,7 +2198,7 @@ namespace gpstk
          rsid.fromString(iter->first);
          s << rsid.systemString() << " Observation types ("
            << iter->second.size() << "):" << endl;
-         for(i = 0; i < iter->second.size(); i++) 
+         for(i = 0; i < iter->second.size(); i++)
             s << " Type #" << setw(2) << setfill('0') << i+1 << setfill(' ')
               << " (" << iter->second[i].asString() << ") "
               << asString(static_cast<ObsID>(iter->second[i])) << endl;
@@ -2217,7 +2215,7 @@ namespace gpstk
             s << j->first << ":" << j->second.asString() << " ";
          s << endl;
       }
-      
+
       s << "Time of first obs "
         << printTime(firstObs,"%04Y/%02m/%02d %02H:%02M:%06.3f %P") << endl;
 
@@ -2244,7 +2242,7 @@ namespace gpstk
          if(!(valid & validRunBy)) s << " Pgm / Run By / Date\n";
          if(!(valid & validMarkerName)) s << " Marker Name\n";
             //if(version >= 3 && !(valid & validMarkerType)) s << "Marker Type\n";
-            // Not defined in R2 and not required in > 3, see Table A2 in R3 doc: 
+            // Not defined in R2 and not required in > 3, see Table A2 in R3 doc:
             // "Record required except for GEODETIC and NON_GEODETIC marker types"
          if(!(valid & validObserver)) s << " Observer / Agency\n";
          if(!(valid & validReceiver)) s << " Receiver # / Type\n";
@@ -2426,7 +2424,7 @@ namespace gpstk
        * @param type String representing the observation type.
        */
    size_t Rinex3ObsHeader::getObsIndex( const string& type ) const
-      throw(InvalidRequest)
+
    {
       string newType(type);
 
@@ -2468,10 +2466,10 @@ namespace gpstk
       return getObsIndex(sys, RinexObsID(newType));
    }
 
-   
+
    size_t Rinex3ObsHeader::getObsIndex(const string& sys,
                                        const RinexObsID& obsID ) const
-      throw(InvalidRequest)
+
    {
          /// typedef std::vector<RinexObsID> RinexObsVec;
          /// typedef std::map<std::string, RinexObsVec> RinexObsMap;
@@ -2492,7 +2490,7 @@ namespace gpstk
          if (rov[i] == obsID)
             return i;
       }
-      
+
       InvalidRequest ir(obsID.asString() + " is not stored in system " + sys + ".");
       GPSTK_THROW(ir);
       return 0;

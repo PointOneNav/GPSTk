@@ -52,39 +52,39 @@ namespace gpstk
 {
       /// @ingroup FileHandling
       //@{
-   
+
       /**
        * This class models a RINEX Clock Data Record.
        *
        * @sa gpstk::RinexClockStream and gpstk::RinexClockHeader.
-       */   
+       */
    class RinexClockData : public RinexClockBase
    {
    public:
-      
+
 
          /// Constructor
       RinexClockData(): epochTime(CommonTime::BEGINNING_OF_TIME),
                         dvCount(0), clockData(6,0) {}
-      
+
          /// Destructor
       virtual ~RinexClockData() {}
 
-         /// clock data type 
+         /// clock data type
          /// (AR, AS, CR, DR, MS)
       RinexClkType type;
-      
+
          /// receiver or satellite name
-         /// IGS 4 char receiver designation or 
-         /// 3 char satellite designation (Gnn for GPS) (Rnn for GLONASS) 
+         /// IGS 4 char receiver designation or
+         /// 3 char satellite designation (Gnn for GPS) (Rnn for GLONASS)
       std::string name;
-      
+
          /// Epoch in GPS time
       CivilTime epochTime;
-      
+
          /// number of data values
       short dvCount;
-      
+
          /// clock data
          /// [0] Clock bias (seconds).
          /// [1] Clock bias sigma [optional] (seconds).
@@ -94,32 +94,28 @@ namespace gpstk
          /// [5] Clock acceleration sigma [optional] (per second).
       std::vector<double> clockData;
 
-         /// RinexClockData is a "data", so this function always returns 
+         /// RinexClockData is a "data", so this function always returns
          /// true.
       virtual bool isData() const { return true; }
-      
-         /// Debug output function. 
+
+         /// Debug output function.
       virtual void dump(std::ostream& s) const;
-      
+
    protected:
          /// Writes a correctly formatted record from this data to stream
-      virtual void reallyPutRecord(FFStream& s) const
-         throw(std::exception, FFStreamError,
-               StringUtils::StringException);
-      
-         
+      virtual void reallyPutRecord(FFStream& s) const;
+
+
          /// This functions obtains a RINEX Clock record from the given stream
-      virtual void reallyGetRecord(FFStream& s)
-         throw(std::exception, FFStreamError,
-               StringUtils::StringException);
-      
+      virtual void reallyGetRecord(FFStream& s);
+
    }; // class RinexClockData
-   
+
       //@}
-   
+
 } // namespace gpstk
 
 #endif  //  GPSTK_RINEXCLOCKDATA_HPP
 
-      
+
 

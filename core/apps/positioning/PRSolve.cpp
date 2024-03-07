@@ -140,7 +140,7 @@ public:
    int ExtraProcessing(string& errors, string& extras) noexcept;
 
    // update weather in the trop model using the Met store
-   void setWeather(const CommonTime& ttag) throw(Exception);
+   void setWeather(const CommonTime& ttag);
 
 private:
 
@@ -528,14 +528,14 @@ public:
 
    // Compute a solution for the given epoch; call after CollectData()
    // same return value as RAIMCompute()
-   int ComputeSolution(const CommonTime& t) throw(Exception);
+   int ComputeSolution(const CommonTime& t);
 
    // Write out ORDs - call after ComputeSolution
    // pass it iret from ComputeSolution
-   int WriteORDs(const CommonTime& t, const int iret) throw(Exception);
+   int WriteORDs(const CommonTime& t, const int iret);
 
    // Output final results
-   void FinalOutput(void) throw(Exception);
+   void FinalOutput(void);
 
 // member data
 
@@ -580,8 +580,8 @@ public:
 
 //------------------------------------------------------------------------------------
 // prototypes
-int Initialize(string& errors) throw(Exception);
-int ProcessFiles(void) throw(Exception);
+int Initialize(string& errors);
+int ProcessFiles(void);
 
 //------------------------------------------------------------------------------------
 //------------------------------------------------------------------------------------
@@ -653,7 +653,7 @@ catch (...) { cerr << "Unknown exception.  Abort." << endl; }
 
 //------------------------------------------------------------------------------------
 // return -5 if input is not valid
-int Initialize(string& errors) throw(Exception)
+int Initialize(string& errors)
 {
 try {
    Configuration& C(Configuration::Instance());
@@ -1220,7 +1220,7 @@ catch(Exception& e) { GPSTK_RETHROW(e); }
 
 //------------------------------------------------------------------------------------
 // Return 0 ok, >0 number of files successfully read, <0 fatal error
-int ProcessFiles(void) throw(Exception)
+int ProcessFiles(void)
 {
 try {
    Configuration& C(Configuration::Instance());
@@ -1583,7 +1583,7 @@ catch(Exception& e) { GPSTK_RETHROW(e); }
 
 //------------------------------------------------------------------------------------
 //------------------------------------------------------------------------------------
-int routine(void) throw(Exception)
+int routine(void)
 {
 try {
    Configuration& C(Configuration::Instance());
@@ -2108,7 +2108,7 @@ int Configuration::ExtraProcessing(string& errors, string& extras) noexcept
 
 //------------------------------------------------------------------------------------
 // update weather in the trop model using the Met store
-void Configuration::setWeather(const CommonTime& ttag) throw(Exception)
+void Configuration::setWeather(const CommonTime& ttag)
 {
    try {
       Configuration& C(Configuration::Instance());
@@ -2364,7 +2364,7 @@ void SolutionObject::CollectData(const RinexSatID& sat,
 
 //------------------------------------------------------------------------------------
 // return 0 good, negative failure - same as RAIMCompute
-int SolutionObject::ComputeSolution(const CommonTime& ttag) throw(Exception)
+int SolutionObject::ComputeSolution(const CommonTime& ttag)
 {
    try {
       int i,n,iret;
@@ -2545,7 +2545,7 @@ int SolutionObject::ComputeSolution(const CommonTime& ttag) throw(Exception)
 }
 
 //------------------------------------------------------------------------------------
-int SolutionObject::WriteORDs(const CommonTime& time, const int iret) throw(Exception)
+int SolutionObject::WriteORDs(const CommonTime& time, const int iret)
 {
    try {
       Configuration& C(Configuration::Instance());
@@ -2584,7 +2584,7 @@ int SolutionObject::WriteORDs(const CommonTime& time, const int iret) throw(Exce
 }
 
 //------------------------------------------------------------------------------------
-void SolutionObject::FinalOutput(void) throw(Exception)
+void SolutionObject::FinalOutput(void)
 {
    try {
       Configuration& C(Configuration::Instance());

@@ -75,7 +75,7 @@ namespace gpstk
 
          // A conversion operator, will throw an exception if the object
          // is marked invalid
-      operator T() const throw(InvalidValue)
+      operator T() const
       {
          if (!this->is_valid()) throw InvalidValue();
          return value;

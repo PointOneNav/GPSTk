@@ -76,7 +76,7 @@ namespace gpstk
       {return t >= startTime && t <= endTime && clockModel.N() > 1;};
 
          /// Add in the given ord to the clock model
-      virtual void addEpoch(const ORDEpoch& oe) throw(gpstk::InvalidValue);
+      virtual void addEpoch(const ORDEpoch& oe);
 
          /// Reset the accumulated statistics on the clock
       void reset() noexcept;

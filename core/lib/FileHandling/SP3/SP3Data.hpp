@@ -141,9 +141,7 @@ namespace gpstk
 
          /// Writes the formatted record to the FFStream \a s.
          /// @warning This function is currently unimplemented
-      virtual void reallyPutRecord(FFStream& s) const
-         throw(std::exception, FFStreamError,
-               gpstk::StringUtils::StringException);
+      virtual void reallyPutRecord(FFStream& s) const;
 
          /**
           * This function reads a record from the given FFStream.
@@ -154,9 +152,7 @@ namespace gpstk
           *  a read or formatting error occurs.  This also resets the
           *  stream to its pre-read position.
           */
-      virtual void reallyGetRecord(FFStream& s)
-         throw(std::exception, FFStreamError,
-               gpstk::StringUtils::StringException);
+      virtual void reallyGetRecord(FFStream& s);
    };
 
       //@}

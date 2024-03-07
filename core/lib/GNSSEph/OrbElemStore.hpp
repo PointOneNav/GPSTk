@@ -117,7 +117,7 @@ namespace gpstk
       ///    reason, this is thrown. The text may have additional
       ///    information as to why the request failed.
       virtual Xvt getXvt(const SatID& id, const CommonTime& t)
-         const throw( InvalidRequest );
+         const;
 
       /// A debugging function that outputs in human readable form,
       /// all data stored in this object.
@@ -129,10 +129,10 @@ namespace gpstk
       ///
       ///   
       virtual bool isHealthy(const SatID& sat, const CommonTime& t) 
-         const throw(InvalidRequest); 
+         const; 
 
       virtual bool addOrbElem(const OrbElemBase* eph)
-         throw(InvalidParameter,Exception);
+;
 
       /// Edit the dataset, removing data outside the indicated time interval
       /// @param[in] tmin defines the beginning of the time interval
@@ -184,7 +184,7 @@ namespace gpstk
       bool isSatSysPresent(const SatID::SatelliteSystem ss) const;
       void addSatSys(const SatID::SatelliteSystem ss); 
       void validSatSystem(const SatID& sat) const 
-         throw( InvalidRequest );
+;
       /*
        *  Explanation of find( ) function for OrbElemStore
        *  
@@ -201,7 +201,7 @@ namespace gpstk
       /// @return a reference to the desired OrbElemBase
       /// @throw InvalidRequest object thrown when no OrbElemBase is found
       const OrbElemBase* findOrbElem( const SatID& sat, const CommonTime& t )
-         const throw( InvalidRequest );
+         const;
 
       /// Find an OrbElemBase for the indicated satellite at time t. The OrbElemBase
       /// chosen is the one with HOW time closest to the time t, (i.e. with
@@ -211,7 +211,7 @@ namespace gpstk
       /// @return a reference to desired OrbElemBase
       /// @throw InvalidRequest object thrown when no OrbElemBase is found
       const OrbElemBase* findNearOrbElem( const SatID& sat, const CommonTime& t )
-         const throw( InvalidRequest );
+         const;
 
       /// Find an OrbElemBase for the indicated satellite that has a Toe
       /// corresponding to time t.  If no such OrbElemBase exists in the store,
@@ -221,7 +221,7 @@ namespace gpstk
       /// @return a reference to desired OrbElemBase
       /// @throw InvalidRequest object thrown when no OrbElemBase is found
       const OrbElemBase* findToe(const SatID& sat, const CommonTime& t)
-         const throw(InvalidRequest);
+         const;
 
       /// Return a list of SatID object representing the satellites that
       /// are contained in the store.
@@ -242,7 +242,7 @@ namespace gpstk
       /// const reference.  The intent is to provide "read only" access
       /// for analysis.  If the map needs to be modified, see other methods.
       const OrbElemMap& getOrbElemMap( const SatID& sat ) const
-         throw( InvalidRequest );
+;
 
       protected:
      
