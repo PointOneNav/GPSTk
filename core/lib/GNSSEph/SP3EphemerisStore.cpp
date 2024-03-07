@@ -79,7 +79,7 @@ namespace gpstk
       //    reason, this is thrown. The text may have additional
       //    information as to why the request failed.
    Xvt SP3EphemerisStore::getXvt(const SatID& sat, const CommonTime& ttag)
-      const throw(InvalidRequest)
+      const
    {
       PositionRecord prec;
       ClockRecord crec;
@@ -115,7 +115,7 @@ namespace gpstk
       // determine the Xvt for any object.
       // return the earliest time in the table
       // throw InvalidRequest if there is no data.
-   CommonTime SP3EphemerisStore::getInitialTime() const throw(InvalidRequest)
+   CommonTime SP3EphemerisStore::getInitialTime() const
    {
       try {
          if(useSP3clock) return posStore.getInitialTime();
@@ -134,7 +134,7 @@ namespace gpstk
       // determine the Xvt for any object.
       // return the latest time in the table
       // throw InvalidRequest if there is no data.
-   CommonTime SP3EphemerisStore::getFinalTime() const throw(InvalidRequest)
+   CommonTime SP3EphemerisStore::getFinalTime() const
    {
       try {
          if(useSP3clock) return posStore.getFinalTime();
@@ -160,7 +160,7 @@ namespace gpstk
       //  b) checkDataGap is true and there is a data gap
       //  c) checkInterval is true and the interval is larger than maxInterval
    Triple SP3EphemerisStore::getPosition(const SatID sat, const CommonTime ttag)
-      const throw(InvalidRequest)
+      const
    {
       try {
          PositionRecord prec;
@@ -181,7 +181,7 @@ namespace gpstk
       //  b) checkDataGap is true and there is a data gap
       //  c) checkInterval is true and the interval is larger than maxInterval
    Triple SP3EphemerisStore::getVelocity(const SatID sat, const CommonTime ttag)
-      const throw(InvalidRequest)
+      const
    {
       try {
          PositionRecord prec;
@@ -197,7 +197,7 @@ namespace gpstk
       // Return the first time
       // Throw InvalidRequest if there is no data
    CommonTime SP3EphemerisStore::getInitialTime(const SatID& sat)
-      const throw(InvalidRequest)
+      const
    {
       try {
          if(useSP3clock) return posStore.getInitialTime(sat);
@@ -216,7 +216,7 @@ namespace gpstk
       // Return the latest time
       // Throw InvalidRequest if there is no data
    CommonTime SP3EphemerisStore::getFinalTime(const SatID& sat)
-      const throw(InvalidRequest)
+      const
    {
       try {
          if(useSP3clock) return posStore.getFinalTime(sat);
@@ -236,7 +236,7 @@ namespace gpstk
       // Store position (velocity) and clock data from SP3 files in clock and position
       // stores. Also update the FileStore with the filename and SP3 header.
    void SP3EphemerisStore::loadSP3Store(const string& filename, bool fillClockStore)
-      throw(Exception)
+
    {
       try
       {
@@ -547,7 +547,7 @@ namespace gpstk
       // this routine will also accept that file type and load the data into the
       // clock store. This routine will may set the velocity, acceleration, bias
       // or drift 'have' flags.
-   void SP3EphemerisStore::loadFile(const string& filename) throw(Exception)
+   void SP3EphemerisStore::loadFile(const string& filename)
    {
       try
       {
@@ -595,7 +595,7 @@ namespace gpstk
       // Load an SP3 ephemeris file; may set the velocity and acceleration flags.
       // If the clock store uses RINEX clock files, this ignores the clock data.
    void SP3EphemerisStore::loadSP3File(const std::string& filename)
-      throw(Exception)
+
    {
       try
       {
@@ -609,7 +609,7 @@ namespace gpstk
 
       // Load a RINEX clock file; may set the 'have' bias and drift flags
    void SP3EphemerisStore::loadRinexClockFile(const std::string& filename)
-      throw(Exception)
+
    {
       try
       {

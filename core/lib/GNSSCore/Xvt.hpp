@@ -69,23 +69,23 @@ namespace gpstk
          {}
 
       /// access the position, ECEF Cartesian in meters
-      Triple getPos() throw()
+      Triple getPos() noexcept
          { return x; }
 
       /// access the velocity in m/s
-      Triple getVel() throw()
+      Triple getVel() noexcept
          { return v; }
 
       /// access the clock bias, in second
-      double getClockBias() throw()
+      double getClockBias() noexcept
          { return clkbias; }
 
       /// access the clock drift, in second/second
-      double getClockDrift() throw()
+      double getClockDrift() noexcept
          { return clkdrift; }
 
       /// access the relativity correction, in seconds
-      double getRelativityCorr() throw()
+      double getRelativityCorr() noexcept
          { return relcorr; }
 
       /// Compute and return the relativity correction (-2R dot V/c^2) in seconds
@@ -101,7 +101,7 @@ namespace gpstk
       /// @return Range in meters
       double preciseRho(const Triple& rxPos, 
                         const EllipsoidModel& ellipsoid,
-                        double correction = 0) const throw();
+                        double correction = 0) const noexcept;
 
       // member data
 
@@ -122,7 +122,7 @@ namespace gpstk
  * @param os output stream to which \c xvt is sent
  * @param xvt Xvt that is sent to \c os
  */
-std::ostream& operator<<(std::ostream& os, const Xvt& xvt) throw();
+std::ostream& operator<<(std::ostream& os, const Xvt& xvt) noexcept;
 }  // end namespace gpstk
 
 #endif // GPSTK_XVT_INCLUDE

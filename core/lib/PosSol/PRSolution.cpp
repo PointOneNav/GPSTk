@@ -67,7 +67,7 @@ namespace gpstk
                                      const vector<double>& Pseudorange,
                                      const XvtStore<SatID> *pEph,
                                      Matrix<double>& SVP) const
-      throw()
+      noexcept
    {
       LOG(DEBUG) << "PreparePRSolution at time " << printTime(Tr,timfmt);
 
@@ -187,7 +187,7 @@ namespace gpstk
                                     const vector<SatID::SatelliteSystem>& Syss,
                                     Vector<double>& Resids,
                                     Vector<double>& Slopes)
-      throw(Exception)
+
    {
       if(!pTropModel) {
          Exception e("Undefined tropospheric model");
@@ -498,7 +498,7 @@ namespace gpstk
                                const Matrix<double>& invMC,
                                const XvtStore<SatID> *pEph,
                                TropModel *pTropModel)
-      throw(Exception)
+
    {
       try {
          LOG(DEBUG) << "RAIMCompute at time " << printTime(Tr,gpsfmt);
@@ -786,7 +786,7 @@ namespace gpstk
 
 
    // -------------------------------------------------------------------------
-   int PRSolution::DOPCompute(void) throw(Exception)
+   int PRSolution::DOPCompute(void)
    {
       try {
          Matrix<double> PTP(transpose(Partials)*Partials);
@@ -803,7 +803,7 @@ namespace gpstk
 
    // -------------------------------------------------------------------------
    // conveniences for printing the solutions
-   string PRSolution::outputValidString(int iret) throw()
+   string PRSolution::outputValidString(int iret) noexcept
    {
       ostringstream oss;
       if(iret != -99) {
@@ -820,7 +820,7 @@ namespace gpstk
    }  // end PRSolution::outputValidString
 
    string PRSolution::outputNAVString(string tag, int iret, const Vector<double>& Vec)
-      throw()
+      noexcept
    {
       ostringstream oss;
 
@@ -854,7 +854,7 @@ namespace gpstk
    }  // end PRSolution::outputNAVString
 
    string PRSolution::outputPOSString(string tag, int iret, const Vector<double>& Vec)
-      throw()
+      noexcept
    {
       ostringstream oss;
 
@@ -883,7 +883,7 @@ namespace gpstk
       return oss.str();
    }  // end PRSolution::outputPOSString
 
-   string PRSolution::outputCLKString(string tag, int iret) throw()
+   string PRSolution::outputCLKString(string tag, int iret) noexcept
    {
       ostringstream oss;
 
@@ -911,7 +911,7 @@ namespace gpstk
    }  // end PRSolution::outputCLKString
 
    // NB must call DOPCompute() if SimplePRSol() only was called.
-   string PRSolution::outputRMSString(string tag, int iret) throw()
+   string PRSolution::outputRMSString(string tag, int iret) noexcept
    {
       ostringstream oss;
 
@@ -976,7 +976,7 @@ namespace gpstk
    }  // end PRSolution::outputRMSString
 
    string PRSolution::outputString(string tag, int iret, const Vector<double>& Vec)
-      throw()
+      noexcept
    {
       ostringstream oss;
       oss << outputNAVString(tag,iret,Vec) << endl;
@@ -985,7 +985,7 @@ namespace gpstk
       return oss.str();
    }  // end PRSolution::outputString
 
-   string PRSolution::errorCodeString(int iret) throw()
+   string PRSolution::errorCodeString(int iret) noexcept
    {
       string str("unknown");
       if(iret == 1) str = string("ok but perhaps degraded");
@@ -997,7 +997,7 @@ namespace gpstk
       return str;
    }
 
-   string PRSolution::configString(string tag) throw()
+   string PRSolution::configString(string tag) noexcept
    {
       ostringstream oss;
       oss << tag << " " << printTime(currTime,timfmt)

@@ -115,7 +115,7 @@ namespace gpstk
       size_t getNumBits() const;
 
          /* Output the contents of this class to the given stream. */
-      void dump(std::ostream& s = std::cout) const throw();
+      void dump(std::ostream& s = std::cout) const noexcept;
       
          /***    UNPACKING FUNCTIONS *********************************/
          /* Unpack an unsigned long integer */
@@ -210,31 +210,31 @@ namespace gpstk
       void addUnsignedLong( const unsigned long value, 
                             const int numBits,  
                             const int scale ) 
-         throw(InvalidParameter);
+;
         
          /* Pack a signed long integer */                     
       void addLong( const long value, 
                     const int numBits, 
                     const int scale )
-         throw(InvalidParameter);
+;
 
          /* Pack an unsigned double */
       void addUnsignedDouble( const double value, 
                               const int numBits, 
                               const int power2)
-         throw(InvalidParameter);
+;
 
          /* Pack a signed double */
       void addSignedDouble( const double value, 
                             const int numBits, 
                             const int power2)
-         throw(InvalidParameter);
+;
 
          /* Pack a double with units of semicircles */
       void addDoubleSemiCircles( const double radians, 
                                  const int numBits, 
                                  const int power2)
-         throw(InvalidParameter);
+;
 
          /**
           * Pack a string.
@@ -244,10 +244,10 @@ namespace gpstk
           * If numChars > length of String, blanks will be added at the end. */
       void addString(const std::string String, 
                      const int numChars)
-         throw(InvalidParameter);
+;
       
       void addPackedNavBits( const PackedNavBits &pnb)
-         throw(InvalidParameter);
+;
    
          /*
           * Output the packed bits as a set of 32 bit
@@ -370,7 +370,7 @@ namespace gpstk
       void copyBits(const PackedNavBits& from, 
                     const short startBit=0, 
                     const short endBit=-1)
-                    throw(InvalidParameter);
+;
 
          /**
           * This method is not typically used in production; however it
@@ -385,7 +385,7 @@ namespace gpstk
                               const int startBit,
                               const int numBits,
                               const int scale=1 )
-                              throw(InvalidParameter);
+;
          /**
           *  Reset number of bits
           */
@@ -408,7 +408,7 @@ namespace gpstk
           * The function returns if the read is succeessful.
           * Otherwise,the function throws an exception */
        void rawBitInput(const std::string inString )
-          throw(InvalidParameter);       
+;       
 
        void setXmitCoerced(bool tf=true) {xMitCoerced=tf;}
        bool isXmitCoerced() const {return xMitCoerced;}
@@ -428,7 +428,7 @@ namespace gpstk
 
          /** Unpack the bits */
       uint64_t asUint64_t(const int startBit, const int numBits ) const 
-         throw(InvalidParameter);
+;
 
          /** Pack the bits */
       void addUint64_t( const uint64_t value, const int numBits );

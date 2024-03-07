@@ -129,7 +129,7 @@ namespace gpstk
    SaasTropModel::SaasTropModel(const double& lat,
                                 const int& day,
                                 const WxObservation& wx)
-      throw(InvalidParameter)
+
    {
       validRxHeight = false;
       SaasTropModel::setReceiverLatitude(lat);
@@ -148,7 +148,7 @@ namespace gpstk
                                 const double& T,
                                 const double& P,
                                 const double& H)
-      throw(InvalidParameter)
+
    {
       validRxHeight = false;
       SaasTropModel::setReceiverLatitude(lat);
@@ -158,7 +158,7 @@ namespace gpstk
 
       // re-define this to get the throws correct
    double SaasTropModel::correction(double elevation) const
-      throw(InvalidTropModel)
+
    {
       if(!valid) {
          if(!validWeather) GPSTK_THROW(
@@ -198,7 +198,7 @@ namespace gpstk
    double SaasTropModel::correction(const Position& RX,
                                     const Position& SV,
                                     const CommonTime& tt)
-      throw(InvalidTropModel)
+
    {
       SaasTropModel::setReceiverHeight(RX.getHeight());
       SaasTropModel::setReceiverLatitude(RX.getGeodeticLatitude());
@@ -229,7 +229,7 @@ namespace gpstk
    double SaasTropModel::correction(const Xvt& RX,
                                     const Xvt& SV,
                                     const CommonTime& tt)
-      throw(InvalidTropModel)
+
    {
       Position R(RX),S(SV);
       return SaasTropModel::correction(R,S,tt);
@@ -237,7 +237,7 @@ namespace gpstk
 
       // Compute and return the zenith delay for dry component of the troposphere
    double SaasTropModel::dry_zenith_delay(void) const
-      throw(InvalidTropModel)
+
    {
       THROW_IF_INVALID_DETAILED();
 
@@ -248,7 +248,7 @@ namespace gpstk
 
       // Compute and return the zenith delay for wet component of the troposphere
    double SaasTropModel::wet_zenith_delay(void) const
-      throw(InvalidTropModel)
+
    {
       THROW_IF_INVALID_DETAILED();
 
@@ -273,7 +273,7 @@ namespace gpstk
       // Compute and return the mapping function for dry component of the troposphere
       // @param elevation Elevation of satellite as seen at receiver, in degrees
    double SaasTropModel::dry_mapping_function(double elevation) const
-      throw(InvalidTropModel)
+
    {
       THROW_IF_INVALID_DETAILED();
       if(elevation < 0.0) return 0.0;
@@ -324,7 +324,7 @@ namespace gpstk
       // Compute and return the mapping function for wet component of the troposphere
       // @param elevation Elevation of satellite as seen at receiver, in degrees.
    double SaasTropModel::wet_mapping_function(double elevation) const
-      throw(InvalidTropModel)
+
    {
       THROW_IF_INVALID_DETAILED();
       if(elevation < 0.0) return 0.0;
@@ -364,7 +364,7 @@ namespace gpstk
    void SaasTropModel::setWeather(const double& T,
                                   const double& P,
                                   const double& H)
-      throw(InvalidParameter)
+
    {
       temp = T;
       press = P;
@@ -381,7 +381,7 @@ namespace gpstk
       // Typically called just before correction().
       // @param wx the weather to use for this correction
    void SaasTropModel::setWeather(const WxObservation& wx)
-      throw(InvalidParameter)
+
    {
       try
       {

@@ -15,7 +15,7 @@
 //  You should have received a copy of the GNU Lesser General Public
 //  License along with GPSTk; if not, write to the Free Software Foundation,
 //  Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110, USA
-//  
+//
 //  Copyright 2004, The University of Texas at Austin
 //
 //============================================================================
@@ -23,13 +23,13 @@
 //============================================================================
 //
 //This software developed by Applied Research Laboratories at the University of
-//Texas at Austin, under contract to an agency or agencies within the U.S. 
+//Texas at Austin, under contract to an agency or agencies within the U.S.
 //Department of Defense. The U.S. Government retains all rights to use,
-//duplicate, distribute, disclose, or release this software. 
+//duplicate, distribute, disclose, or release this software.
 //
-//Pursuant to DoD Directive 523024 
+//Pursuant to DoD Directive 523024
 //
-// DISTRIBUTION STATEMENT A: This software has been approved for public 
+// DISTRIBUTION STATEMENT A: This software has been approved for public
 //                           release, distribution is unlimited.
 //
 //=============================================================================
@@ -79,10 +79,10 @@ namespace gpstk
       IonoCorr(std::string str);
 
          /// Return string version of CorrType
-      std::string asString() const throw();
+      std::string asString() const noexcept;
 
          /// Set type value from RINEX correction type string.
-      void fromString(const std::string str) throw(Exception);
+      void fromString(const std::string str);
 
          /// Equality test
       bool operator==(const IonoCorr& ic) const;
@@ -123,7 +123,7 @@ namespace gpstk
           * consistent.
           * @param[in] string str beginning with system character or
           *   "M" for mixed */
-      void setFileSystem(const std::string& str) throw(Exception);
+      void setFileSystem(const std::string& str);
 
          /** Compare this header with another.
           * @param[in] right the header to compare this with.
@@ -203,10 +203,7 @@ namespace gpstk
 
          //// Protected member functions
          /// Write this header to stream \a s.
-      virtual void reallyPutRecord(FFStream& s) const
-         throw( std::exception,
-                FFStreamError,
-                gpstk::StringUtils::StringException );
+      virtual void reallyPutRecord(FFStream& s) const;
 
 
          /// This function reads the RINEX Nav header from the given FFStream.
@@ -216,10 +213,7 @@ namespace gpstk
          /// @throws FFStreamError when exceptions(failbit) is set and a read
          ///         or formatting error occurs.  This also resets the stream
          ///         to its pre-read position.
-      virtual void reallyGetRecord(FFStream& s)
-         throw( std::exception,
-                FFStreamError,
-                gpstk::StringUtils::StringException );
+      virtual void reallyGetRecord(FFStream& s);
 
    }; // End of class 'Rinex3NavHeader'
 

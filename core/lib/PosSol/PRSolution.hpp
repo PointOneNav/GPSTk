@@ -74,10 +74,10 @@ namespace gpstk
       WtdAveStats(void) : N(0)
          { lab[0]="ECEF_X";  lab[1]="ECEF_Y"; lab[2]="ECEF_Z"; }
 
-      void setMessage(std::string m) throw() { msg = m; }
-      std::string getMessage(void) const throw() { return msg; }
+      void setMessage(std::string m) noexcept { msg = m; }
+      std::string getMessage(void) const noexcept { return msg; }
 
-      void setLabels(std::string lab1, std::string lab2, std::string lab3) throw()
+      void setLabels(std::string lab1, std::string lab2, std::string lab3) noexcept
          { lab[0]=lab1; lab[1]=lab2; lab[2]=lab3; }
 
       Vector<double> getSol(void) const
@@ -94,7 +94,7 @@ namespace gpstk
 
       int getN(void) const { return N; }
 
-      void reset(void) throw()
+      void reset(void) noexcept
       {
          N = 0;
          sumInfo = Matrix<double>();
@@ -106,7 +106,7 @@ namespace gpstk
 
       // add to statistics, and to weighted average solution and covariance
       void add(const Vector<double>& Sol, const Matrix<double>& Cov)
-         throw(Exception)
+
       {
          try {
             // add to the statistics
@@ -133,7 +133,7 @@ namespace gpstk
       }
 
       // dump statistics and weighted average
-      void dump(std::ostream& os, std::string msg="") const throw(Exception)
+      void dump(std::ostream& os, std::string msg="") const
       {
          try {
             os << "Simple statistics on " << msg << std::endl
@@ -191,13 +191,13 @@ namespace gpstk
       Vector<double> APSolution;
 
       /// constructor
-      PRSMemory() throw() { reset(); }
+      PRSMemory() noexcept { reset(); }
 
       /// destructor
-      ~PRSMemory() throw() { }
+      ~PRSMemory() noexcept { }
 
       /// reset counters, etc.; call at construction and any time for 'start over'
-      void reset(void) throw()
+      void reset(void) noexcept
       {
          fixedAPriori = false;
          nsol = ndata = 0;
@@ -216,7 +216,7 @@ namespace gpstk
       }
 
       /// Fix the apriori solution to the given constant value (XYZ,m)
-      void fixAPSolution(const double& X, const double& Y, const double& Z) throw()
+      void fixAPSolution(const double& X, const double& Y, const double& Z) noexcept
       {
          fixedAPrioriPos[0] = X;
          fixedAPrioriPos[1] = Y;
@@ -263,7 +263,7 @@ namespace gpstk
 
       /// update apriori solution with a known solution; this is done at the end of
       /// both SimplePRSolution() and RAIMCompute()
-      void updateAPSolution(const Vector<double>& Sol) throw()
+      void updateAPSolution(const Vector<double>& Sol) noexcept
       {
          APSolution = Sol;
          if(fixedAPriori)
@@ -275,7 +275,7 @@ namespace gpstk
       void add(const Vector<double>& Sol, const Matrix<double>& Cov,
                const Vector<double>& PreFitResid, const Matrix<double>& Partials,
                const Matrix<double>& invMeasCov)
-         throw(Exception)
+
       {
          was.add(Sol, Cov);
 
@@ -304,7 +304,7 @@ namespace gpstk
       }
 
       // dump statistics and weighted average
-      void dump(std::ostream& os, std::string msg="PRS") throw(Exception)
+      void dump(std::ostream& os, std::string msg="PRS")
       {
          try {
             was.setMessage(msg);
@@ -370,7 +370,7 @@ namespace gpstk
    {
    public:
          /// Constructor
-       PRSolution() throw() : RMSLimit(6.5),
+       PRSolution() noexcept : RMSLimit(6.5),
                              SlopeLimit(1000.),
                              NSatsReject(-1),
                              MaxNIterations(10),
@@ -379,7 +379,7 @@ namespace gpstk
                              Valid(false)
          {}
       /// Return the status of solution
-      bool isValid() const throw() { return Valid; }
+      bool isValid() const noexcept { return Valid; }
 
       // input parameters: -------------------------------------------------
 
@@ -524,7 +524,7 @@ namespace gpstk
                             std::vector<SatID::SatelliteSystem>& Syss,
                             const std::vector<double>& Pseudorange,
                             const XvtStore<SatID> *pEph,
-                            Matrix<double>& SVP) const throw();
+                            Matrix<double>& SVP) const noexcept;
 
       /// Compute a single autonomous pseudorange solution.
       /// On output, all the member data is filled with results.
@@ -570,7 +570,7 @@ namespace gpstk
                            const double& convLimit,
                            const std::vector<SatID::SatelliteSystem>& Syss,
                            Vector<double>& Resids,
-                           Vector<double>& Slopes) throw(Exception);
+                           Vector<double>& Slopes);
 
       /// Compute a position/time solution, given satellite PRNs and pseudoranges
       /// using a RAIM algorithm. This is the main computation done by this class.
@@ -605,46 +605,46 @@ namespace gpstk
                       const Matrix<double>& invMC,
                       const XvtStore<SatID> *pEph,
                       TropModel *pTropModel)
-         throw(Exception);
+;
 
       /// Compute DOPs using the partials matrix from the last successful solution.
       /// RAIMCompute(), if successful, calls this before returning.
       /// Results stored in PRSolution::TDOP,PDOP,GDOP.
-      int DOPCompute(void) throw(Exception);
+      int DOPCompute(void);
 
       /// conveniences for printing the results of the pseudorange solution algorithm
       /// return string of position, error code and V/NV
       std::string outputPOSString(std::string tag, int iret=-99,
-                                    const Vector<double>& Vec=PRSNullVector) throw();
+                                    const Vector<double>& Vec=PRSNullVector) noexcept;
 
       /// return string of {SYS clock} for all systems, error code and V/NV
-      std::string outputCLKString(std::string tag, int iret=-99) throw();
+      std::string outputCLKString(std::string tag, int iret=-99) noexcept;
 
       /// return string of info in POS and CLK
       std::string outputNAVString(std::string tag, int iret=-99,
-                                    const Vector<double>& Vec=PRSNullVector) throw();
+                                    const Vector<double>& Vec=PRSNullVector) noexcept;
 
       /// return string of Nsvs, RMS residual, TDOP, PDOP, GDOP, Slope, niter, conv,
       /// satellites, error code and V/NV
-      std::string outputRMSString(std::string tag, int iret=-99) throw();
-      std::string outputValidString(int iret=-99) throw();
+      std::string outputRMSString(std::string tag, int iret=-99) noexcept;
+      std::string outputValidString(int iret=-99) noexcept;
 
       /// return string of NAV and RMS strings
       std::string outputString(std::string tag, int iret=-99,
-                               const Vector<double>& Vec=PRSNullVector) throw();
+                               const Vector<double>& Vec=PRSNullVector) noexcept;
       /// return string of the form "#tag label etc" which is header for data strings
-      std::string outputStringHeader(std::string tag) throw()
+      std::string outputStringHeader(std::string tag) noexcept
          { return outputString(tag,-999); }
 
       /// A convenience for printing the error code (return value)
-      std::string errorCodeString(int iret) throw();
+      std::string errorCodeString(int iret) noexcept;
 
       /// A convenience for printing the current configuarion
-      std::string configString(std::string tag) throw();
+      std::string configString(std::string tag) noexcept;
 
       /// Set current time
 
-      void setTime(const CommonTime& ct) throw()
+      void setTime(const CommonTime& ct) noexcept
          { currTime = ct; }
 
    private:

@@ -241,7 +241,7 @@ namespace gpstk
                   const gpstk::CommonTime& ending = gpstk::CommonTime::END_OF_TIME, 
                   const FileReadingMode frm = AppendedData,
                   const GetRecordMode grm = Dumb)
-         throw(gpstk::Exception);
+;
       
          /// destructor
       ~RTFileFrame();
@@ -349,7 +349,7 @@ namespace gpstk
                                      const gpstk::CommonTime& ending, 
                                      const RTFileFrameHelper::FileReadingMode frm,
                                      const RTFileFrameHelper::GetRecordMode grm)
-   throw(gpstk::Exception)
+
       : fileStream(NULL), fs(fnFormat), startTime(beginning), 
       currentTime(beginning), endTime(ending), readMode(frm), getMode(grm)
    {

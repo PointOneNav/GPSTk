@@ -62,7 +62,7 @@ using namespace gpstk::StringUtils;
 namespace gpstk
 {
    FileHunter::FileHunter(const string& filespec)
-      throw(FileHunterException)
+
    {
       try
       {
@@ -75,7 +75,7 @@ namespace gpstk
    }
 
    FileHunter::FileHunter(const FileSpec& filespec)
-      throw(FileHunterException)
+
    {
       try
       {
@@ -88,7 +88,7 @@ namespace gpstk
    }
 
    FileHunter& FileHunter::newHunt(const string& filespec)
-      throw(FileHunterException)
+
    {
       try
       {
@@ -103,7 +103,7 @@ namespace gpstk
 
    FileHunter& FileHunter::setFilter(const FileSpec::FileSpecType fst,
                                      const vector<string>& filter)
-      throw(FileHunterException)
+
    {
       std::string  fileSpecType;
       if (filter.empty())
@@ -148,7 +148,7 @@ namespace gpstk
                                    const CommonTime& end,
                                    const FileSpec::FileSpecSortType fsst,
                                    enum FileChunking chunk) const
-      throw(FileHunterException)
+
    {
       
       // stupidity check
@@ -276,7 +276,7 @@ namespace gpstk
    }
 
    void FileHunter::init(const string& filespec)
-      throw(FileHunterException)
+
    {
          // debug
       try
@@ -403,7 +403,7 @@ namespace gpstk
    
    vector<string> FileHunter::searchHelper(const string& directory,
                                            const FileSpec& fs) const
-      throw(FileHunterException)
+
    {
       try
       {
@@ -515,7 +515,7 @@ namespace gpstk
 
    void FileHunter::filterHelper(vector<std::string>& fileList, 
                                  const FileSpec& fs) const
-      throw(FileHunterException)
+
    {
          // go through the filterList.  If the filespec has
          // any fields to filter, remove matches from fileList

@@ -75,7 +75,7 @@ namespace gpstk
        */
    template <class T, class BaseClass>
    BaseClass& ident(RefMatrixBase<T, BaseClass>& m)
-      throw (MatrixException)
+
    {
       BaseClass& me = static_cast<BaseClass&>(m);
       if ( (me.rows() != me.cols()) || (me.cols() < 1) )
@@ -95,7 +95,7 @@ namespace gpstk
        */
    template <class T, class BaseClass>
    inline T trace(const ConstMatrixBase<T, BaseClass>& m)
-      throw (MatrixException)
+
    {
       if ((!m.isSquare()) || (m.rows() == 0))
       {

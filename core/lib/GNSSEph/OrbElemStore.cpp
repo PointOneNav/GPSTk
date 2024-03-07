@@ -63,7 +63,7 @@ namespace gpstk
 //--------------------------------------------------------------------------
 
    Xvt OrbElemStore::getXvt(const SatID& sat, const CommonTime& t) const
-      throw( InvalidRequest )
+
    {
       try
       {
@@ -90,7 +90,7 @@ namespace gpstk
 //------------------------------------------------------------------------------
 
    void OrbElemStore::validSatSystem(const SatID& sat) const 
-      throw( InvalidRequest )
+
    {
       if (!isSatSysPresent(sat.system))
       {
@@ -115,7 +115,7 @@ namespace gpstk
 //--------------------------------------------------------------------------
 
    bool OrbElemStore::isHealthy(const SatID& sat, const CommonTime& t) const
-      throw( InvalidRequest )
+
    {
       try
       {
@@ -137,7 +137,7 @@ namespace gpstk
 // listing behavior.
 
    void OrbElemStore::dump(std::ostream& s, short detail) const
-      throw()
+      noexcept
    {
       UBEMap::const_iterator it;
       static const string fmt("%04Y/%02m/%02d %02H:%02M:%02S %P");
@@ -185,7 +185,7 @@ namespace gpstk
 // It should keep the one with the earliest transmit time.
 //------------------------------------------------------------------------------------ 
    bool OrbElemStore::addOrbElem(const OrbElemBase* eph)
-      throw(InvalidParameter,Exception)
+
    {
      bool dbg = false;
      //if (eph->satID.id==2 ||
@@ -334,7 +334,7 @@ namespace gpstk
 //-----------------------------------------------------------------------------
 
    void OrbElemStore::edit(const CommonTime& tmin, const CommonTime& tmax)
-      throw()
+      noexcept
    {
       for(UBEMap::iterator i = ube.begin(); i != ube.end(); i++)
       {
@@ -364,7 +364,7 @@ namespace gpstk
 //-----------------------------------------------------------------------------
 
    unsigned OrbElemStore::size() const
-      throw()
+      noexcept
    {
       unsigned counter = 0;
       for(UBEMap::const_iterator i = ube.begin(); i != ube.end(); i++)
@@ -375,7 +375,7 @@ namespace gpstk
 
 //-----------------------------------------------------------------------------
    bool OrbElemStore::isPresent(const SatID& id) const 
-      throw()
+      noexcept
    {
       UBEMap::const_iterator ci = ube.find(id);
       if (ci==ube.end()) return false;
@@ -394,7 +394,7 @@ namespace gpstk
 
    const OrbElemBase*
    OrbElemStore::findOrbElem(const SatID& sat, const CommonTime& t) const
-      throw( InvalidRequest )
+
    {
           // Check to see that there exists a map of orbital elements
 	  // relevant to this SV.
@@ -484,7 +484,7 @@ namespace gpstk
  
      const OrbElemBase*
    OrbElemStore::findNearOrbElem(const SatID& sat, const CommonTime& t) const
-      throw(InvalidRequest)
+
    {
         // Check for any OrbElem for this SV            
       UBEMap::const_iterator prn_i = ube.find(sat);
@@ -549,7 +549,7 @@ namespace gpstk
 //-----------------------------------------------------------------------------
    const OrbElemBase* OrbElemStore::
    findToe(const SatID& sat, const CommonTime& t)
-      const throw(InvalidRequest)
+      const
    {
          // If the TimeSystem of the requested t doesn't match
          // the TimeSystem stored in this store, throw an error.
@@ -601,7 +601,7 @@ namespace gpstk
 //-----------------------------------------------------------------------------
 
    int OrbElemStore::addToList(std::list<OrbElemBase*>& v) const
-      throw()
+      noexcept
    {
       int n = 0;
       UBEMap::const_iterator prn_i;
@@ -622,7 +622,7 @@ namespace gpstk
 
    /// Remove all data from this collection.
    void OrbElemStore::clear()
-         throw()
+         noexcept
    {
       for( UBEMap::iterator ui = ube.begin(); ui != ube.end(); ui++)
       {
@@ -643,7 +643,7 @@ namespace gpstk
 
    const OrbElemStore::OrbElemMap&
    OrbElemStore::getOrbElemMap( const SatID& sat ) const
-      throw( InvalidRequest )
+
    {
       validSatSystem(sat);
 

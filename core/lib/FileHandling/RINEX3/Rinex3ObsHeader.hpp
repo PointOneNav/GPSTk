@@ -15,7 +15,7 @@
 //  You should have received a copy of the GNU Lesser General Public
 //  License along with GPSTk; if not, write to the Free Software Foundation,
 //  Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110, USA
-//  
+//
 //  Copyright 2004, The University of Texas at Austin
 //
 //============================================================================
@@ -23,13 +23,13 @@
 //============================================================================
 //
 //This software developed by Applied Research Laboratories at the University of
-//Texas at Austin, under contract to an agency or agencies within the U.S. 
+//Texas at Austin, under contract to an agency or agencies within the U.S.
 //Department of Defense. The U.S. Government retains all rights to use,
-//duplicate, distribute, disclose, or release this software. 
+//duplicate, distribute, disclose, or release this software.
 //
-//Pursuant to DoD Directive 523024 
+//Pursuant to DoD Directive 523024
 //
-// DISTRIBUTION STATEMENT A: This software has been approved for public 
+// DISTRIBUTION STATEMENT A: This software has been approved for public
 //                           release, distribution is unlimited.
 //
 //=============================================================================
@@ -229,7 +229,7 @@ namespace gpstk
          validLeapSeconds       = 0x20000000, ///< LEAP SECONDS
          validNumSats           = 0x40000000, ///< # OF SATELLITES
          validPrnObs            = 0x80000000, ///< PRN / # OF OBS
-   
+
             /// This mask is for all required valid fields - RINEX 2
          allValid2              = 0x001207CB,
 
@@ -244,7 +244,7 @@ namespace gpstk
          allValid303            = 0x0412058B, ///< RINEX 3.03
          allValid304            = 0x0412058B, ///< RINEX 3.04
       };
-   
+
 #ifndef SWIG // nested structs/classes not supported by SWIG
          /** RINEX 3 DCBS/PCVS info (for differential code bias and
           * phase center variations corr.) */
@@ -418,7 +418,7 @@ namespace gpstk
           * @param[in] type String representing the observation type.
           */
       virtual std::size_t getObsIndex(const std::string& type ) const
-         throw(InvalidRequest);
+;
 
          /** This method returns the numerical index of a given observation
           *
@@ -426,23 +426,23 @@ namespace gpstk
           * @param[in] obsID RinexObsID of the observation
           */
       virtual std::size_t getObsIndex(const std::string& sys, const RinexObsID& obsID ) const
-         throw(InvalidRequest);
+;
 
          /** Parse a single header record, and modify valid
           * accordingly.  Used by reallyGetRecord for both
           * Rinex3ObsHeader and Rinex3ObsData. */
       void parseHeaderRecord(std::string& line)
-         throw(FFStreamError);
+;
 
          /** Compute number of valid header records that
           * writeHeaderRecords() will write */
-      int numberHeaderRecordsToBeWritten(void) const throw();
+      int numberHeaderRecordsToBeWritten(void) const noexcept;
 
          /** Write all valid header records to the given stream.  Used
           * by reallyPutRecord for both Rinex3ObsHeader and
           * Rinex3ObsData. */
       void writeHeaderRecords(FFStream& s) const
-         throw(FFStreamError, gpstk::StringUtils::StringException);
+;
 
          /// Return boolean : is this a valid Rinex header?
       bool isValid() const
@@ -482,9 +482,7 @@ namespace gpstk
 
 
          /// outputs this record to the stream correctly formatted.
-      virtual void reallyPutRecord(FFStream& s) const
-         throw(std::exception, FFStreamError,
-               gpstk::StringUtils::StringException);
+      virtual void reallyPutRecord(FFStream& s) const;
 
          /** This function retrieves the RINEX Header from the given FFStream.
           * If an stream error is encountered, the stream is reset to its
@@ -493,21 +491,19 @@ namespace gpstk
           * @throw FFStreamError when exceptions(failbit) is set and
           *  a read or formatting error occurs.  This also resets the
           *  stream to its pre-read position. */
-      virtual void reallyGetRecord(FFStream& s)
-         throw(std::exception, FFStreamError,
-               gpstk::StringUtils::StringException);
+      virtual void reallyGetRecord(FFStream& s);
 
 
          /// Helper methods
          /// The conversion between RINEX v2.11 to RINEX v3 observation
-         /// type is fraught with system-specific idiosyncracies.   These 
+         /// type is fraught with system-specific idiosyncracies.   These
          /// methods read the list of v2.11 obs types stored in R2ObsTypes
          /// and attempt to build a corresponding list of v3 observation
          /// types where appropriate.
-      std::vector<RinexObsID> mapR2ObsToR3Obs_G() throw(FFStreamError);
-      std::vector<RinexObsID> mapR2ObsToR3Obs_R() throw(FFStreamError);
-      std::vector<RinexObsID> mapR2ObsToR3Obs_E() throw(FFStreamError);
-      std::vector<RinexObsID> mapR2ObsToR3Obs_S() throw(FFStreamError);
+      std::vector<RinexObsID> mapR2ObsToR3Obs_G();
+      std::vector<RinexObsID> mapR2ObsToR3Obs_R();
+      std::vector<RinexObsID> mapR2ObsToR3Obs_E();
+      std::vector<RinexObsID> mapR2ObsToR3Obs_S();
 
       friend class Rinex3ObsData;
 

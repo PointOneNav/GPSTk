@@ -48,7 +48,7 @@ namespace gpstk
 // Output operator for Xvt
 // @param os output stream to which \c xvt is sent
 // @param xvt Xvt that is sent to \c os
-std::ostream& operator<<(std::ostream& os, const gpstk::Xvt& xvt) throw()
+std::ostream& operator<<(std::ostream& os, const gpstk::Xvt& xvt) noexcept
 {
    os << "x:" << xvt.x
      << ", v:" << xvt.v
@@ -77,7 +77,7 @@ double Xvt::computeRelativityCorrection(void)
 double Xvt::preciseRho(const Triple& rxPos,
                               const EllipsoidModel& ellips,
                               double correction) const 
-   throw()
+   noexcept
 {
    // Compute initial time of flight estimate using the
    // geometric range at transmit time.  This fails to account

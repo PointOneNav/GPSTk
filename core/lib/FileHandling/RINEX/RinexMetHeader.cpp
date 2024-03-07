@@ -15,7 +15,7 @@
 //  You should have received a copy of the GNU Lesser General Public
 //  License along with GPSTk; if not, write to the Free Software Foundation,
 //  Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110, USA
-//  
+//
 //  Copyright 2004, The University of Texas at Austin
 //
 //============================================================================
@@ -23,13 +23,13 @@
 //============================================================================
 //
 //This software developed by Applied Research Laboratories at the University of
-//Texas at Austin, under contract to an agency or agencies within the U.S. 
+//Texas at Austin, under contract to an agency or agencies within the U.S.
 //Department of Defense. The U.S. Government retains all rights to use,
-//duplicate, distribute, disclose, or release this software. 
+//duplicate, distribute, disclose, or release this software.
 //
-//Pursuant to DoD Directive 523024 
+//Pursuant to DoD Directive 523024
 //
-// DISTRIBUTION STATEMENT A: This software has been approved for public 
+// DISTRIBUTION STATEMENT A: This software has been approved for public
 //                           release, distribution is unlimited.
 //
 //=============================================================================
@@ -88,8 +88,6 @@ namespace gpstk
    }
 
    void RinexMetHeader::reallyPutRecord(FFStream& ffs) const
-      throw(std::exception, FFStreamError,
-            gpstk::StringUtils::StringException)
    {
       RinexMetStream& strm = dynamic_cast<RinexMetStream&>(ffs);
 
@@ -254,9 +252,7 @@ namespace gpstk
       }
    }
 
-   void RinexMetHeader::reallyGetRecord(FFStream& ffs) 
-      throw(std::exception, FFStreamError, 
-            gpstk::StringUtils::StringException)
+   void RinexMetHeader::reallyGetRecord(FFStream& ffs)
    {
       RinexMetStream& strm = dynamic_cast<RinexMetStream&>(ffs);
 
@@ -294,7 +290,7 @@ namespace gpstk
                (verstr != "2.10") && (verstr != "2.11") && (verstr != "3.0") &&
                (verstr != "3.01") && (verstr!= "3.02"))
             {
-               FFStreamError e("Unknown or unsupported RINEX version " + 
+               FFStreamError e("Unknown or unsupported RINEX version " +
                                asString(version));
                GPSTK_THROW(e);
             }
@@ -351,7 +347,7 @@ namespace gpstk
             else
             {
                int currentObsTypes = obsTypeList.size();
-               for (int i = currentObsTypes; 
+               for (int i = currentObsTypes;
                     (i < numObs) && (i < (maxObsPerLine + currentObsTypes));
                     i++)
                {
@@ -399,11 +395,11 @@ namespace gpstk
             sp.position[1] = asDouble(line.substr(14,14));
             sp.position[2] = asDouble(line.substr(28,14));
             sp.height = asDouble(line.substr(42,14));
-            
+
             sp.obsType = convertObsType(line.substr(57,2));
-            
+
             sensorPosList.push_back(sp);
-            
+
                // Only barometer is required, so set it valid only if you see that record.
             if (sp.obsType == PR)
             {
@@ -428,7 +424,7 @@ namespace gpstk
       else if (version >= 3.0 ) allValid = allValid21;
       else
       {
-         FFStreamError e("Unknown or unsupported RINEX version " + 
+         FFStreamError e("Unknown or unsupported RINEX version " +
                          asString(version));
          GPSTK_THROW(e);
       }
@@ -464,7 +460,7 @@ namespace gpstk
 
    RinexMetHeader::RinexMetType
    RinexMetHeader::convertObsType(const string& oneObs)
-      throw(FFStreamError)
+
    {
       if      (oneObs == "PR") return PR;
       else if (oneObs == "TD") return TD;
@@ -484,7 +480,7 @@ namespace gpstk
    }
 
    string RinexMetHeader::convertObsType(const RinexMetHeader::RinexMetType& oneObs)
-      throw(FFStreamError)
+
    {
       if      (oneObs == PR) return "PR";
       else if (oneObs == TD) return "TD";

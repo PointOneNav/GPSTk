@@ -15,7 +15,7 @@
 //  You should have received a copy of the GNU Lesser General Public
 //  License along with GPSTk; if not, write to the Free Software Foundation,
 //  Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110, USA
-//  
+//
 //  Copyright 2004, The University of Texas at Austin
 //
 //============================================================================
@@ -23,13 +23,13 @@
 //============================================================================
 //
 //This software developed by Applied Research Laboratories at the University of
-//Texas at Austin, under contract to an agency or agencies within the U.S. 
+//Texas at Austin, under contract to an agency or agencies within the U.S.
 //Department of Defense. The U.S. Government retains all rights to use,
-//duplicate, distribute, disclose, or release this software. 
+//duplicate, distribute, disclose, or release this software.
 //
-//Pursuant to DoD Directive 523024 
+//Pursuant to DoD Directive 523024
 //
-// DISTRIBUTION STATEMENT A: This software has been approved for public 
+// DISTRIBUTION STATEMENT A: This software has been approved for public
 //                           release, distribution is unlimited.
 //
 //=============================================================================
@@ -54,8 +54,6 @@ namespace gpstk
    const int RinexMetData::maxObsPerContinuationLine = 10;
 
    void RinexMetData::reallyPutRecord(FFStream& ffs) const
-      throw(std::exception, FFStreamError, 
-            gpstk::StringUtils::StringException)
    {
       RinexMetStream& strm = dynamic_cast<RinexMetStream&>(ffs);
       string line;
@@ -71,7 +69,7 @@ namespace gpstk
          RinexMetMap::const_iterator itr = data.find(thistype);
          if (itr == data.end())
          {
-            FFStreamError err("Couldn't find data for " + 
+            FFStreamError err("Couldn't find data for " +
                               RinexMetHeader::convertObsType(strm.header.obsTypeList[i]));
             GPSTK_THROW(err);
          }
@@ -96,7 +94,7 @@ namespace gpstk
             RinexMetMap::const_iterator itr = data.find(thistype);
             if (itr == data.end())
             {
-               FFStreamError err("Couldn't find data for " + 
+               FFStreamError err("Couldn't find data for " +
                                  RinexMetHeader::convertObsType(strm.header.obsTypeList[i]));
                GPSTK_THROW(err);
             }
@@ -109,8 +107,6 @@ namespace gpstk
    }
 
    void RinexMetData::reallyGetRecord(FFStream& ffs)
-      throw(std::exception, FFStreamError, 
-            gpstk::StringUtils::StringException)
    {
       RinexMetStream& strm = dynamic_cast<RinexMetStream&>(ffs);
 
@@ -125,7 +121,7 @@ namespace gpstk
          // this is to see whether or not we expect an EOF
          // when we read this next line
       if ((int)hdr.obsTypeList.size() > maxObsPerLine)
-         strm.formattedGetLine(line); 
+         strm.formattedGetLine(line);
       else
          strm.formattedGetLine(line, true);
 
@@ -147,12 +143,12 @@ namespace gpstk
          FFStreamError e("Incorrect number of records");
          GPSTK_THROW(e);
       }
-   } 
+   }
 
    void RinexMetData::processFirstLine(const string& line,
                                        const RinexMetHeader& hdr,
                                        double version)
-      throw(FFStreamError)
+
    {
       int yrLen = 18;
       if(version >= 3.02)
@@ -178,7 +174,7 @@ namespace gpstk
 
    void RinexMetData::processContinuationLine(const string& line,
                                               const RinexMetHeader& hdr)
-      throw(FFStreamError)
+
    {
       try
       {
@@ -200,7 +196,7 @@ namespace gpstk
    }
 
    CommonTime RinexMetData::parseTime(const string& line, double version) const
-      throw(FFStreamError)
+
    {
       int addYrLen = 0;
       if(version >=3.02)
@@ -258,7 +254,7 @@ namespace gpstk
    }
 
    string RinexMetData::writeTime(const CommonTime& dt, double version) const
-      throw(StringException)
+
    {
       int yrLen = 2;
       if(version >= 3.02)

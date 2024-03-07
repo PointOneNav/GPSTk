@@ -15,7 +15,7 @@
 //  You should have received a copy of the GNU Lesser General Public
 //  License along with GPSTk; if not, write to the Free Software Foundation,
 //  Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110, USA
-//  
+//
 //  Copyright 2004, The University of Texas at Austin
 //
 //============================================================================
@@ -23,13 +23,13 @@
 //============================================================================
 //
 //This software developed by Applied Research Laboratories at the University of
-//Texas at Austin, under contract to an agency or agencies within the U.S. 
+//Texas at Austin, under contract to an agency or agencies within the U.S.
 //Department of Defense. The U.S. Government retains all rights to use,
-//duplicate, distribute, disclose, or release this software. 
+//duplicate, distribute, disclose, or release this software.
 //
-//Pursuant to DoD Directive 523024 
+//Pursuant to DoD Directive 523024
 //
-// DISTRIBUTION STATEMENT A: This software has been approved for public 
+// DISTRIBUTION STATEMENT A: This software has been approved for public
 //                           release, distribution is unlimited.
 //
 //=============================================================================
@@ -105,11 +105,11 @@ namespace gpstk
 
          /// sets the obs type array given an obs type line
       static RinexMetType convertObsType(const std::string& oneObs)
-         throw(FFStreamError);
+;
 
          /// Converts a RinexMetType to its string equivalent.
       static std::string convertObsType(const RinexMetType& oneObs)
-         throw(FFStreamError);
+;
 
          /// Tell me, Am I valid?
       unsigned long valid;
@@ -223,7 +223,7 @@ namespace gpstk
       static const std::string stringEoH;           ///< "END OF HEADER"
 
 #ifndef SWIG // nested structs not supported by SWIG
-         /// Struct for holding information about a sensor 
+         /// Struct for holding information about a sensor
       struct sensorType
       {
          std::string model;    ///< The manufacturer of the sensor.
@@ -255,9 +255,7 @@ namespace gpstk
    protected:
 
          /// Writes the RINEX Met header to the stream \a s.
-      virtual void reallyPutRecord(FFStream& s) const
-         throw(std::exception, FFStreamError,
-               gpstk::StringUtils::StringException);
+      virtual void reallyPutRecord(FFStream& s) const;
 
          /**
           * This function reads the RINEX MET header from the given FFStream.
@@ -268,9 +266,7 @@ namespace gpstk
           *  a read or formatting error occurs.  This also resets the
           *  stream to its pre-read position.
           */
-      virtual void reallyGetRecord(FFStream& s)
-         throw(std::exception, FFStreamError,
-               gpstk::StringUtils::StringException);
+      virtual void reallyGetRecord(FFStream& s);
 
    }; // class RinexMetHeader
 

@@ -118,14 +118,14 @@ namespace gpstk
           * @throw FileHunterException when there's a problem with the filespec
           */
       FileHunter(const std::string& filespec)
-         throw(FileHunterException);
+;
 
          /**
           * Constructs a FileHunter using a FileSpec.
           * @throw FileHunterException when there's a problem with the filespec
           */
       FileHunter(const FileSpec& filespec)
-         throw(FileHunterException);
+;
 
          /** 
           * Rather than building a new file hunter, this lets you change
@@ -133,14 +133,14 @@ namespace gpstk
           * @throw FileHunterException when there's a problem with the filespec
           */
       FileHunter& newHunt(const std::string& filespec)
-         throw(FileHunterException);
+;
 
          /**
           * Changes the file spec you're searching for in FileHunter.
           * @throw FileHunterException when there's an error in the filespec
           */
       FileHunter& newHunt(const FileSpec& filespec)
-         throw(FileHunterException)
+
       {return newHunt(filespec.getSpecString());}
 
          /** 
@@ -152,7 +152,7 @@ namespace gpstk
           */
       FileHunter& setFilter(const FileSpec::FileSpecType fst,
                             const std::vector<std::string>& filter)
-         throw(FileHunterException);
+;
 
          /**
           * Does the searching for the files.  Set \a start and \a end
@@ -173,7 +173,7 @@ namespace gpstk
            const gpstk::CommonTime& end = gpstk::CommonTime::END_OF_TIME,
            const FileSpec::FileSpecSortType fsst = FileSpec::ascending,
            enum FileChunking chunk = DAY) const
-         throw(FileHunterException);
+;
 
          /// outputs the file spec into a semi-readable format
       void dump(std::ostream& o) const;
@@ -187,7 +187,7 @@ namespace gpstk
    protected:
          ///Shared code between the constructor and newHunt
       void init(const std::string& filespec)
-         throw(FileHunterException);
+;
 
          /** Performs a search for the given file spec on the given directory.
           * \warning This method is NOT MT-Safe.
@@ -195,13 +195,13 @@ namespace gpstk
       std::vector<std::string> 
       searchHelper(const std::string& directory,
                    const FileSpec& fs) const
-         throw(FileHunterException);
+;
 
          /// If there is a filter set, this will find the filtered items
          /// and set fileList to contain only those.
       void filterHelper(std::vector<std::string>& fileList, 
                         const FileSpec& fs) const
-         throw(FileHunterException);
+;
 
          /// Holds the broken down list of the file specification for searching
       std::vector<FileSpec> fileSpecList;

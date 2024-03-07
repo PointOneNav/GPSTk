@@ -93,7 +93,7 @@ namespace gpstk
          // Examine and stored data, fix the transmit times.
          // Throws an error if it encounters data that cannot be interpreted.
       void rationalize()
-         throw(InvalidRequest);
+;
 
          // Dump summary of contents of store
       void dump(std::ostream& out=std::cout) const;
