@@ -5,15 +5,6 @@
 #========================================
 
 #----------------------------------------
-# Shared(Dynamic) vs. Static libraries
-#----------------------------------------
-if( UNIX )
-    set( STADYN "SHARED" )
-elseif( WIN32 )
-    set( STADYN "STATIC" )
-endif()
-
-#----------------------------------------
 # Platform-dependent Compiler flags
 #----------------------------------------
 if( ${CMAKE_SYSTEM_NAME} MATCHES "SunOS" )
@@ -121,7 +112,7 @@ if( DEBUG_SWITCH AND NOT DEBUG_VERBOSE )
     message( STATUS "CMAKE_COMMAND             = ${CMAKE_COMMAND}" )     # e.g., /usr/bin/cmake
     message( STATUS "CMAKE_VERSION             = ${CMAKE_VERSION}" )     # e.g., 2.8.9
     message( STATUS "CMAKE_BUILD_TOOL          = ${CMAKE_BUILD_TOOL}" )  # e.g., /usr/bin/make
-    message( STATUS "STADYN                    = ${STADYN}" )
+    message( STATUS "BUILD_SHARED_LIBS         = ${BUILD_SHARED_LIBS}" )
     message( STATUS "CMAKE_COMPILER_IS_GNUCC   = ${CMAKE_COMPILER_IS_GNUCC}" )
     message( STATUS "CMAKE_CXX_FLAGS           = ${CMAKE_CXX_FLAGS}" )
     message( STATUS "CMAKE_SHARED_LINKER_FLAGS = ${CMAKE_SHARED_LINKER_FLAGS}" )
